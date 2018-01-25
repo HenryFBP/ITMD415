@@ -1,2 +1,6 @@
 *.~ml
+
 ~$*.docx
+
+.classpath
+.project
