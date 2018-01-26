@@ -8,24 +8,41 @@ public class mathlib
 	
 	/**
 	 * @param o The string operator (+-/*%).
-	 * @return A function that takes two numbers in an ArrayList and 
+	 * @return A {@link Function} that takes two numbers in an {@link ArrayList} and
+	 * applies the operator that matches with it.
+	 * 
 	 */
 	public static Function<ArrayList<Double>, Double> operator(String o)
 	{
-		if(o.compareToIgnoreCase(mathe.PLUS.s()) == 0)
+		if(lib.contains(o, mathe.DIVIDEF.s()))
 		{
-			return (it) -> it.get(0) + it.get(1);
+			return (n) -> Math.floor(n.get(0) / n.get(1));
 		}
-		else if(o.compareToIgnoreCase(mathe.MINUS.s()) == 0)
+		else if(lib.contains(o, mathe.POW.s()))
 		{
-			return (it) -> it.get(0) - it.get(1);
+			return (n) -> Math.pow(n.get(0), n.get(1));
 		}
-		//TODO add more ifs
+		else if(lib.contains(o, mathe.PLUS.s()))
+		{
+			return (n) -> n.get(0) + n.get(1);
+		}
+		else if(lib.contains(o, mathe.MINUS.s()))
+		{
+			return (n) -> n.get(0) - n.get(1);
+		}
+		else if(lib.contains(o, mathe.TIMES.s()))
+		{
+			return (n) -> n.get(0) * n.get(1);
+		}
+
+		else if(lib.contains(o, mathe.DIVIDE.s()))
+		{
+			return (n) -> n.get(0) / n.get(1);
+		}
+		else if(lib.contains(o, mathe.MODULO.s()))
+		{
+			return (n) -> n.get(0) % n.get(1);
+		}
 		return null;
-	}
-	
-	public static double parseMath(String m)
-	{
-		return 0;
 	}
 }
