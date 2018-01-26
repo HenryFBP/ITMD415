@@ -4,6 +4,6 @@ public class mathclient
 {
 	public static void main(String[] args)
 	{
-
+		tests.runTests();
 	}
 }
