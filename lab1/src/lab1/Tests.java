@@ -5,6 +5,16 @@ import java.util.function.Function;
 
 public class Tests
 {
+	public static void main(String[] args)
+	{
+		Tests.runTests(); // test library funcs
+		
+		
+		MathServerSocket mathServerSocket = new MathServerSocket(MathE.HOST.s());
+		
+		mathServerSocket.start();
+	}
+	
 	public static void runTests()
 	{
 		System.out.println("MATH FUNCTION TEST:");
