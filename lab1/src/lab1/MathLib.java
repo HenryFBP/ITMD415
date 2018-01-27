@@ -3,7 +3,7 @@ package lab1;
 import java.util.ArrayList;
 import java.util.function.Function;
 
-public class mathlib
+public class MathLib
 {
 	
 	/**
@@ -14,32 +14,32 @@ public class mathlib
 	 */
 	public static Function<ArrayList<Double>, Double> operator(String o)
 	{
-		if(lib.contains(o, mathe.DIVIDEF.s()))
+		if(HLib.contains(o, MathE.DIVIDEF.s()))
 		{
 			return (n) -> Math.floor(n.get(0) / n.get(1));
 		}
-		else if(lib.contains(o, mathe.POW.s()))
+		else if(HLib.contains(o, MathE.POW.s()))
 		{
 			return (n) -> Math.pow(n.get(0), n.get(1));
 		}
-		else if(lib.contains(o, mathe.PLUS.s()))
+		else if(HLib.contains(o, MathE.PLUS.s()))
 		{
 			return (n) -> n.get(0) + n.get(1);
 		}
-		else if(lib.contains(o, mathe.MINUS.s()))
+		else if(HLib.contains(o, MathE.MINUS.s()))
 		{
 			return (n) -> n.get(0) - n.get(1);
 		}
-		else if(lib.contains(o, mathe.TIMES.s()))
+		else if(HLib.contains(o, MathE.TIMES.s()))
 		{
 			return (n) -> n.get(0) * n.get(1);
 		}
 
-		else if(lib.contains(o, mathe.DIVIDE.s()))
+		else if(HLib.contains(o, MathE.DIVIDE.s()))
 		{
 			return (n) -> n.get(0) / n.get(1);
 		}
-		else if(lib.contains(o, mathe.MODULO.s()))
+		else if(HLib.contains(o, MathE.MODULO.s()))
 		{
 			return (n) -> n.get(0) % n.get(1);
 		}

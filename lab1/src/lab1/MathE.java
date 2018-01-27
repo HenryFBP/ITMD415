@@ -1,9 +1,10 @@
 package lab1;
 
-public enum mathe
+public enum MathE
 {
 	
 	HOST("localhost"),
+	PORT(1234),
 
 	/*** This matches any math operator (*, **, /, //, %, -, +), but not dots (.). ***/
 	RX_ONLY_OP	("[^\\s\\d\\.]+"),
@@ -18,17 +19,22 @@ public enum mathe
 	
 	;
 
-	private String constants;
+	private Object constants;
 
-	private mathe(String s)
+	private MathE(String s)
 	{
 		this.constants = s;
+	}
+	
+	private MathE(int i)
+	{
+		this.constants = i;
 	}
 
 	@Override
 	public String toString()
 	{
-		return this.constants;
+		return (String) this.constants;
 	}
 
 	public String s()

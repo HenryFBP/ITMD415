@@ -1,7 +1,7 @@
 package lab1;
 
-public class lib
-{
+public class HLib
+{	
 	/***
 	 * @param haystack The string to be searched for needle.
 	 * @param needle

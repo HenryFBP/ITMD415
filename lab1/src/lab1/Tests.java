@@ -3,23 +3,23 @@ package lab1;
 import java.util.ArrayList;
 import java.util.function.Function;
 
-public class tests
+public class Tests
 {
 	public static void runTests()
 	{
 		System.out.println("MATH FUNCTION TEST:");
-		tests.testsMathLib();
+		Tests.testsMathLib();
 		System.out.println();
 		
 		System.out.println("STATEMENT PARSING TEST:");
-		tests.testsStatementMatching();
+		Tests.testsStatementMatching();
 		System.out.println();
 	}
 	
 	public static void testMathlib(String op, double x, double y)
 	{
 		
-		Function<ArrayList<Double>, Double> f = mathlib.operator(op);
+		Function<ArrayList<Double>, Double> f = MathLib.operator(op);
 		
 		ArrayList<Double> ops = new ArrayList<>();
 
@@ -40,21 +40,21 @@ public class tests
 	
 	public static void testsStatementMatching()
 	{
-		tests.testStatementMatching("1 + 1");
-		tests.testStatementMatching("1.3-1.023");
-		tests.testStatementMatching("2 **3.0");
-		tests.testStatementMatching("200.0// 1.5");
-		tests.testStatementMatching("200.0  /  1.5");
+		Tests.testStatementMatching("1 + 1");
+		Tests.testStatementMatching("1.3-1.023");
+		Tests.testStatementMatching("2 **3.0");
+		Tests.testStatementMatching("200.0// 1.5");
+		Tests.testStatementMatching("200.0  /  1.5");
 	}
 	
 	
 	public static void testsMathLib()
 	{
-		tests.testMathlib("+", 2.0, 5.5);
-		tests.testMathlib("*", 4.0, 4.0);
-		tests.testMathlib("-", 2.0, 5.5);
-		tests.testMathlib("/", 2.0, 5.5);
-		tests.testMathlib("//", 101.0, 5.0);
-		tests.testMathlib("/", 101.0, 5.0);
+		Tests.testMathlib("+", 2.0, 5.5);
+		Tests.testMathlib("*", 4.0, 4.0);
+		Tests.testMathlib("-", 2.0, 5.5);
+		Tests.testMathlib("/", 2.0, 5.5);
+		Tests.testMathlib("//", 101.0, 5.0);
+		Tests.testMathlib("/", 101.0, 5.0);
 	}
 }

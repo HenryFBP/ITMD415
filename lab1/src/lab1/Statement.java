@@ -10,7 +10,7 @@ public class Statement
 	public double opA;
 	public double opB;
 	public String op;
-	private static Pattern RX_Op = Pattern.compile(mathe.RX_ONLY_OP.s());
+	private static Pattern RX_Op = Pattern.compile(MathE.RX_ONLY_OP.s());
 
 	/***
 	 * @param o Operator o.
@@ -34,7 +34,7 @@ public class Statement
 		Matcher m = this.RX_Op.matcher(s);
 		m.find();
 		
-		String[] nums = s.split(mathe.RX_ONLY_OP.s()); //get numbers around an op
+		String[] nums = s.split(MathE.RX_ONLY_OP.s()); //get numbers around an op
 		
 		String o = m.group(0);
 		
@@ -50,7 +50,7 @@ public class Statement
 	 */
 	public double result()
 	{
-		Function<ArrayList<Double>, Double> f = mathlib.operator(this.op);
+		Function<ArrayList<Double>, Double> f = MathLib.operator(this.op);
 
 		ArrayList<Double> operands = new ArrayList<>();
 
