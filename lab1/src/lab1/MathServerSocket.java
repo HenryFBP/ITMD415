@@ -10,52 +10,65 @@ public class MathServerSocket
 {
 	private ServerSocket serverSocket;
 	private MathServer server;
-	
+
 	public MathServerSocket(String bind)
 	{
-		try
+		boolean success = false;
+		int port = MathE.PORT.i();
+
+		while (success == false)
 		{
-			this.serverSocket = new ServerSocket(0, 1, InetAddress.getByName(bind));
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
+			try
+			{
+				this.serverSocket = new ServerSocket(port, 1, InetAddress.getByName(bind));
+				success = true;
+			}
+			catch (BindException be)
+			{
+				System.out.printf("Port %d already in use. ", port);
+				System.out.printf("Trying port %d...\n", port + 1);
+
+				port++;
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
-	
+
 	private void listen()
 	{
 		String s = null;
-		
+
 		try
 		{
 			Socket client = this.serverSocket.accept();
 			String clientAddr = client.getInetAddress().getHostAddress();
-			System.out.printf("New connection from %s",clientAddr);
+			System.out.printf("New connection from %s", clientAddr);
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public InetAddress getSocketAddress()
 	{
 		return this.serverSocket.getInetAddress();
 	}
-	
+
 	public int getPort()
 	{
 		return this.serverSocket.getLocalPort();
 	}
-	
+
 	public void start()
 	{
-		
-		System.out.println("Running math socket.");
-		System.out.printf("Host: %s\n",this.serverSocket.getInetAddress().toString());
-		System.out.printf("Port: %d\n",this.serverSocket.getLocalPort());
-		
+
+		System.out.printf("Running math socket at %s:%d", this.serverSocket.getInetAddress().toString(),
+				this.serverSocket.getLocalPort());
+
 		this.listen();
 	}
 }
