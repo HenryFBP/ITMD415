@@ -29,19 +29,19 @@ public class Statement
 	 */
 	public Statement(String s)
 	{
-		s = s.replace(" ","");
-		
+		s = s.replace(" ", "");
+
 		Matcher m = this.RX_Op.matcher(s);
 		m.find();
-		
-		String[] nums = s.split(MathE.RX_ONLY_OP.s()); //get numbers around an op
-		
+
+		String[] nums = s.split(MathE.RX_ONLY_OP.s()); // get numbers around an op
+
 		String o = m.group(0);
-		
+
 		this.op = o;
 		this.opA = Double.parseDouble(nums[0]);
 		this.opB = Double.parseDouble(nums[1]);
-		
+
 	}
 
 	/**
