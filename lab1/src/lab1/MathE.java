@@ -37,10 +37,19 @@ public enum MathE
 		return (String) this.constants;
 	}
 
+	public int toInt()
+	{
+		return (int) this.constants;
+	}
+	
 	public String s()
 	{
 		return this.toString();
 	}
 
+	public int i()
+	{
+		return this.toInt();
+	}
 
 }
