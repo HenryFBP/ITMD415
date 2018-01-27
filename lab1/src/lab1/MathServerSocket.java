@@ -37,13 +37,16 @@ public class MathServerSocket
 		}
 	}
 
+	/***
+	 * Listen for a connection to be made from a client.
+	 */
 	private void listen()
 	{
 		String s = null;
 
 		try
 		{
-			Socket client = this.serverSocket.accept();
+			Socket client = this.serverSocket.accept(); // this is blocking
 			String clientAddr = client.getInetAddress().getHostAddress();
 			System.out.printf("New connection from %s", clientAddr);
 		}
