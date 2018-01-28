@@ -25,7 +25,8 @@ public class MathClient
 
 			BufferedReader fromServer = new BufferedReader(new InputStreamReader(sock.getInputStream())); // BufferedReader from server
 
-			Scanner scan = new Scanner(System.in); // Scanner for user input
+			BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
+			//Scanner scan = new Scanner(System.in); // Scanner for user input
 			String userInput = "";
 
 			String resp = "";
@@ -40,7 +41,7 @@ public class MathClient
 			while(keepgoing == true)
 			{
 				System.out.print(" > ");
-				userInput = scan.nextLine(); // reads user input and saves it
+				userInput = userIn.readLine(); // reads user input and saves it
 				
 					
 				System.out.println("writing to server...");
@@ -82,6 +83,7 @@ public class MathClient
 		catch(IOException e)
 		{
 			System.out.print("Client Error: " + e.getMessage());
+			//System.exit(1);
 		} // end of try/catch loop
 	}//end of connect method
 	
