@@ -13,13 +13,13 @@ public class MathClient
 
 	public static void connect()
 	{
-		System.out.println("Connecting...");
+		System.out.println("Connecting to server...");
 		
 		try(Socket sock = new Socket(MathE.HOST.s(), MathE.PORT.i()))
 		{
 			boolean keepgoing = true;
 			
-			System.out.println("Connected!");
+			System.out.println("Connected to server!");
 
 			PrintWriter toServer = new PrintWriter(sock.getOutputStream()); // PrintWriter to server
 
@@ -43,7 +43,7 @@ public class MathClient
 				userInput = scan.nextLine(); // reads user input and saves it
 				
 					
-				System.out.println("writing...");
+				System.out.println("writing to server...");
 				toServer.println(userInput); // sends user input to server
 				System.out.println("done writing.");
 				
@@ -54,7 +54,7 @@ public class MathClient
 				}
 
 				
-				System.out.println("reading...");
+				System.out.println("reading from server...");
 				
 				while(!fromServer.ready())
 				{
