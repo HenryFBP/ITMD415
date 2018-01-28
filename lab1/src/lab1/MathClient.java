@@ -43,6 +43,12 @@ public class MathClient
 				System.out.print(" > ");
 				userInput = userIn.readLine(); // reads user input and saves it
 				
+				/*
+				if(userInput.toUpperCase().equals(MathE.QUIT.s().toUpperCase()))
+				{
+					break;
+				}
+				*/
 					
 				System.out.println("writing to server...");
 				toServer.println(userInput); // sends user input to server
@@ -53,7 +59,7 @@ public class MathClient
 				{
 					keepgoing = false;
 				}
-
+				
 				
 				System.out.println("reading from server...");
 				
