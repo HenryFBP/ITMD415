@@ -13,7 +13,7 @@ public class MathClient
 
 	public static void connect()
 	{
-		System.out.println("Connecting to server...");
+		System.out.println("Connecting to host " +MathE.HOST.s()+ " on port " +MathE.PORT.i()+ "...");
 		
 		try(Socket sock = new Socket(MathE.HOST.s(), MathE.PORT.i()))
 		{
@@ -56,10 +56,12 @@ public class MathClient
 				
 				System.out.println("reading from server...");
 				
+				/*
 				while(!fromServer.ready())
 				{
 					//wait for server to be ready.
 				}
+				*/
 				
 				System.out.println("Server is ready!");
 				
