@@ -27,9 +27,11 @@ public class Statement
 	/***
 	 * @param s The String representing a math statement.
 	 */
-	public Statement(String s)
+	public Statement(String s1)
 	{
-		s = s.replace(" ", "");
+		String s = s1.replaceAll(MathE.RX_WSPACE.s(), "");
+
+		// System.out.printf("Stripped string = '%s'.\n",s);
 
 		Matcher m = this.RX_Op.matcher(s);
 		m.find();

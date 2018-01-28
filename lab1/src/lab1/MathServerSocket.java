@@ -16,21 +16,21 @@ public class MathServerSocket
 		boolean success = false;
 		int port = MathE.PORT.i();
 
-		while (success == false)
+		while(!success)
 		{
 			try
 			{
 				this.serverSocket = new ServerSocket(port, 1, InetAddress.getByName(bind));
 				success = true;
 			}
-			catch (BindException be)
+			catch(BindException be)
 			{
 				System.out.printf("Port %d already in use. ", port);
 				System.out.printf("Trying port %d...\n", port + 1);
 
 				port++;
 			}
-			catch (IOException e)
+			catch(IOException e)
 			{
 				e.printStackTrace();
 			}
@@ -50,7 +50,7 @@ public class MathServerSocket
 			String clientAddr = client.getInetAddress().getHostAddress();
 			System.out.printf("New connection from %s", clientAddr);
 		}
-		catch (IOException e)
+		catch(IOException e)
 		{
 			e.printStackTrace();
 		}

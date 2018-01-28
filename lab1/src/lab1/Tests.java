@@ -1,6 +1,7 @@
 package lab1;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.function.Function;
 
 public class Tests
@@ -9,9 +10,31 @@ public class Tests
 	{
 		Tests.runTests(); // test library funcs
 
+		// localClient();
+
 		MathServerSocket mathServerSocket = new MathServerSocket(MathE.HOST.s());
 
 		mathServerSocket.start();
+
+	}
+
+	/***
+	 * Pretend to be a CLI client that can ask the 'math server' (not a server here)
+	 * some math. Used to test the statement parser.
+	 */
+	public static void localClient()
+	{
+		String in = "";
+		Scanner s = new Scanner(System.in);
+
+		System.out.println("(Q) will quit.");
+		while(in.compareToIgnoreCase("Q") != 0)
+		{
+			System.out.print("Enter statement to be parsed by MathOTron9000: \n > ");
+			in = s.nextLine();
+
+			testStatementMatching(in);
+		}
 	}
 
 	public static void runTests()
@@ -42,9 +65,9 @@ public class Tests
 
 	public static void testStatementMatching(String str)
 	{
-		Statement s = new Statement(str);
+		Statement statement = new Statement(str);
 
-		System.out.println(String.format("'%15s' -> %s", str, s.toString()));
+		System.out.println(String.format("'%15s' -> %s", str, statement.toString()));
 	}
 
 	public static void testsStatementMatching()

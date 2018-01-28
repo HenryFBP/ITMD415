@@ -2,12 +2,17 @@ package lab1;
 
 public enum MathE
 {
+	NAMEH("Henry Post"),
+	NAMED("Dennis Chase"),
 	
 	HOST("localhost"),
 	PORT(1234),
+	
+	QUIT("QUIT"), // String that tells us they're done 
 
 	/*** This matches any math operator (*, **, /, //, %, -, +), but not dots (.). ***/
 	RX_ONLY_OP	("[^\\s\\d\\.]+"),
+	RX_WSPACE 	("[ \r\n]"),
 	
 	PLUS		("+"),
 	MINUS		("-"),
@@ -16,14 +21,22 @@ public enum MathE
 	DIVIDE		("/"),
 	DIVIDEF		("//"),
 	MODULO		("%"),
-	
 	;
 
 	private Object constants;
+	
+	// list of valid operators.
+	public static String[] VALID_OPS = { MathE.PLUS.s(), MathE.MINUS.s(), MathE.TIMES.s(), MathE.TIMES.s(),
+			MathE.POW.s(), MathE.DIVIDE.s(), MathE.MODULO.s() };
 
 	private MathE(String s)
 	{
 		this.constants = s;
+	}
+	
+	private MathE(Character c)
+	{
+		this.constants = c;
 	}
 	
 	private MathE(int i)
@@ -36,6 +49,11 @@ public enum MathE
 	{
 		return (String) this.constants;
 	}
+	
+	public char toChar()
+	{
+		return (Character) this.constants;
+	}
 
 	public int toInt()
 	{
@@ -45,6 +63,11 @@ public enum MathE
 	public String s()
 	{
 		return this.toString();
+	}
+	
+	public char c()
+	{
+		return this.toChar();
 	}
 
 	public int i()
