@@ -84,7 +84,12 @@ public class HLib
 	 */
 	public static String maxLength(int length, int base, String specifier)
 	{
-		int spaces = length / base;
+		if(length < 0)
+		{
+			length = 1;
+		}
+		
+		int spaces = (int) Math.ceil((double)length / (double)base);
 
 		return "%" + spaces + specifier;
 	}
