@@ -12,10 +12,6 @@ public class Tests
 
 		// localClient();
 
-		MathServerSocket mathServerSocket = new MathServerSocket(MathE.HOST.s());
-
-		mathServerSocket.start();
-
 	}
 
 	/***
