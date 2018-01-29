@@ -5,6 +5,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInput;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintStream;
@@ -21,21 +24,6 @@ public class MathServer extends Thread
 	protected Socket socket;
 	protected PrintStream log;
 	
-	private static void sendMessage(ArrayList<String> m, PrintWriter p)
-	{
-		p.println(m.size());
-		for(String s : m)
-		{
-			p.println(s);
-		}
-	}
-	
-	private static void sendMessage(String s, PrintWriter p)
-	{
-		p.println(1);
-		p.println(s);
-	}
-	
 	private MathServer(Socket socket, PrintStream o)
 	{
 		this.socket = socket;
@@ -51,28 +39,34 @@ public class MathServer extends Thread
 	{
 		try
 		{
-
-			BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			PrintWriter pw = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
-			//OutputStream out = socket.getOutputStream();
+			boolean keep = true;
+			
+			ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
 			
 			String request;
-
-			ArrayList<String> m = new ArrayList<String>();
-
-			m.add(String.format("Welcome to %s's and %s's MATH SERVER!\r\n", MathE.NAMED.s(), MathE.NAMEH.s()));
-			m.add(String.format("Enter (%s) to quit.\r\n", MathE.QUIT.s()));
-			m.add(String.format("Valid operators: %s\r\n",Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
-
-			this.sendMessage(m, pw);
+			
+			Message m = new Message();
+			
+			m.add(String.format("Welcome to %s's and %s's MATH SERVER!", MathE.NAMED.s(), MathE.NAMEH.s()));
+			m.add(String.format("Enter (%s) to quit.", MathE.QUIT.s()));
+			m.add(String.format("Valid operators: %s",Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
+			
+			m.send(out, true);
 			
 			this.log.println("Wrote beginning message.");
 
 			// while we should keep going
-			while(((request = br.readLine()) != null) && HLib.shouldContinue(request, MathE.QUIT.s()))
-			{
-				this.log.printf("%s: %s\n", this.toStringHP(), request);
-				pw.println(request);
+			while(keep == true)
+			{				
+				this.log.printf("About to get a %d-long message from client %s...",length,this.toStringHP());
+				
+				for(int i = 0; i < length; i++)
+				{
+					this.log.printf("%s: %s\n", this.toStringHP(), request);			
+				}
+				
+				out.println(request);
 				//out.write(request.getBytes());
 			}
 

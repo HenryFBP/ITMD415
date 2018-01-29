@@ -3,85 +3,58 @@ package lab1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class MathClient
 {
-	private Socket s;
+	private Socket socket;
 
-	public static void connect()
+	public void connect(String host, int port)
 	{
-		System.out.println("Connecting to host " +MathE.HOST.s()+ " on port " +MathE.PORT.i()+ "...");
+		System.out.printf("Connecting to '%s:%d'...", host, port);
 		
-		try(Socket sock = new Socket(MathE.HOST.s(), MathE.PORT.i()))
+		try
 		{
-			boolean keepgoing = true;
-			
+			socket = new Socket(host, port);
+					
 			System.out.println("Connected to server!");
 
-			PrintWriter toServer = new PrintWriter(sock.getOutputStream()); // PrintWriter to server
+			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream()); // ObjectOutputStream to server
+			
+			ObjectInputStream in = new ObjectInputStream(socket.getInputStream()); // ObjectInputStream from server
 
-			BufferedReader fromServer = new BufferedReader(new InputStreamReader(sock.getInputStream())); // BufferedReader from server
+			Scanner keyboard = new Scanner(System.in);
+			String input = "";
 
-			BufferedReader userIn = new BufferedReader(new InputStreamReader(System.in));
-			//Scanner scan = new Scanner(System.in); // Scanner for user input
-			String userInput = "";
+			Message response = new Message();
+						
+			response = (Message)in.readObject(); //get message object
+			
+			System.out.printf("First response from server: '%s'\n",response.toString());
+			
 
-			String resp = "";
-
-			while(fromServer.ready())
-			{
-				resp += fromServer.readLine() + "\r\n";
-			}
-
-			System.out.print(resp); // get initial message
-
+			boolean keepgoing = true;
+			
 			while(keepgoing == true)
 			{
-				System.out.print(" > ");
-				userInput = userIn.readLine(); // reads user input and saves it
-				
-				/*
-				if(userInput.toUpperCase().equals(MathE.QUIT.s().toUpperCase()))
-				{
-					break;
-				}
-				*/
-					
-				System.out.println("writing to server...");
-				toServer.println(userInput); // sends user input to server
-				System.out.println("done writing.");
-				
-				//check if they want to quit
-				if(!HLib.shouldContinue(userInput.toUpperCase(), MathE.QUIT.s().toUpperCase()))
+				response = (Message)in.readObject();
+
+				if(response.length() == 0) //if they want to quit
 				{
 					keepgoing = false;
 				}
-				
-				
-				System.out.println("reading from server...");
-				
-				/*
-				while(!fromServer.ready())
-				{
-					//wait for server to be ready.
-				}
-				*/
-				
-				System.out.println("Server is ready!");
-				
-				resp = fromServer.readLine();
-				
-				System.out.println(resp); // displays servers response
-				System.out.println("done reading.");
 			}
 
 
-			sock.close();
-			toServer.close();
-			fromServer.close(); // closes all open streams
+			socket.close();
+			out.close();
+			in.close(); // closes all open streams
 
 			System.out.println("Connection terminated..."); // Signifies the end of the connection
 
@@ -91,7 +64,11 @@ public class MathClient
 			System.out.print("Client Error: " + e.getMessage());
 			//System.exit(1);
 		} // end of try/catch loop
-	}//end of connect method
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+	}
 	
 	public int calculate(int opa, String op, int opb)
 	{
@@ -105,6 +82,8 @@ public class MathClient
 	 */
 	public static void main(String[] args)
 	{
-		connect();
-	}// end of main
-}// end of class
+		MathClient mathClient = new MathClient();
+
+		mathClient.connect(MathE.HOST.s(), MathE.PORT.i());
+	}
+}
