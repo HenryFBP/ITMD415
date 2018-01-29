@@ -10,6 +10,8 @@ public class Statement
 	public double opA;
 	public double opB;
 	public String op;
+	private Double result = null;
+
 	private static Pattern RX_Op = Pattern.compile(MathE.RX_ONLY_OP.s());
 
 	/***
@@ -52,14 +54,19 @@ public class Statement
 	 */
 	public double result()
 	{
-		Function<ArrayList<Double>, Double> f = MathLib.operator(this.op);
+		if(this.result == null)
+		{
+			Function<ArrayList<Double>, Double> f = MathLib.operator(this.op);
+	
+			ArrayList<Double> operands = new ArrayList<>();
+	
+			operands.add(this.opA);
+			operands.add(this.opB);
+			
+			this.result = f.apply(operands);
+		}
 
-		ArrayList<Double> operands = new ArrayList<>();
-
-		operands.add(this.opA);
-		operands.add(this.opB);
-
-		return f.apply(operands);
+		return this.result;
 	}
 
 	@Override
