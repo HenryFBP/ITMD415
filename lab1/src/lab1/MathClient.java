@@ -1,14 +1,10 @@
 package lab1;
 
-import java.io.BufferedReader;
+import java.io.EOFException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class MathClient
@@ -17,59 +13,88 @@ public class MathClient
 
 	public void connect(String host, int port)
 	{
-		System.out.printf("Connecting to '%s:%d'...", host, port);
-		
+		System.out.printf("Connecting to '%s:%d'\n", host, port);
+
 		try
 		{
 			socket = new Socket(host, port);
-					
+
 			System.out.println("Connected to server!");
 
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream()); // ObjectOutputStream to server
-			
 			ObjectInputStream in = new ObjectInputStream(socket.getInputStream()); // ObjectInputStream from server
 
 			Scanner keyboard = new Scanner(System.in);
 			String input = "";
 
-			Message response = new Message();
-						
-			response = (Message)in.readObject(); //get message object
-			
-			System.out.printf("First response from server: '%s'\n",response.toString());
-			
+			Message serverMsg = new Message();
+			Message clientMsg = new Message();
 
 			boolean keepgoing = true;
-			
+
 			while(keepgoing == true)
 			{
-				response = (Message)in.readObject();
-
-				if(response.length() == 0) //if they want to quit
+				try
 				{
-					keepgoing = false;
+					serverMsg = (Message) in.readObject(); // read message from server
+
+					if(serverMsg.length() == 0) // if server wants to disconnect or we want to quit
+					{
+						System.out.println("Server wishes to terminate connection.");
+						keepgoing = false;
+						break;
+					}
+					else if(!HLib.shouldContinue(input.toUpperCase(), MathE.QUIT.s().toUpperCase()))
+					{
+						//prepare our quit signal
+						clientMsg = new Message();
+						out.writeObject(clientMsg);
+						out.flush();
+
+						System.out.println("Goodbye!");
+						keepgoing = false;
+						break;
+					}
+
+					serverMsg.toString(System.out); // print that message
+
+					// prepare message from keyboard
+					System.out.print(" > ");
+					clientMsg = new Message(input = keyboard.nextLine());
+
+					out.writeObject(clientMsg); // send message
+					out.flush();
+
 				}
+				catch(EOFException e)
+				{
+					System.out.println("Server's message terminated unexpectedly.");
+					e.printStackTrace();
+					return;
+				}
+
 			}
 
-
+			// close open streams
+			keyboard.close();
 			socket.close();
 			out.close();
-			in.close(); // closes all open streams
+			in.close();
 
 			System.out.println("Connection terminated..."); // Signifies the end of the connection
 
 		}
 		catch(IOException e)
 		{
-			System.out.print("Client Error: " + e.getMessage());
-			//System.exit(1);
-		} // end of try/catch loop
-		catch (ClassNotFoundException e)
+			System.out.println("Client Error: " + e.getMessage());
+			e.printStackTrace();
+		}
+		catch(ClassNotFoundException e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int calculate(int opa, String op, int opb)
 	{
 		return -1;

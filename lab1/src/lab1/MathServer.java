@@ -1,29 +1,19 @@
 package lab1;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.ObjectInput;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class MathServer extends Thread
 {
 
 	protected Socket socket;
 	protected PrintStream log;
-	
+
 	private MathServer(Socket socket, PrintStream o)
 	{
 		this.socket = socket;
@@ -39,54 +29,87 @@ public class MathServer extends Thread
 	{
 		try
 		{
-			boolean keep = true;
-			
 			ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
 			ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+
+			Message serverMsg = new Message();
+			Message clientMsg = new Message();
+			Statement s = null;
+
+			serverMsg.add(String.format("Welcome to %s's and %s's MATH SERVER!", MathE.NAMED.s(), MathE.NAMEH.s()));
+			serverMsg.add(String.format("Enter (%s) to quit.", MathE.QUIT.s()));
+			serverMsg.add(String.format("Valid operators: %s",
+					Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
 			
-			String request;
-			
-			Message m = new Message();
-			
-			m.add(String.format("Welcome to %s's and %s's MATH SERVER!", MathE.NAMED.s(), MathE.NAMEH.s()));
-			m.add(String.format("Enter (%s) to quit.", MathE.QUIT.s()));
-			m.add(String.format("Valid operators: %s",Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
-			
-			m.send(out, true);
+			// send object initially
+			out.writeObject(serverMsg);
+			out.flush();
 			
 			this.log.println("Wrote beginning message.");
 
+			boolean keep = true;
+			
 			// while we should keep going
 			while(keep == true)
-			{				
-				this.log.printf("About to get a %d-long message from client %s...",length,this.toStringHP());
+			{
+				s = null; //set math statement to null
+				serverMsg = null; //set out response to null
+
+				clientMsg = (Message) in.readObject(); //get response
 				
-				for(int i = 0; i < length; i++)
+				if(clientMsg.length() <= 0) //if they want to quit
 				{
-					this.log.printf("%s: %s\n", this.toStringHP(), request);			
+					keep = false;
+					System.out.printf("[%s]: Wants to quit.", this.toStringHP());
+					break;
 				}
 				
-				out.println(request);
-				//out.write(request.getBytes());
+				System.out.printf("[%s]: {%d}:'",this.toStringHP(), clientMsg.length()); //log what they send
+				clientMsg.toString(System.out,";");
+				System.out.print("' -> ");
+				
+				try //try to parse their request of math...
+				{
+					s = new Statement(clientMsg.flatten());
+				}
+				catch(Exception e) //it's invalid
+				{
+					serverMsg = new Message(String.format("Invalid request '%s'.",clientMsg.flatten()));
+					System.out.print("INVALID");
+				}
+				
+				if(s != null) //if math was successfully parsed
+				{
+					serverMsg = new Message(String.format("'%s' = %.2f",clientMsg.flatten(), s.result()));
+					System.out.print(s.result());
+				}
+				
+				out.writeObject(serverMsg); //output whatever our message is
+				
+
+				System.out.print("\n");
+
 			}
 
 		}
-		catch(IOException ioe)
+		catch(IOException e)
 		{
-			ioe.printStackTrace();
+			e.printStackTrace();
 			this.log.printf("Error reading/writing for client %s!\n", this.toStringHP());
+		}
+		catch(ClassNotFoundException e)
+		{
+			e.printStackTrace();
 		}
 		finally
 		{
 			try
 			{
-				socket.getInputStream().close();
-				socket.getOutputStream().close();
 				socket.close();
 			}
-			catch(IOException ioe)
+			catch(IOException e)
 			{
-				ioe.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 	}
