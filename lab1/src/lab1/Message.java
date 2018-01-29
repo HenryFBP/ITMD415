@@ -2,7 +2,8 @@ package lab1;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.OutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /***
@@ -25,13 +26,20 @@ import java.util.ArrayList;
  * </pre></code>
  *
  */
-public class Message
+public class Message implements Cloneable, Serializable
 {
+	private static final long serialVersionUID = 806684355495710801L;
+
 	private ArrayList<String> contents;
+
+	public Object clone() throws CloneNotSupportedException
+	{
+		return super.clone();
+	}
 
 	public Message()
 	{
-
+		contents = new ArrayList<>();
 	}
 
 	public Message(String s)
@@ -44,7 +52,7 @@ public class Message
 
 	public Message(ArrayList<String> a)
 	{
-		for (int i = 0; i < a.size(); i++)
+		for(int i = 0; i < a.size(); i++)
 		{
 			this.add(a.get(i));
 		}
@@ -59,13 +67,14 @@ public class Message
 	{
 		try
 		{
-			out.writeObject(this.clone());
+			out.writeObject((Message) this.clone());
+			out.flush();
 		}
-		catch (IOException e)
+		catch(IOException e)
 		{
 			e.printStackTrace();
 		}
-		catch (CloneNotSupportedException e)
+		catch(CloneNotSupportedException e)
 		{
 			e.printStackTrace();
 		}
@@ -76,7 +85,7 @@ public class Message
 	 */
 	public void send(ObjectOutputStream out, boolean v)
 	{
-		if (v == true)
+		if(v == true)
 		{
 			System.out.println("Sending this: ");
 			System.out.println(this.toString());
@@ -89,12 +98,34 @@ public class Message
 	 * Add a piece to this message.<br>
 	 * All newlines will be removed from this message.<br>
 	 * 
-	 * @param s
-	 *            The piece.
+	 * @param s The piece.
 	 */
 	public void add(String s)
 	{
 		contents.add(HLib.sanitize(s));
+	}
+
+	/***
+	 * Flattens a Message into one long String.
+	 * 
+	 * @param sep The separator.
+	 * @return The flattened Message as a String.
+	 */
+	public String flatten(String sep)
+	{
+		String ret = "";
+
+		for(int i = 0; i < this.length(); i++)
+		{
+			ret += this.get(i);
+		}
+
+		return ret;
+	}
+
+	public String flatten()
+	{
+		return this.flatten("\n");
 	}
 
 	public String get(int i)
@@ -109,13 +140,33 @@ public class Message
 
 	public String toString()
 	{
-		String ret = String.format("Message[%d]: ", this.length());
+		String ret = String.format("Message[%d]: \n", this.length());
 
-		for (int i = 0; i < this.length(); i++)
+		for(int i = 0; i < this.length(); i++)
 		{
-			ret += String.format(HLib.maxLength(this.length(), "d") + ": %s", i, this.get(i));
+			ret += String.format(HLib.maxLength(this.length(), "d") + ": %s", i, this.get(i)) + "\n";
 		}
 
 		return ret;
+	}
+
+	public void toString(OutputStream os)
+	{
+		toString(os, "\n");
+	}
+
+	public void toString(OutputStream os, String sep)
+	{
+		for(int i = 0; i < this.length(); i++)
+		{
+			try
+			{
+				os.write((this.get(i) + sep).getBytes());
+			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 }
