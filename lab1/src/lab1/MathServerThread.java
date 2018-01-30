@@ -26,18 +26,19 @@ public class MathServerThread extends Thread
 	public void run()
 	{
 		System.out.printf("New Client: '%s'\n", this.toStringHP());
+		
+		Message serverMsg = new Message();
+		Message clientMsg = new Message();
+		Statement s = null;
 
+
+		serverMsg.add(String.format("Welcome to %s's and %s's MATH SERVER!", MathE.NAMED.s(), MathE.NAMEH.s()));
+		serverMsg.add(String.format("Enter (%s) to quit.", MathE.QUIT.s()));
+		serverMsg.add(String.format("Valid operators: %s",
+				Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
+		
 		try
 		{
-			Message serverMsg = new Message();
-			Message clientMsg = new Message();
-			Statement s = null;
-
-			serverMsg.add(String.format("Welcome to %s's and %s's MATH SERVER!", MathE.NAMED.s(), MathE.NAMEH.s()));
-			serverMsg.add(String.format("Enter (%s) to quit.", MathE.QUIT.s()));
-			serverMsg.add(String.format("Valid operators: %s",
-					Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
-
 			// send object initially
 			out.writeObject(serverMsg);
 			out.flush();
