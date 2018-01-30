@@ -8,10 +8,13 @@ public class Tests
 {
 	public static void main(String[] args)
 	{
-		Tests.runTests(); // test library funcs
+		Tests.testClientThreading(2);
+		
+		//Tests.runTests(); // test library funcs
 
 		// localClient();
 
+		//MathLib.generateQuery();
 	}
 
 	/***
@@ -83,5 +86,14 @@ public class Tests
 		Tests.testMathlib("/", 2.0, 5.5);
 		Tests.testMathlib("//", 101.0, 5.0);
 		Tests.testMathlib("/", 101.0, 5.0);
+	}
+	
+	public static void testClientThreading(int n)
+	{
+		ArrayList<MathClient> threads = new ArrayList<MathClient>();
+		for(int i = 0; i < n; i++)
+		{
+			threads.add(new MathClient(MathE.HOST.s(), MathE.PORT.i()));
+		}//fills the array list with all asked for clients
 	}
 }
