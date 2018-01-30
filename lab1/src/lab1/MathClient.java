@@ -36,7 +36,7 @@ public class MathClient
 		try
 		{
 			socket = new Socket(host, port);
-			System.out.println("Connected to server!");
+			System.out.printf("Connected to server at local port '%d'!\n", socket.getLocalPort());
 
 			in = new ObjectInputStream(socket.getInputStream());
 			out = new ObjectOutputStream(socket.getOutputStream());
