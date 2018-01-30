@@ -28,9 +28,10 @@ import java.util.ArrayList;
  */
 public class Message implements Cloneable, Serializable
 {
-	private static final long serialVersionUID = 806684355495710801L;
-
+	private static final long serialVersionUID = 1L;
+	
 	private ArrayList<String> contents;
+	public Object result;
 
 	public Object clone() throws CloneNotSupportedException
 	{
@@ -40,6 +41,11 @@ public class Message implements Cloneable, Serializable
 	public Message()
 	{
 		contents = new ArrayList<>();
+	}
+	
+	public Message(Object o)
+	{
+		this.result = o;
 	}
 
 	public Message(String s)
