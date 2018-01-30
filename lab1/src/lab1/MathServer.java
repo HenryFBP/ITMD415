@@ -39,7 +39,7 @@ public class MathServer
 			}
 			catch(Exception e)
 			{
-				socket.close();
+				e.printStackTrace();
 			}
 		} // end of infinite while loop
 	}// end of main
