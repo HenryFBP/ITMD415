@@ -26,7 +26,6 @@ public class MathServerThread extends Thread
 	public void run()
 	{
 		System.out.printf("New Client: '%s'\n", this.toStringHP());
-		this.run();
 
 		try
 		{
