@@ -26,8 +26,8 @@ public enum MathE
 	private Object constants;
 	
 	// list of valid operators.
-	public static String[] VALID_OPS = { MathE.PLUS.s(), MathE.MINUS.s(), MathE.TIMES.s(), MathE.TIMES.s(),
-			MathE.POW.s(), MathE.DIVIDE.s(), MathE.MODULO.s() };
+	public static String[] VALID_OPS = { MathE.PLUS.s(), MathE.MINUS.s(), MathE.TIMES.s(),
+			MathE.POW.s(), MathE.DIVIDE.s(), MathE.DIVIDEF.s(), MathE.MODULO.s() };
 
 	private MathE(String s)
 	{
