@@ -12,6 +12,8 @@ public enum MathE
 
 	/*** This matches any math operator (*, **, /, //, %, -, +), but not dots (.). ***/
 	RX_ONLY_OP	("[^\\s\\d\\.]+"),
+	
+	/*** This matches spaces and return characters. ***/
 	RX_WSPACE 	("[ \r\n]"),
 	
 	PLUS		("+"),
