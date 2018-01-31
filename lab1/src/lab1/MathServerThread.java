@@ -10,11 +10,16 @@ public class MathServerThread extends Thread
 {
 
 	protected Socket socket;
-	private ObjectOutputStream out;
-	private ObjectInputStream in;
+	protected ObjectOutputStream out;
+	protected ObjectInputStream in;
+	protected IntHolder clientNumber;
+	protected int cID;
 	
-	public MathServerThread(Socket socket, ObjectOutputStream out, ObjectInputStream in)
+	public MathServerThread(Socket socket, ObjectOutputStream out, ObjectInputStream in, IntHolder clientNumber, int id)
 	{
+		this.clientNumber = clientNumber;
+		this.cID = id;
+		this.clientNumber.increment();
 		this.socket = socket;
 		this.out = out;
 		this.in = in;
@@ -25,14 +30,15 @@ public class MathServerThread extends Thread
 	 */
 	public void run()
 	{
-		System.out.printf("New Client: '%s'\n", this.toStringHP());
+		System.out.printf("Client %d: '%s'\n", cID, this.toStringHP());
 		
 		Message serverMsg = new Message();
 		Message clientMsg = new Message();
 		Statement s = null;
 
-
 		serverMsg.add(String.format("Welcome to %s's and %s's MATH SERVER!", MathE.NAMED.s(), MathE.NAMEH.s()));
+		serverMsg.add(String.format("You are client '%d'.", cID));
+		serverMsg.add("");
 		serverMsg.add(String.format("Enter (%s) to quit.", MathE.QUIT.s()));
 		serverMsg.add(String.format("Valid operators: %s",
 				Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
@@ -62,7 +68,7 @@ public class MathServerThread extends Thread
 					break;
 				}
 				
-				System.out.printf("[%s]: {%d}:'",this.toStringHP(), clientMsg.length()); //log what they send
+				System.out.printf("[%s;%d]: {%d}:'",this.toStringHP(), cID, clientMsg.length()); //log what they send
 				clientMsg.toString(System.out,";");
 				System.out.print("' -> ");
 				
@@ -104,6 +110,8 @@ public class MathServerThread extends Thread
 		}
 		finally
 		{
+			this.clientNumber.decrement();
+			
 			try
 			{
 				socket.close();

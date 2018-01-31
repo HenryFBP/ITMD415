@@ -8,6 +8,9 @@ import java.net.Socket;
 
 public class MathServer
 {
+	static IntHolder clients = new IntHolder();
+	static Integer totalClients = 0;
+
 	public static void main(String[] args) throws IOException
 	{
 		ServerSocket ss = new ServerSocket(MathE.PORT.i());
@@ -28,14 +31,16 @@ public class MathServer
 				in = new ObjectInputStream(socket.getInputStream());
 				
 
-				System.out.printf("New client connected: %s\n", socket);
-
-				System.out.println("Assigning new thread for client");
+				System.out.printf("New client connected: %s.\n", socket);
 
 				// create a new thread object
-				Thread t = new MathServerThread(socket, out, in);
+				Thread t = new MathServerThread(socket, out, in, clients, totalClients);
 				// Invoking the start() method
 				t.start();
+				totalClients++;
+				
+				System.out.printf("%d connected, %d total. \n", clients.getValue(), totalClients);
+				
 			}
 			catch(Exception e)
 			{
