@@ -18,15 +18,15 @@ Suggested Testing:
 
 Method 1:
 
-...Run MathServer.java
+⋅⋅⋅Run MathServer.java
 
-...Run MathClient.java (Can run as many as wanted)
+⋅⋅⋅Run MathClient.java (Can run as many as wanted)
 
-...Method 2:
+⋅⋅⋅Method 2:
 
-...Run MathServer.java
+⋅⋅⋅Run MathServer.java
 
-...Run Tests.java
+⋅⋅⋅Run Tests.java
 
-...Note: Tests is currently set to create 100 Clients and have each client send 50 random operations to the server.
-...This can be changed to any number of clients and operations by simply changing the parameters of "Tests.testClientMassUse(100, 50);" inside the main method of Tests.java
+⋅⋅⋅Note: Tests is currently set to create 100 Clients and have each client send 50 random operations to the server.
+⋅⋅⋅This can be changed to any number of clients and operations by simply changing the parameters of "Tests.testClientMassUse(100, 50);" inside the main method of Tests.java
