@@ -37,6 +37,7 @@ public class MathServer
 				Thread t = new MathServerThread(socket, out, in, clients, totalClients);
 				// Invoking the start() method
 				t.start();
+				
 				totalClients++;
 				
 				System.out.printf("%d connected, %d total. \n", clients.getValue(), totalClients);
