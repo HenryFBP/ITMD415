@@ -11,17 +11,19 @@ Class functions:
 * Message - Has extra methods for the ObjectOutputStreams
 * Statement - Holds together the operands and operator for use in other classes.
 * Tests - Used for many tests as we made all classes. Current methods of importance in Tests are...
-...* testClientConnectivity(int n) which will initiate as many clients as wanted and connect them to the server
-...* testClientMassUse(int clients, int ops) which will initiate as many clients as wanted and have each client made request as many operations as wanted to the server.
+... * testClientConnectivity(int n) which will initiate as many clients as wanted and connect them to the server
+... * testClientMassUse(int clients, int ops) which will initiate as many clients as wanted and have each client made request as many operations as wanted to the server.
         
 Suggested Testing:
 
 Method 1:
+
 Run MathServer.java
 
 Run MathClient.java (Can run as many as wanted)
 
 Method 2:
+
 Run MathServer.java
 
 Run Tests.java
