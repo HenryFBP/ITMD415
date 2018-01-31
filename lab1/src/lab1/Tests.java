@@ -117,7 +117,7 @@ public class Tests
 	 */
 	public static void testClientMassUse(int clients, int ops)
 	{
-		ArrayList<MathClient> clientList = new ArrayList<MathClient>();
+		ArrayList<Thread> clientList = new ArrayList<Thread>();
 
 		// generate clients
 		for(int i = 0; i < clients; i++)
@@ -126,8 +126,10 @@ public class Tests
 		}
 
 		// ask n questions for each client, then quit, serially. (not actually all at once :'( that must be done with runnable/more threading.)
-		for(MathClient client : clientList)
+		for(int i = 0; i < clientList.size(); i++)
 		{
+			MathClient client = (MathClient) clientList.get(i);
+			
 			// client n asks k
 			for(int k = 0; k < ops; k++)
 			{
