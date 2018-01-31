@@ -139,24 +139,38 @@ public class MathClient
 	}
 
 	/***
-	 * Has a client ask a server for the result of (opa op opb).
+	 * 
+	 * {@link #calculate(double, String, double)}
 	 * @param opa Operand a.
 	 * @param op  Operation op.
 	 * @param opb Operand b.
-	 * @return opa op opb
+	 */
+	public double calculate(Double opa, String op, Double opb)
+	{
+		return this.calculate(opa.toString() + op + opb.toString());
+	}
+	
+
+	
+	/***
+	 * Has a client ask a server for the result of operation 's'.
+	 * @return The value of 's' as an operation
 	 * 
 	 * Example:
-	 * c(2.0, "**", 3.0) -> magic server math -> 8.0
+	 * c("2.0**3.0") -> magic server math -> 8.0
 	 */
-	public double calculate(double opa, String op, double opb)
+	public double calculate(String s)
 	{
-		Message query = new Message(opa+op+opb);
+		Message query = new Message(s);
 		Message response = null;
+
+		System.out.printf("Sending %s -> ", query);
 		
 		try
 		{
 			out.writeObject(query); // send question
 			out.flush();
+			
 			response = (Message) in.readObject(); // recieve response
 		}
 		catch(IOException e)
@@ -167,9 +181,10 @@ public class MathClient
 		{
 			e.printStackTrace();
 		}
-
 		
-		return (Double)response.result;
+		System.out.printf("{%s}\n", response.toString());
+		
+		return (Double) response.result;
 	}
 
 	/***
