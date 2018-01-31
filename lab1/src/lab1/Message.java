@@ -55,6 +55,12 @@ public class Message implements Cloneable, Serializable
 
 		this.contents = a;
 	}
+	
+	public Message(ArrayList<String> a, Object o)
+	{
+		this.add(a);
+		this.result = o;
+	}
 
 	public Message(ArrayList<String> a)
 	{
@@ -109,6 +115,14 @@ public class Message implements Cloneable, Serializable
 	public void add(String s)
 	{
 		contents.add(HLib.sanitize(s));
+	}
+	
+	public void add(ArrayList<String> a)
+	{
+		for(String s : a)
+		{
+			contents.add(s);
+		}
 	}
 
 	/***
