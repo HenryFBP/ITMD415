@@ -8,13 +8,44 @@ public class Tests
 {
 	public static void main(String[] args)
 	{
-		Tests.testClientThreading(2);
+		//Tests.testClientConnectivity(100);
+		Tests.testClientMassUse(2, 1);
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Press enter to quit tests.");
+		scan.nextLine();
 		
 		//Tests.runTests(); // test library funcs
 
 		// localClient();
 
 		//MathLib.generateQuery();
+	}
+
+	public static void testStatementMatching(String str)
+	{
+		Statement statement = new Statement(str);
+	
+		System.out.println(String.format("'%15s' -> %s", str, statement.toString()));
+	}
+
+	public static void testsStatementMatching()
+	{
+		Tests.testStatementMatching("1 + 1");
+		Tests.testStatementMatching("1.3-1.023");
+		Tests.testStatementMatching("2 **3.0");
+		Tests.testStatementMatching("200.0// 1.5");
+		Tests.testStatementMatching("200.0  /  1.5");
+	}
+
+	public static void testsMathLib()
+	{
+		Tests.testMathlib("+", 2.0, 5.5);
+		Tests.testMathlib("*", 4.0, 4.0);
+		Tests.testMathlib("-", 2.0, 5.5);
+		Tests.testMathlib("/", 2.0, 5.5);
+		Tests.testMathlib("//", 101.0, 5.0);
+		Tests.testMathlib("/", 101.0, 5.0);
 	}
 
 	/***
@@ -47,6 +78,9 @@ public class Tests
 		System.out.println();
 	}
 
+	/***
+	 * Tests {@link #lab1.MathLib}'s function-parsing capabilities.
+	 */
 	public static void testMathlib(String op, double x, double y)
 	{
 
@@ -62,38 +96,41 @@ public class Tests
 		System.out.println(String.format("%.2f %s %.2f = %.2f", ops.get(0), op, ops.get(1), b));
 	}
 
-	public static void testStatementMatching(String str)
-	{
-		Statement statement = new Statement(str);
-
-		System.out.println(String.format("'%15s' -> %s", str, statement.toString()));
-	}
-
-	public static void testsStatementMatching()
-	{
-		Tests.testStatementMatching("1 + 1");
-		Tests.testStatementMatching("1.3-1.023");
-		Tests.testStatementMatching("2 **3.0");
-		Tests.testStatementMatching("200.0// 1.5");
-		Tests.testStatementMatching("200.0  /  1.5");
-	}
-
-	public static void testsMathLib()
-	{
-		Tests.testMathlib("+", 2.0, 5.5);
-		Tests.testMathlib("*", 4.0, 4.0);
-		Tests.testMathlib("-", 2.0, 5.5);
-		Tests.testMathlib("/", 2.0, 5.5);
-		Tests.testMathlib("//", 101.0, 5.0);
-		Tests.testMathlib("/", 101.0, 5.0);
-	}
-	
-	public static void testClientThreading(int n)
+	/***
+	 * Tests if we can make n connections. Does not query for math.
+	 * @param n Number of connections to make.
+	 */
+	public static void testClientConnectivity(int n)
 	{
 		ArrayList<MathClient> threads = new ArrayList<MathClient>();
 		for(int i = 0; i < n; i++)
 		{
 			threads.add(new MathClient(MathE.HOST.s(), MathE.PORT.i()));
 		}//fills the array list with all asked for clients
+	}
+	
+	/***
+	 * idk lol
+	 * @param clients How many clients to create.
+	 * @param ops How many questions each client will ask before terminating.
+	 */
+	public static void testClientMassUse(int clients, int ops)
+	{
+		ArrayList<MathClient> clientList = new ArrayList<MathClient>();
+		
+		// generate clients
+		for(int i = 0; i < clients; i++)
+		{
+			clientList.add(new MathClient(MathE.HOST.s(), MathE.PORT.i()));
+		}
+		
+		// ask n questions for each client, serially. not actually all at once :'(
+		for(MathClient client : clientList)
+		{
+			for(int k = 0; k < ops; k++)
+			{
+				client.calculate(MathLib.generateQuery());
+			}
+		}
 	}
 }
