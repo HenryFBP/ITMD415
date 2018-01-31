@@ -1,5 +1,6 @@
 package lab1;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.Function;
@@ -9,7 +10,7 @@ public class Tests
 	public static void main(String[] args)
 	{
 		//Tests.testClientConnectivity(100);
-		Tests.testClientMassUse(2, 1);
+		Tests.testClientMassUse(100, 50);
 		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Press enter to quit tests.");
@@ -108,29 +109,41 @@ public class Tests
 			threads.add(new MathClient(MathE.HOST.s(), MathE.PORT.i()));
 		}//fills the array list with all asked for clients
 	}
-	
+
 	/***
-	 * idk lol
+	 * Connects 'clients' worth of clients to the server, who will ask 'ops' number of random Statements before terminating.
 	 * @param clients How many clients to create.
 	 * @param ops How many questions each client will ask before terminating.
 	 */
 	public static void testClientMassUse(int clients, int ops)
 	{
 		ArrayList<MathClient> clientList = new ArrayList<MathClient>();
-		
+
 		// generate clients
 		for(int i = 0; i < clients; i++)
 		{
 			clientList.add(new MathClient(MathE.HOST.s(), MathE.PORT.i()));
 		}
-		
-		// ask n questions for each client, serially. not actually all at once :'(
+
+		// ask n questions for each client, then quit, serially. (not actually all at once :'( that must be done with runnable/more threading.)
 		for(MathClient client : clientList)
 		{
+			// client n asks k
 			for(int k = 0; k < ops; k++)
 			{
 				client.calculate(MathLib.generateQuery());
 			}
+
+			try
+			{
+				client.quit(); // client n quits after asking is done
+			}
+			catch(IOException e)
+			{
+				System.out.println("Can't quit! I quit at quitting!");
+				e.printStackTrace();
+			} 
 		}
+
 	}
 }
