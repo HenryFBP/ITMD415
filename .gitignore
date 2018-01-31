@@ -1,9 +1,9 @@
 *.~ml
-
 ~$*.docx
-
 *.class
+
 .classpath
 .project
+
 .settings/
 bin/
