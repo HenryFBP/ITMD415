@@ -7,8 +7,9 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class MathClient
+public class MathClient extends Thread
 {
+	private Message beginning = null;
 	private Socket socket = null;
 	private ObjectInputStream in = null;
 	private ObjectOutputStream out = null;
@@ -21,6 +22,35 @@ public class MathClient
 	public MathClient(Socket s)
 	{
 		this.socket = s;
+	}
+	
+	/***
+	 * 
+	 * @return A message from the server.
+	 */
+	public Message recieve() throws ClassNotFoundException, IOException
+	{
+		return (Message) this.in.readObject();
+	}
+	
+	/***
+	 * Send a message to the server.
+	 */
+	public void send(Message m) throws IOException
+	{
+		this.out.writeObject(m);
+		this.out.flush();
+	}
+	
+	/***
+	 * Send a quit message to the server.
+	 * 
+	 * Note: A quit message is one with zero length.
+	 * @throws IOException 
+	 */
+	public void quit() throws IOException
+	{
+		this.send(new Message());
 	}
 	
 	public void connect(String host, int port)
@@ -48,6 +78,15 @@ public class MathClient
 			System.out.println("Client Error: " + e.getMessage());
 			e.printStackTrace();
 		}
+		
+		try
+		{
+			beginning = this.recieve(); //this is to consume the first message from the server in case we are a bot
+		}
+		catch(ClassNotFoundException | IOException e)
+		{
+			e.printStackTrace();
+		} 
 	}
 	
 	public void disconnect() throws IOException
@@ -64,7 +103,7 @@ public class MathClient
 
 		String input = "";
 
-		Message serverMsg = new Message();
+		Message serverMsg = beginning;
 		Message clientMsg = new Message();
 
 		boolean keepgoing = true;
@@ -73,7 +112,6 @@ public class MathClient
 		{
 			try
 			{
-				serverMsg = (Message) in.readObject(); // read message from server
 
 				if(serverMsg.length() == 0) // if server wants to disconnect or we want to quit
 				{
@@ -85,8 +123,7 @@ public class MathClient
 				{
 					// prepare our quit signal
 					clientMsg = new Message();
-					out.writeObject(clientMsg);
-					out.flush();
+					this.send(clientMsg);
 
 					System.out.println("Goodbye!");
 					keepgoing = false;
@@ -101,6 +138,8 @@ public class MathClient
 
 				out.writeObject(clientMsg); // send message
 				out.flush();
+				
+				serverMsg = this.recieve(); // read message from server
 
 			}
 			catch(EOFException e)
@@ -149,9 +188,7 @@ public class MathClient
 	{
 		return this.calculate(opa.toString() + op + opb.toString());
 	}
-	
-
-	
+		
 	/***
 	 * Has a client ask a server for the result of operation 's'.
 	 * @return The value of 's' as an operation
