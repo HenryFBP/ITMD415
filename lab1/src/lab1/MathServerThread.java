@@ -36,13 +36,13 @@ public class MathServerThread extends Thread
 		Message clientMsg = new Message();
 		Statement s = null;
 
-		serverMsg.add(String.format("Welcome to %s's and %s's MATH SERVER!", MathE.NAMED.s(), MathE.NAMEH.s()));
-		serverMsg.add(String.format("You are client '%d'.", cID));
+		serverMsg.addF("Welcome to %s's and %s's MATH SERVER!", MathE.NAMED.s(), MathE.NAMEH.s());
+		serverMsg.addF("You are client '%d'.", cID);
 		serverMsg.add("");
-		serverMsg.add(String.format("Enter (%s) to quit.", MathE.QUIT.s()));
-		serverMsg.add(String.format("Enter (%s) to get number of clients connected.", MathE.COUNT.s()));
-		serverMsg.add(String.format("Valid operators: %s",
-				Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
+		serverMsg.addF("Enter (%s) to quit.", MathE.QUIT.s());
+		serverMsg.addF("Enter (%s) to get number of clients connected.", MathE.COUNT.s());
+		serverMsg.addF("Valid operators: %s",
+				Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", ""));
 		
 		try
 		{

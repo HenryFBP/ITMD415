@@ -117,6 +117,16 @@ public class Message implements Cloneable, Serializable
 		contents.add(HLib.sanitize(s));
 	}
 	
+	/***
+	 * Like {@link #add(String)} but with String.format().
+	 * @param format
+	 * @param params
+	 */
+	public void addF(String format, Object... params)
+	{
+		contents.add(String.format(format, params));
+	}
+	
 	public void add(ArrayList<String> a)
 	{
 		for(String s : a)
