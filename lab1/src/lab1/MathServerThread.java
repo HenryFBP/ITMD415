@@ -62,7 +62,7 @@ public class MathServerThread extends Thread
 
 				clientMsg = (Message) in.readObject(); // get response
 
-				if(clientMsg.length() <= 0) // if they want to quit
+				if(clientMsg.empty()) // if they want to quit
 				{
 					keep = false;
 					System.out.printf("[%s]: Wants to quit.\n", this.toStringHP());

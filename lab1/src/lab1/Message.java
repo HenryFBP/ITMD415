@@ -167,6 +167,11 @@ public class Message implements Cloneable, Serializable
 	{
 		return this.contents.size();
 	}
+	
+	public boolean empty()
+	{
+		return (this.length() == 0 ? true : false);
+	}
 
 	public String toString()
 	{
