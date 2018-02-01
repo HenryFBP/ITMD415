@@ -40,6 +40,7 @@ public class MathServerThread extends Thread
 		serverMsg.add(String.format("You are client '%d'.", cID));
 		serverMsg.add("");
 		serverMsg.add(String.format("Enter (%s) to quit.", MathE.QUIT.s()));
+		serverMsg.add(String.format("Enter (%s) to get number of clients connected.", MathE.COUNT.s()));
 		serverMsg.add(String.format("Valid operators: %s",
 				Arrays.toString(MathE.VALID_OPS).replaceAll("[\\[\\]\\\"]", "")));
 		
@@ -54,7 +55,7 @@ public class MathServerThread extends Thread
 			boolean keep = true;
 
 			// while we should keep going
-			while(keep == true)
+			while(keep)
 			{
 				s = null; // set math statement to null
 				serverMsg = null; // set out response to null
@@ -67,28 +68,36 @@ public class MathServerThread extends Thread
 					System.out.printf("[%s]: Wants to quit.\n", this.toStringHP());
 					break;
 				}
+				else if(clientMsg.flatten().equalsIgnoreCase(MathE.COUNT.s())) //if they want to get count of others
+				{
+					serverMsg = new Message(String.format("Your ID: '%d', there are '%d' other clients including you.", cID, clientNumber.getValue()));
+				}
+				else //else, assume it's math
+				{
+					try //try to parse their request of math...
+					{
+						s = new Statement(clientMsg.flatten());
+					}
+					catch(Exception e) //it's invalid
+					{
+						serverMsg = new Message(String.format("Invalid request '%s'.",clientMsg.flatten()));
+						System.out.print("INVALID");
+					}
+					
+					if(s != null) //if math was successfully parsed
+					{
+						serverMsg = new Message(String.format("'%s' = %.2f",clientMsg.flatten(), s.result())); // add formatted result
+						serverMsg.result = s.result(); // add actual number result
+						
+						System.out.print(s.result());
+					}
+				}
 				
 				System.out.printf("[%s;%d]: {%d}:'",this.toStringHP(), cID, clientMsg.length()); //log what they send
 				clientMsg.toString(System.out,";");
 				System.out.print("' -> ");
 				
-				try //try to parse their request of math...
-				{
-					s = new Statement(clientMsg.flatten());
-				}
-				catch(Exception e) //it's invalid
-				{
-					serverMsg = new Message(String.format("Invalid request '%s'.",clientMsg.flatten()));
-					System.out.print("INVALID");
-				}
 				
-				if(s != null) //if math was successfully parsed
-				{
-					serverMsg = new Message(String.format("'%s' = %.2f",clientMsg.flatten(), s.result())); // add formatted result
-					serverMsg.result = s.result(); // add actual number result
-					
-					System.out.print(s.result());
-				}
 				
 				out.writeObject(serverMsg); //output whatever our message is
 				out.flush();

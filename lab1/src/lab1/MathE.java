@@ -8,7 +8,8 @@ public enum MathE
 	HOST("localhost"),
 	PORT(1234),
 	
-	QUIT("QUIT"), // String that tells us they're done 
+	QUIT		("QUIT"), 	// String that tells us they're done 
+	COUNT		("COUNT"), 	// String that asks for a count of connected clients.
 
 	/*** This matches any math operator (*, **, /, //, %, -, +), but not dots (.). ***/
 	RX_ONLY_OP	("[^\\s\\d\\.]+"),
