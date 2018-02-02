@@ -6,9 +6,6 @@ public class lib
 {
 	 public static double randomNumber()
 	 {
-	   Random r = new Random();
-	   double d = r.nextDouble() * 100;
-	   
-	   return d;
+	   return (new Random()).nextDouble() * 100;
 	 }
 }
