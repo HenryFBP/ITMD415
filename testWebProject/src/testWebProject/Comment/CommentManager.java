@@ -1,10 +1,12 @@
 package testWebProject.Comment;
 
-import java.sql.Date;
-import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -12,12 +14,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class CommentManager
 {
 	protected SessionFactory sessionFactory = null;
-	private static long DEFAULT_ID = 20;
 
 	/***
 	 * Load Hibernate Session factory.
 	 */
-	protected void setup()
+	public void setup()
 	{
 		// configures settings from hibernate.cfg.xml
 		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
@@ -26,81 +27,130 @@ public class CommentManager
 		{
 			sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 		}
-		catch (Exception ex)
+		catch(Exception ex)
 		{
 			StandardServiceRegistryBuilder.destroy(registry);
 		}
 	}
 
 	// code to close Hibernate Session factory
-	protected void exit()
+	public void exit()
 	{
+
 	}
 
 	/***
-	 * code to save a {@link Comment}
+	 * Code to save a {@link Comment}
 	 */
-	protected void create()
+	public Long create(Comment c)
 	{
-		Comment comment = new Comment();
-		comment.setName("Anony Moose");
-		comment.setDate(new Date(Instant.now().getEpochSecond()));
-		comment.setContent("hi there");
+		Session s = sessionFactory.openSession();
+		Transaction t = null;
+		Long cID = null;
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		try
+		{
+			t = s.beginTransaction();
+			cID = (Long) s.save(c);
+			t.commit();
+		}
+		catch(HibernateException e)
+		{
+			if(t != null)
+			{
+				t.rollback();
+			}
+		}
+		finally
+		{
+			s.close();
+		}
 
-		session.save(comment);
+		return cID;
 
-		session.getTransaction().commit();
-		session.close();
 	}
 
 	// code to get a comment
-	protected void read()
+	public Comment read(long cID)
 	{
-		Session session = sessionFactory.openSession();
+		Session s = sessionFactory.openSession();
+		
+		Comment c = s.get(Comment.class, cID);
 
-		long bookId = DEFAULT_ID;
-		Comment comment = session.get(Comment.class, bookId);
+		s.close();
+		
+		return c;
+	}
 
-		System.out.printf("Name:    '%s'\n", comment.getName());
-		System.out.printf("Date:    '%s'\n", comment.getDate());
-		System.out.printf("Content: '%s'\n", comment.getContent());
+	// code to get all comments
+	@SuppressWarnings("unchecked")
+	public List<Comment> readAll()
+	{
+		Session s = sessionFactory.openSession();
 
-		session.close();
+		ArrayList<Comment> l = (ArrayList<Comment>) s.createCriteria(Comment.class).list();
+
+		s.close();
+		return l;
 	}
 
 	// code to modify a comment
-	protected void update()
+	public void update(Long cID, Comment updatedComment)
 	{
-		Comment comment = new Comment();
-		comment.setName("updated name");
-		comment.setDate(new Date(Instant.now().getEpochSecond()));
-		comment.setContent("updated content");
+		Session s = sessionFactory.openSession();
+		Transaction t = null;
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		try
+		{
+			t = s.beginTransaction();
+			Comment c = (Comment) s.get(Comment.class, cID);
 
-		session.update(comment);
+			c.deepCopy(updatedComment); // copy all things
+			c.setCid(cID); // but retain the cID
 
-		session.getTransaction().commit();
-		session.close();
+			s.update(c);
+			t.commit();
+		}
+		catch(HibernateException e)
+		{
+			if(t != null)
+			{
+				t.rollback();
+			}
+			e.printStackTrace();
+		}
+		finally
+		{
+			s.close();
+		}
 	}
 
 	// code to remove a comment
-	protected void delete()
+	public void delete(Long cID)
 	{
-		Comment comment = new Comment();
-		comment.setCid(DEFAULT_ID);
+		Session s = sessionFactory.openSession();
+		Transaction t = null;
 
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		try // attempt to delete
+		{
+			t = s.beginTransaction();
 
-		session.delete(comment);
-
-		session.getTransaction().commit();
-		session.close();
+			Comment c = (Comment) s.get(Comment.class, cID);
+			s.delete(c);
+			t.commit();
+		}
+		catch(HibernateException e)
+		{
+			if(t != null)
+			{
+				t.rollback();
+			}
+			e.printStackTrace();
+		}
+		finally
+		{
+			s.close();
+		}
 	}
 
 	// code to run the program
@@ -109,7 +159,7 @@ public class CommentManager
 		CommentManager manager = new CommentManager();
 		manager.setup();
 
-		manager.create();
+		manager.create(new Comment());
 
 		manager.exit();
 	}
