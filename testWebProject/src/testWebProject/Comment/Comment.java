@@ -1,10 +1,13 @@
 package testWebProject.Comment;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,8 +18,9 @@ import testWebProject.lib;
 public class Comment implements Serializable
 {
 	private static final long serialVersionUID = 1379680211260170637L;
-	
-	@Id @GeneratedValue
+
+	@Id
+	@GeneratedValue
 	private Long cid;
 	private String name;
 	private String content;
@@ -28,7 +32,7 @@ public class Comment implements Serializable
 		this.content = "I am a test person. hooray!";
 		this.date = (Date) lib.now();
 	}
-	
+
 	public Comment(Long cid, String n, String c, Date d)
 	{
 		this.cid = cid;
@@ -36,12 +40,12 @@ public class Comment implements Serializable
 		this.content = c;
 		this.date = d;
 	}
-	
+
 	public Comment(String n, String c, Date d)
 	{
 		this.name = n;
 		this.content = c;
-		this.date = d;		
+		this.date = d;
 	}
 
 	@Id
@@ -87,19 +91,20 @@ public class Comment implements Serializable
 	{
 		this.date = date;
 	}
-	
+
 	@Override
 	public String toString()
 	{
 		String ret = "";
 
-		ret += String.format("%s on %s: '%s'",this.getName(),DateFormat.getDateInstance().format(this.getDate()),this.getContent());
-		
+		ret += String.format("%s on %s: '%s'", this.getName(), this.getDate().toString(), this.getContent());
+
 		return ret;
 	}
-	
+
 	/***
 	 * Copy all attributes from another comment into self.
+	 * 
 	 * @param c The other comment.
 	 */
 	public void deepCopy(Comment c)
