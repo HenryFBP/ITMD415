@@ -6,7 +6,7 @@ CREATE DATABASE IF NOT EXISTS testdb;
 DROP TABLE comment;
 
 CREATE TABLE IF NOT EXISTS comment (
-   comment_id 		INT 		NOT NULL auto_increment,
+   comment_id 		INT 		NOT NULL AUTO_INCREMENT,
    name 			VARCHAR(64) NOT NULL,
    content			TEXT 		NOT NULL,
    date     		DATE 		NOT NULL,
@@ -14,3 +14,4 @@ CREATE TABLE IF NOT EXISTS comment (
 );
 
 DESCRIBE comment;
+SELECT * FROM comment;
