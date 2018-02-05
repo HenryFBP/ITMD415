@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import testWebProject.lib;
+
 /**
  * Servlet implementation class CommentControllerServlet
  */
@@ -31,7 +33,10 @@ public class CommentControllerServlet extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append(lib.wrap(String.format("'%s' aka Comment Controller Servlet FTW!",this.getClass().getName()),"p"));
+		response.getWriter().append(lib.wrap(String.format("Served at: %s",request.getContextPath()),"p"));
+		
+		
 	}
 
 	/**
