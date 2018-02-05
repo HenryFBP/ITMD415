@@ -11,18 +11,18 @@
       <h1>Comment below</h1>
     </header>
     <main>
-      <form id="sign-up" action="#null" method="get">
+      <form id="sign-up" action="register" method="post">
         <ol>
           <li>
             <label for="name">Name</label>
             <input type="text" id="name" name="name" />            
           </li>
           <li>
-            <label for="comment">Phone</label>
+            <label for="comment">Comment</label>
             <input type="text" id="comment" name="comment" />            
           </li>
         </ol>
-        <input id="submit" type="submit" value="Go!"/>
+        <input id="submit" type="submit" value="Post!"/>
       </form>
     </main>
     <section id="comments">
