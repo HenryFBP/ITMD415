@@ -2,13 +2,14 @@
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
                                          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
- <session-factory name="">
-  <!-- Database connection settings -->
-  <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="connection.url">jdbc:mysql://localhost:3306/bookstore</property>
-  <property name="connection.username">root</property>
-  <property name="connection.password"></property>
-  <property name="show_sql">true</property>
-  <mapping class="testWebProject.Comment"/>
- </session-factory>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/testdb</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<mapping class="Comment" resource="testWebProject/Comment/comment.hbm.xml" />
+	</session-factory>
 </hibernate-configuration>

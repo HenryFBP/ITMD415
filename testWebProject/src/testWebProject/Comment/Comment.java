@@ -1,35 +1,36 @@
-package testWebProject;
+package testWebProject.Comment;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "comment")
-public class Comment
+public class Comment implements Serializable
 {
-	public int cid;
+	@Id @GeneratedValue
+	private long cid;
 	private String name;
 	private String content;
 	private Date date;
-	
+
 	public Comment()
 	{
-		
+
 	}
 
 	@Id
 	@Column(name = "comment_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getCid()
+	public long getCid()
 	{
 		return cid;
 	}
 
-	public void setCid(int cid)
+	public void setCid(long dEFAULT_ID)
 	{
-		this.cid = cid;
+		this.cid = dEFAULT_ID;
 	}
 
 	public String getName()
@@ -62,6 +63,4 @@ public class Comment
 		this.date = date;
 	}
 
-
-	
 }

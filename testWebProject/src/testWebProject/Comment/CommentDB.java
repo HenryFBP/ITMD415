@@ -1,4 +1,4 @@
-package testWebProject;
+package testWebProject.Comment;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -41,7 +41,6 @@ public class CommentDB
 		{
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 }
