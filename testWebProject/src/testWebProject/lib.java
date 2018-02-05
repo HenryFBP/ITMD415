@@ -9,6 +9,31 @@ import javax.servlet.ServletContext;
 
 public class lib
 {
+	/***
+	 * Wrap a String with an HTML tag.<br>
+	 * Example: <pre><code>w("hello!","a") -> "&lt;a>hello!&lt;/a>"</pre></code>
+	 */
+	public static String wrap(String s, String tag)
+	{
+		return "<" + tag + ">" + s + "</" + tag + ">";
+	}
+
+	/***
+	 * Wrap a String with an arbitrary number of HTML tags.<br>
+	 * Example: <pre><code>w("ascii??","pre","code") -> &lt;pre>&lt;code>ascii??&lt;/pre>&lt;/code></pre></code>
+	 */
+	public static String wrap(String s, String... args)
+	{
+		String ret = s;
+		
+		for(int i = 0; i < args.length; i++) //for all elems
+		{
+			ret = wrap(ret, args[i]); //apply one elem
+		}
+		
+		return ret;
+	}
+	
 	public static double randomNumber()
 	{
 		return (new Random()).nextDouble() * 100;
