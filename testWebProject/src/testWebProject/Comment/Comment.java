@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import testWebProject.lib;
 
 @Entity
@@ -43,8 +45,9 @@ public class Comment implements Serializable
 	}
 
 	@Id
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	@Column(name = "comment_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getCid()
 	{
 		return cid;
