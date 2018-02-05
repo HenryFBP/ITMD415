@@ -2,13 +2,35 @@ package testWebProject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
-import javax.servlet.ServletContext;
-
 public class lib
 {
+	/***
+	 * @return A date that holds the value of when it was created.
+	 */
+	public static Date now()
+	{
+		return new Date(Instant.now().toEpochMilli());
+	}
+	
+	public static ArrayList<?> iteratorToList(Iterator it)
+	{
+		ArrayList<Object> l = new ArrayList<Object>();
+		
+		while(it.hasNext())
+		{
+			l.add(it.next());
+		}
+		
+		return l;
+	}
+	
 	/***
 	 * Wrap a String with an HTML tag.<br>
 	 * Example: <pre><code>w("hello!","a") -> "&lt;a>hello!&lt;/a>"</pre></code>
