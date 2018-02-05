@@ -12,7 +12,7 @@
       <h1>Comment below</h1>
     </header>
     <main>
-      <form id="sign-up" action="register" method="post">
+      <form id="sign-up" method="post">
         <ol>
           <li>
             <label for="name">Name</label>
