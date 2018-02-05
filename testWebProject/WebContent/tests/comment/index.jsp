@@ -7,6 +7,7 @@
 <title>Comments test</title>
 </head>
   <body>
+	<nav><jsp:include page="/navbar.inc"></jsp:include></nav>
     <header>
       <h1>Comment below</h1>
     </header>
