@@ -19,7 +19,7 @@ public class lib
 		return new Date(Instant.now().toEpochMilli());
 	}
 	
-	public static ArrayList<?> iteratorToList(Iterator it)
+	public static ArrayList<?> iteratorToList(Iterator<?> it)
 	{
 		ArrayList<Object> l = new ArrayList<Object>();
 		
