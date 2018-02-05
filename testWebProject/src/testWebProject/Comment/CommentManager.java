@@ -3,10 +3,7 @@ package testWebProject.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -45,7 +42,7 @@ public class CommentManager
 	}
 
 	/***
-	 * Code to save a {@link Comment}
+	 * Code to save a {@link Comment}.
 	 */
 	public Long create(Comment c)
 	{
@@ -61,6 +58,7 @@ public class CommentManager
 		}
 		catch(HibernateException e)
 		{
+			e.printStackTrace();
 			if(t != null)
 			{
 				t.rollback();

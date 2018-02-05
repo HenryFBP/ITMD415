@@ -45,6 +45,13 @@ public class CommentControllerServlet extends HttpServlet
 		Comment c = new Comment(name, comment, date);
 
 		System.out.println("Comment object we just made from that POST: " + c.toString());
+		
+		CommentManager cm = new CommentManager();
+		cm.setup();
+		
+		cm.create(c);
+		
+		cm.exit();
 
 	}
 
