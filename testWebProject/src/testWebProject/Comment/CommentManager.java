@@ -36,6 +36,11 @@ public class CommentManager
 	// code to close Hibernate Session factory
 	public void exit()
 	{
+		if(sessionFactory != null)
+		{
+			sessionFactory.getCurrentSession().close();
+			sessionFactory.close();
+		}
 
 	}
 
@@ -74,11 +79,11 @@ public class CommentManager
 	public Comment read(long cID)
 	{
 		Session s = sessionFactory.openSession();
-		
+
 		Comment c = s.get(Comment.class, cID);
 
 		s.close();
-		
+
 		return c;
 	}
 
