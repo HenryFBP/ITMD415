@@ -1,5 +1,5 @@
 <ul>
-	<li><a href="./testWebProject">Home</a></li>
+	<li><a href="/testWebProject">Home</a></li>
 	<li>
 		<ul>
 			<a>Tests</a>
