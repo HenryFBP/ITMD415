@@ -45,13 +45,4 @@ public class lib
 
 		return lines;
 	}
-
-	/***
-	 * @return A navbar HTML element.
-	 */
-	public static String navbar(ServletContext sc)
-	{
-		return fileToString(sc.getRealPath(sc.getContextPath()) + "testWebProject/navbar.inc");
-	}
-
 }

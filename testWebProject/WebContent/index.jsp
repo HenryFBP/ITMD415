@@ -16,7 +16,7 @@
 <p><code><%=("real context path of application: " + application.getRealPath(application.getContextPath()))%></code></p>
 
 
-<%out.write(lib.navbar(application));%>
+<nav><jsp:include page="navbar.inc"></jsp:include></nav>
 
 	<header>
 		<h1>Welcome to servlet hell!</h1>
