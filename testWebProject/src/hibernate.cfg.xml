@@ -9,7 +9,15 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/testdb</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.pool_size">1</property>
+	    <property name="hibernate.c3p0.timeout">0</property>
+		<property name="current_session_context_class">thread</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<mapping class="Comment" resource="testWebProject/Comment/comment.hbm.xml" />
+		
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+		
+		<mapping class="testWebProject.Comment.Comment" />
 	</session-factory>
 </hibernate-configuration>
