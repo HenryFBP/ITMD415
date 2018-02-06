@@ -3,11 +3,13 @@ package testWebProject.Comment;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.*;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 public class CommentManager
@@ -15,6 +17,11 @@ public class CommentManager
 	private SessionFactory sessionFactory;
 	private ServiceRegistry serviceRegistry;
 
+	public CommentManager()
+	{
+		this.setup();
+	}
+	
 	/***
 	 * Load Hibernate Session factory.
 	 */
@@ -84,7 +91,9 @@ public class CommentManager
 		return c;
 	}
 
-	// code to get all comments
+	/***
+	 * Return ALL comments.
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Comment> readAll()
 	{

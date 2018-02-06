@@ -25,7 +25,7 @@ public class lib
 	 */
 	public static long nowEpochSecond()
 	{
-		return now().toInstant().getEpochSecond();
+		return lib.now().toInstant().getEpochSecond();
 	}
 	
 	public static ArrayList<?> iteratorToList(Iterator<?> it)
@@ -56,7 +56,7 @@ public class lib
 	 */
 	public static String epochSecondsToDate(long ms, String f)
 	{
-		return epochMillisecondsToDate((ms/1000), f);
+		return epochMillisecondsToDate((ms*1000), f);
 	}
 	
 	

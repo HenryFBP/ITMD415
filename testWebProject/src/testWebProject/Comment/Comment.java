@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -98,11 +99,13 @@ public class Comment implements Serializable
 	/***
 	 * @return Date in the form of milliseconds since Java epoch.
 	 */
+	@Transient
 	protected long getDatemillis()
 	{
-		return (this.getDate() / 1000L);
+		return (this.getDate() * 1000L);
 	}
 	
+	@Transient
 	protected String getFormattedDate()
 	{
 		return lib.epochSecondsToDate(this.getDate(), EtcE.DATEF_HUMAN.s());
