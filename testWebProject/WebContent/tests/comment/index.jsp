@@ -1,5 +1,13 @@
+<%@page import="testWebProject.Comment.* "%>
+<%@page import="testWebProject.lib "%>
+<%@page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
   pageEncoding="ISO-8859-1"%>
+  
+<%
+	CommentManager cm = new CommentManager();
+	List<Comment> comments = cm.readAll();
+%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +20,7 @@
       <h1>Comment below</h1>
     </header>
     <main>
-      <form id="sign-up" method="post">
+      <form id="comment" method="post">
         <ol>
           <li>
             <label for="name">Name</label>
@@ -27,6 +35,15 @@
       </form>
     </main>
     <section id="comments">
+    	<ul>
+			<%
+				for(int i = comments.size()-1; i >= 0; i--)
+				{
+					Comment c = comments.get(i);
+					out.write(lib.wrap(CommentFormatter.formatComment(c),"li"));
+				}
+			%>
+    	</ul>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="index.js"></script>
