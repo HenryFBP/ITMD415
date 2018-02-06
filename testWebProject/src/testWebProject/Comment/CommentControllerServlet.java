@@ -1,8 +1,6 @@
 package testWebProject.Comment;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,18 +31,12 @@ public class CommentControllerServlet extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		log("DID SUM1 TRY TO (HTTP POST) A COMMENT????!?!?!");
-
-		ArrayList<String> parameterNames = (ArrayList<String>) lib.iteratorToList(request.getParameterNames().asIterator());
-		log("Parameter names: " + parameterNames.toString());
 
 		String name = request.getParameter("name");
 		String comment = request.getParameter("comment");
 		long date = lib.nowEpochSecond();
 
 		Comment c = new Comment(name, comment, date); // wrap their comment inside our Comment object
-
-		System.out.println("Comment object we just made from that POST: " + c.toString());
 		
 		CommentManager cm = new CommentManager();
 		cm.setup();
@@ -59,7 +51,9 @@ public class CommentControllerServlet extends HttpServlet
 		{
 			e.printStackTrace();
 		}
-
+		
+		response.sendRedirect("./"); // send them to the page to see their newly made comment
+		
 	}
 
 }
