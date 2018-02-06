@@ -24,8 +24,9 @@ public class CommentManager
 		{
 			sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
 		}
-		catch(Exception ex)
+		catch(Exception e)
 		{
+			e.printStackTrace();
 			StandardServiceRegistryBuilder.destroy(registry);
 		}
 	}
