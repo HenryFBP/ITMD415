@@ -7,10 +7,13 @@ import org.hibernate.*;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 public class CommentManager
 {
-	protected SessionFactory sessionFactory = null;
+	private SessionFactory sessionFactory;
+	private ServiceRegistry serviceRegistry;
 
 	/***
 	 * Load Hibernate Session factory.
@@ -18,43 +21,38 @@ public class CommentManager
 	public void setup()
 	{
 		// configures settings from hibernate.cfg.xml
-		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+		StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure().build();
 
 		try
 		{
-			sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+			sessionFactory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			StandardServiceRegistryBuilder.destroy(registry);
+			StandardServiceRegistryBuilder.destroy(serviceRegistry);
 		}
 	}
 
 	// code to close Hibernate Session factory
-	public void exit()
+	public void stop() throws Exception
 	{
-		if(sessionFactory != null)
-		{
-			sessionFactory.getCurrentSession().close();
-			sessionFactory.close();
-		}
-
+		sessionFactory.close();	
 	}
 
 	/***
 	 * Code to save a {@link Comment}.
 	 */
-	public Long create(Comment c)
+	public int create(Comment c)
 	{
 		Session s = sessionFactory.openSession();
 		Transaction t = null;
-		Long cID = null;
+		Integer cID = null;
 
 		try
 		{
 			t = s.beginTransaction();
-			cID = (Long) s.save(c);
+			cID = (Integer) s.save(c);
 			t.commit();
 		}
 		catch(HibernateException e)
@@ -75,7 +73,7 @@ public class CommentManager
 	}
 
 	// code to get a comment
-	public Comment read(long cID)
+	public Comment read(int cID)
 	{
 		Session s = sessionFactory.openSession();
 
@@ -99,7 +97,7 @@ public class CommentManager
 	}
 
 	// code to modify a comment
-	public void update(Long cID, Comment updatedComment)
+	public void update(int cID, Comment updatedComment)
 	{
 		Session s = sessionFactory.openSession();
 		Transaction t = null;
@@ -130,7 +128,7 @@ public class CommentManager
 	}
 
 	// code to remove a comment
-	public void delete(Long cID)
+	public void delete(int cID)
 	{
 		Session s = sessionFactory.openSession();
 		Transaction t = null;
@@ -160,11 +158,19 @@ public class CommentManager
 	// code to run the program
 	public static void main(String[] args)
 	{
+		System.out.println(CommentManager.class.getName() + " main().");
+
 		CommentManager manager = new CommentManager();
+
 		manager.setup();
 
-		manager.create(new Comment());
-
-		manager.exit();
+		try
+		{
+			manager.stop();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

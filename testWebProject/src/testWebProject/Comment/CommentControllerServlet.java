@@ -40,18 +40,25 @@ public class CommentControllerServlet extends HttpServlet
 
 		String name = request.getParameter("name");
 		String comment = request.getParameter("comment");
-		Date date = lib.now();
+		long date = lib.nowEpochSecond();
 
-		Comment c = new Comment(name, comment, date);
+		Comment c = new Comment(name, comment, date); // wrap their comment inside our Comment object
 
 		System.out.println("Comment object we just made from that POST: " + c.toString());
 		
 		CommentManager cm = new CommentManager();
 		cm.setup();
 		
-		cm.create(c);
+		cm.create(c); // insert comment we just got from user
 		
-		cm.exit();
+		try
+		{
+			cm.stop();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 
 	}
 

@@ -1,17 +1,18 @@
 package testWebProject.Comment;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import testWebProject.lib;
+import testWebProject.enums.EtcE;
 
 @Entity
 @Table(name = "comment")
@@ -20,20 +21,24 @@ public class Comment implements Serializable
 	private static final long serialVersionUID = 1379680211260170637L;
 
 	@Id
-	@GeneratedValue
-	private Long cid;
-	private String name;
-	private String content;
-	private Date date;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int cid;
 
-	public Comment()
+	private String name;
+	
+	private String content;
+    
+	private long date;
+
+	protected Comment()
 	{
 		this.name = "Randy Random";
 		this.content = "I am a test person. hooray!";
-		this.date = (Date) lib.now();
+		this.date = lib.nowEpochSecond();
+		this.cid = -1;
 	}
 
-	public Comment(Long cid, String n, String c, Date d)
+	protected Comment(int cid, String n, String c, long d)
 	{
 		this.cid = cid;
 		this.name = n;
@@ -41,7 +46,7 @@ public class Comment implements Serializable
 		this.date = d;
 	}
 
-	public Comment(String n, String c, Date d)
+	protected Comment(String n, String c, long d)
 	{
 		this.name = n;
 		this.content = c;
@@ -52,42 +57,58 @@ public class Comment implements Serializable
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
 	@Column(name = "comment_id")
-	public long getCid()
+	protected int getCid()
 	{
 		return cid;
 	}
 
-	public void setCid(long cid)
+	protected void setCid(int cid)
 	{
 		this.cid = cid;
 	}
 
-	public String getName()
+	protected String getName()
 	{
 		return name;
 	}
 
-	public void setName(String name)
+	protected void setName(String name)
 	{
 		this.name = name;
 	}
 
-	public String getContent()
+	protected String getContent()
 	{
 		return content;
 	}
 
-	public void setContent(String content)
+	protected void setContent(String content)
 	{
 		this.content = content;
 	}
 
-	public Date getDate()
+	/***
+	 * @return Date in the form of seconds since Java epoch.
+	 */
+	protected long getDate()
 	{
 		return date;
 	}
 
-	public void setDate(Date date)
+	/***
+	 * @return Date in the form of milliseconds since Java epoch.
+	 */
+	protected long getDatemillis()
+	{
+		return (this.getDate() / 1000L);
+	}
+	
+	protected String getFormattedDate()
+	{
+		return lib.epochSecondsToDate(this.getDate(), EtcE.DATEF_HUMAN.s());
+	}
+	
+	protected void setDate(long date)
 	{
 		this.date = date;
 	}
@@ -97,7 +118,7 @@ public class Comment implements Serializable
 	{
 		String ret = "";
 
-		ret += String.format("%s on %s: '%s'", this.getName(), this.getDate().toString(), this.getContent());
+		ret += String.format("%s on %s: '%s'", this.getName(), this.getDate(), this.getContent());
 
 		return ret;
 	}
@@ -107,7 +128,7 @@ public class Comment implements Serializable
 	 * 
 	 * @param c The other comment.
 	 */
-	public void deepCopy(Comment c)
+	protected void deepCopy(Comment c)
 	{
 		this.setCid(c.getCid());
 		this.setName(c.getName());
