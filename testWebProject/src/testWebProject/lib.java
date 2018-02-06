@@ -2,6 +2,7 @@ package testWebProject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,14 @@ public class lib
 		return new Date(Instant.now().toEpochMilli());
 	}
 	
+	/***
+	 * @return A 64-bit number that holds how many seconds it is from the Java epoch.
+	 */
+	public static long nowEpochSecond()
+	{
+		return now().toInstant().getEpochSecond();
+	}
+	
 	public static ArrayList<?> iteratorToList(Iterator<?> it)
 	{
 		ArrayList<Object> l = new ArrayList<Object>();
@@ -30,6 +39,27 @@ public class lib
 		
 		return l;
 	}
+	
+	/***
+	 * Return a formatted String from a Java epoch milliseconds value.
+	 * @param ms Milliseconds.
+	 * @param f String format specifier.
+	 * @return
+	 */
+	public static String epochMillisecondsToDate(long ms, String f)
+	{
+		return new SimpleDateFormat(f).format(new Date(ms));
+	}
+	
+	/***
+	 * See {@link lib#epochMillisecondsToDate(long, String)}.
+	 */
+	public static String epochSecondsToDate(long ms, String f)
+	{
+		return epochMillisecondsToDate((ms/1000), f);
+	}
+	
+	
 	
 	/***
 	 * Wrap a String with an HTML tag.<br>
@@ -48,7 +78,7 @@ public class lib
 	{
 		String ret = s;
 		
-		for(int i = 0; i < args.length; i++) //for all elems
+		for(int i = args.length-1; i >= 0; i--) //for all elems
 		{
 			ret = wrap(ret, args[i]); //apply one elem
 		}
@@ -91,5 +121,12 @@ public class lib
 		s.close();
 
 		return lines;
+	}
+	
+	public static void main(String[] args)
+	{
+		System.out.println("Hi, I'm main() of class '"+lib.class.getCanonicalName()+"'. For testing.");
+		
+		System.out.println(wrap("im code bro", "pre", "code"));
 	}
 }
