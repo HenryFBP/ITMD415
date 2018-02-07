@@ -1,7 +1,5 @@
 package lab2;
 
-
-import org.xml.sax.*;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
