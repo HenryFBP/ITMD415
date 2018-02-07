@@ -4,18 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="/lab2/css/screen.css" />
 </head>
 <body>
-<nav><jsp:include page="navbar.inc"></jsp:include></nav>
+  <nav><jsp:include page="navbar.inc"></jsp:include></nav>
 
-	<header>
-		<h1>Welcome to online form hell!</h1>
-	</header>
+  <header>
+    <h1>Welcome to online form hell!</h1>
+  </header>
 
-	<section>
-	</section>
   <footer><jsp:include page="footer.inc"></jsp:include></footer>
 </body>
 </html>

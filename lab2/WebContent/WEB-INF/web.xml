@@ -2,17 +2,7 @@
 <web-app id="WebApp_ID" version="3.0"
  xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
- <display-name>testWebProject</display-name>
- <servlet>
-  <display-name>Comment</display-name>
-  <servlet-name>Comment</servlet-name>
-  <servlet-class>testWebProject.Comment.CommentControllerServlet</servlet-class>
-  <enabled>true</enabled>
- </servlet>
- <servlet-mapping>
-  <servlet-name>Comment</servlet-name>
-  <url-pattern>/tests/comment/</url-pattern>
- </servlet-mapping>
+ <display-name>lab2</display-name>
  <welcome-file-list>
   <welcome-file>index.html</welcome-file>
   <welcome-file>index.htm</welcome-file>

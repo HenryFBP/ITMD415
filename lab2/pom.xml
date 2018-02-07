@@ -6,7 +6,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<groupId>lab2</groupId>
 	<artifactId>lab2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<description>Test Web Project</description>
 	<dependencies>
 	
   		<dependency>
@@ -41,4 +40,5 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		</dependency>
 		
 	</dependencies>
+	<description>Lab 2</description>
 </project>
