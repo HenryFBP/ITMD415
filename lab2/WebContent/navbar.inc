@@ -1,10 +1,9 @@
 <ul>
-	<li><a href="/testWebProject">Home</a></li>
+	<li><a href="/lab2">Home</a></li>
 	<li>
 		<ul>
-			<a>Tests</a>
-			<li><a href="/testWebProject/tests/comment">Comments</a></li>
-			<li><a href="/testWebProject/tests/random">Random number</a></li>
+			<a>Forms</a>
+			<li><a href="/lab2/GetFormData.jsp">Form</a></li>
 		</ul>
 	</li>
 </ul>

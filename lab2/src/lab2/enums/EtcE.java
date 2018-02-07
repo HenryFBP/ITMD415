@@ -1,4 +1,4 @@
-package testWebProject.enums;
+package lab2.enums;
 
 /***
  * Misc enum.
