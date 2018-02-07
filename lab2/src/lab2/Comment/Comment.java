@@ -1,4 +1,4 @@
-package testWebProject.Comment;
+package lab2.Comment;
 
 import java.io.Serializable;
 
@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import testWebProject.lib;
-import testWebProject.enums.EtcE;
+import lab2.lib;
+import lab2.enums.EtcE;
 
 @Entity
 @Table(name = "comment")

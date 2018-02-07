@@ -1,4 +1,4 @@
-package testWebProject.Comment;
+package lab2.Comment;
 
 import java.util.ArrayList;
 import java.util.List;

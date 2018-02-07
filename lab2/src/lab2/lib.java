@@ -1,4 +1,4 @@
-package testWebProject;
+package lab2;
 
 import java.io.File;
 import java.io.FileNotFoundException;

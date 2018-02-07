@@ -1,7 +1,7 @@
-package testWebProject.Comment;
+package lab2.Comment;
 
-import testWebProject.lib;
-import testWebProject.enums.TagE;
+import lab2.lib;
+import lab2.enums.TagE;
 
 public class CommentFormatter
 {
