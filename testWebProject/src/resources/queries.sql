@@ -1,10 +1,8 @@
---USING testdb;
-
 CREATE DATABASE IF NOT EXISTS testdb;
 
+USE testdb;
 
-DROP TABLE comment;
-
+DROP TABLE IF EXISTS comment;
 CREATE TABLE IF NOT EXISTS comment (
    comment_id 		INT 		NOT NULL AUTO_INCREMENT,
    name 			VARCHAR(64) NOT NULL,
