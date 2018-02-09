@@ -15,6 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "user")
 public class User implements Serializable
 {
+	
 	private static final long serialVersionUID = 1635601937986452018L;
 
 	@Id
@@ -26,11 +27,12 @@ public class User implements Serializable
 	private String password;
 	private long dob;
 
-	protected User(int uid, String n, String e, long d)
+	protected User(int uid, String n, String e, String p, long d)
 	{
 		this.uid = uid;
 		this.name = n;
 		this.email = e;
+		this.password = p;
 		this.dob = d;
 	}
 
