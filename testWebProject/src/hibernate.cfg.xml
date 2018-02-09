@@ -19,5 +19,6 @@
         <property name="format_sql">true</property>
 		
 		<mapping class="testWebProject.Comment.Comment" />
+		<mapping class="testWebProject.User.User" />
 	</session-factory>
 </hibernate-configuration>
