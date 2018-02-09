@@ -12,6 +12,9 @@ CREATE TABLE IF NOT EXISTS comment (
    PRIMARY KEY (comment_id)
 );
 
+INSERT INTO comment VALUES(0, "name", "this comment system SUX >:(", -1);
+INSERT INTO comment VALUES(0, "name_for_real", "this comment system ROX :)", -2);
+
 DESCRIBE comment;
 SELECT * FROM comment;
 
@@ -25,6 +28,9 @@ CREATE TABLE IF NOT EXISTS user (
 	
 	PRIMARY KEY (user_id)
 );
+
+INSERT INTO user VALUES(0, "Henry", "HenryFBP@gmail.com", "iamareallygoodpasswordlololol", -1);
+INSERT INTO user VALUES(0, "Dennis", "dennisthemenace@hotbodshotrods.ru.co.uk", "help", -2);
 
 DESCRIBE user
 SELECT * FROM user;
