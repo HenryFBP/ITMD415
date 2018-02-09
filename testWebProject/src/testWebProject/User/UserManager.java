@@ -1,7 +1,6 @@
 package testWebProject.User;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -83,6 +82,15 @@ public class UserManager
 		return uid;
 
 	}
+	
+	public User read(String uname)
+	{
+		Session s = sessionFactory.openSession();
+		
+		s.close();
+		
+		return null;
+	}
 
 	// code to get a User
 	public User read(int uid)
@@ -99,7 +107,6 @@ public class UserManager
 	/***
 	 * Return ALL Users.
 	 */
-	@SuppressWarnings("unchecked")
 	public List<User> readAll()
 	{
 		Session s = sessionFactory.openSession();
@@ -204,6 +211,16 @@ public class UserManager
 
 		return false;
 	}
+	
+	/***
+	 * Tells you if a user with {@code username} exists.
+	 */
+	public boolean userExists(String username)
+	{
+			
+		
+		return false;
+	}
 
 	// code to run the program
 	public static void main(String[] args)
@@ -214,8 +231,16 @@ public class UserManager
 
 		manager.setup();
 
-		manager.create(new User(0, "Henry", "HenryFBP@gmail.com", "iamapassword", (new Date(1997, 8, 1).getTime())));
+//		manager.create(new User(0, "Henry", "HenryFBP@gmail.com", "iamapassword", (new Date(1997, 8, 1).getTime())));
 
+		
+		List allUsers = manager.readAll();
+		
+		for(int i = 0; i < allUsers.size(); i++)
+		{
+			System.out.println(allUsers.get(i).toString());
+		}
+		
 		try
 		{
 			manager.stop();

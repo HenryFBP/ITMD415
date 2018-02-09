@@ -15,25 +15,35 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "user")
 public class User implements Serializable
 {
-	
+
 	private static final long serialVersionUID = 1635601937986452018L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int uid;
 
-	private String name;	
+	private String name;
 	private String email;
 	private String password;
 	private long dob;
 
-	protected User(int uid, String n, String e, String p, long d)
+	
+	protected User()
 	{
-		this.uid = uid;
-		this.name = n;
-		this.email = e;
-		this.password = p;
-		this.dob = d;
+		uid = -1;
+		name = "Default_Person";
+		email = "default@goggles.ru";
+		password = "wordpass";
+		dob = -1L;
+	}
+	
+	protected User(int u, String n, String e, String p, long d)
+	{
+		uid = u;
+		name = n;
+		email = e;
+		password = p;
+		dob = d;
 	}
 
 	@Id
@@ -47,7 +57,7 @@ public class User implements Serializable
 
 	protected void setUid(int p)
 	{
-		this.uid = p;
+		uid = p;
 	}
 
 	protected String getName()
@@ -57,19 +67,18 @@ public class User implements Serializable
 
 	protected void setName(String n)
 	{
-		this.name = n;
+		name = n;
 	}
-	
+
 	protected String getEmail()
 	{
 		return email;
 	}
-	
+
 	protected void setEmail(String e)
 	{
-		this.email = e;
+		email = e;
 	}
-	
 
 	protected String getPassword()
 	{
@@ -78,7 +87,7 @@ public class User implements Serializable
 
 	protected void setPassword(String p)
 	{
-		this.password = p;
+		password = p;
 	}
 
 	protected long getDob()
@@ -86,19 +95,15 @@ public class User implements Serializable
 		return dob;
 	}
 
-	protected void setDob(long dob)
+	protected void setDob(long d)
 	{
-		this.dob = dob;
+		dob = d;
 	}
 
 	@Override
 	public String toString()
 	{
-		String ret = "";
-
-		ret += String.format("ID %d: %s <%s> '%s'",this.getUid(),this.getName(),this.getEmail());
-
-		return ret;
+		return String.format("%d: [%-10s : %-15s] <%-25s> '%d'", getUid(), getName(), getPassword(), getEmail(), getDob());
 	}
 
 }
