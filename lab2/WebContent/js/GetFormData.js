@@ -55,6 +55,8 @@ $('#sign-up').on('submit', function(e)
 
     resetValidity(elems);
     
+    $(problemsID).empty();
+    
     var valid = true;
 
     // validate name
