@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-  pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,9 +8,45 @@
 <title>Enter yo stuff into the form!</title>
 </head>
 <body>
-  <nav><jsp:include page="navbar.inc"></jsp:include></nav>
+	<nav><jsp:include page="navbar.inc"></jsp:include></nav>
 
-  <footer><jsp:include page="footer.inc"></jsp:include></footer>
+	<main>
+	<form id="sign-up" action="ValidateFormData.jsp" method="get">
+        <ol>
+          <li>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" />
+          </li>
+          <li>
+            <label for="ssn">SSN</label>
+            <input type="text" id="ssn" name="ssn" />
+          </li>
+          <li>
+            <label for="zip">Zip Code</label>
+            <input type="text" id="zip" name="zip" autocomplete="postal-code"/>
+          </li>
+          <li>
+            <label for="email">Email Address</label>
+            <input type="text" id="email" name="email" autocomplete="email"/>
+          </li>
+          <li>
+            <label for="street">Address</label>
+            <input type="text" id="street" name="street" autocomplete='address'/>
+          </li>
+          <li>
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" autocomplete='address-level2'/>
+          </li>
+          <li>
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" autocomplete='address-level1'/>
+          </li>
+        </ol>
+        <input id="submit" type="submit" value="Go!"/>
+      </form>
+	</main>
+	<footer><jsp:include page="footer.inc"></jsp:include></footer>
+	<script src="/lab2/js/GetFormData.js"></script>
 </body>
 
 </html>
