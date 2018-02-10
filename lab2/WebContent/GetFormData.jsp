@@ -44,6 +44,13 @@
         </ol>
         <input id="submit" type="submit" value="Go!"/>
       </form>
+	<section id="problems" class="hidden">
+	<h2>Problems:</h2>
+	<ol>
+
+	</ol>
+
+	</section>
 	</main>
 	<footer><jsp:include page="footer.inc"></jsp:include></footer>
 	<script src="/lab2/js/GetFormData.js"></script>
