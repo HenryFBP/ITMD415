@@ -193,6 +193,11 @@ input {
   padding: 0.7222rem; /* {[44px(2*lineheight) - 18px(font)]px / 18} aka 13/18 = 0.72~ */
 }
 
+[type="checkbox"] {
+  width: 2.444rem; /* 44 / 18 = 2.444~ */
+  height: 2.444rem; /* 44 / 18 = 2.444~ */
+}
+
 html {
   font-size: 1.125em; /* 18 / 16 = 1.125 */
   line-height: 1.222rem; /* 22 / 18 = 1.222~ */
@@ -288,4 +293,27 @@ li li:last-child {
 .invalid {
   outline-color: red;
   outline-style: solid;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 640px) {
+  
+  body::before {
+    /* content: "Hello 640+ px user!" */
+  }
+  
+  form > * {
+    display: grid;
+  }
+  
+  form li:nth-child(2n + 1) { /* every odd one*/
+    grid-column: 1;
+    padding-right: 1rem;
+  }
+  
+  form li:nth-child(2n) { /* every even one*/
+    grid-column: 2;
+  }
+
 }
