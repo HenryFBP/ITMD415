@@ -1,50 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language='java' contentType='text/html; charset=ISO-8859-1'
+	pageEncoding='ISO-8859-1'%>
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
 <html>
 <head>
-<link rel="stylesheet" href="/lab2/css/screen.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel='stylesheet' href='/lab2/css/screen.css' />
+<meta http-equiv='Content-Type' content='text/html; charset=ISO-8859-1'>
 <title>Enter yo stuff into the form!</title>
 </head>
 <body>
-	<nav><jsp:include page="navbar.inc"></jsp:include></nav>
+	<nav><jsp:include page='navbar.inc'></jsp:include></nav>
 
 	<main>
-	<form id="sign-up" action="ValidateFormData.jsp" method="get">
+	<form id='sign-up' action='ValidateFormData.jsp' method='get'>
         <ol>
           <li>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" autocomplete="name" />
+            <label for='name'>Name</label>
+            <input type='text' id='name' name='name' autocomplete='name' />
           </li>
           <li>
-            <label for="ssn">SSN</label>
-            <input type="text" id="ssn" name="ssn" />
+            <label for='ssn'>SSN</label>
+            <input type='text' id='ssn' name='ssn' />
           </li>
           <li>
-            <label for="zip">Zip Code</label>
-            <input type="text" id="zip" name="zip" autocomplete="postal-code"/>
+            <label for='zip'>Zip Code</label>
+            <input type='text' id='zip' name='zip' autocomplete='postal-code' />
           </li>
           <li>
-            <label for="email">Email Address</label>
-            <input type="text" id="email" name="email" autocomplete="email"/>
+            <label for='email'>Email Address</label>
+            <input type='text' id='email' name='email' autocomplete='email' />
           </li>
           <li>
-            <label for="street">Address</label>
-            <input type="text" id="street" name="street" autocomplete='address'/>
+            <label for='street'>Address</label>
+            <input type='text' id='street' name='street' autocomplete='address' />
           </li>
           <li>
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" autocomplete='address-level2'/>
+            <label for='city'>City</label>
+            <input type='text' id='city' name='city' autocomplete='address-level2' />
           </li>
           <li>
-            <label for="state">State</label>
-            <input type="text" id="state" name="state" autocomplete='address-level1'/>
+            <label for='state'>State</label>
+            <input type='text' id='state' name='state' autocomplete='address-level1' />
           </li>
         </ol>
-        <input id="submit" type="submit" value="Go!"/>
+        <input id='submit' type='submit' value='Go!'/>
       </form>
-	<section id="problems" class="hidden">
+	<section id='problems' class='hidden'>
 	<h2>Problems:</h2>
 	<ol>
 
@@ -52,8 +52,8 @@
 
 	</section>
 	</main>
-	<footer><jsp:include page="footer.inc"></jsp:include></footer>
-	<script src="/lab2/js/GetFormData.js"></script>
+	<footer><jsp:include page='footer.inc'></jsp:include></footer>
+	<script src='/lab2/js/GetFormData.js'></script>
 </body>
 
 </html>
