@@ -4,6 +4,8 @@ var problemsID = '#problems ol';
 
 var invisLi = '<li class="hidden"></li>';
 
+var buttonSubmit = "buttonSubmit";
+
 $('document').ready(function()
 {
 
@@ -16,10 +18,6 @@ log = console.log;
 /*******************************************************************************
  * For all elements in <code>elems</code>, this will remove a class
  * <code>c</code>, which is by default <code>'invalid'</code>.
- * 
- * @param elems
- * @param c
- * @returns
  */
 function resetValidity(elems, c='invalid')
 {
@@ -50,9 +48,7 @@ function validateSSN(ssn, len=9)
 
 
 $('#sign-up').on('submit', function(e)
-{ // someone wants to submit
-    e.preventDefault();
-
+{ // someone wants to submit    
     resetValidity(elems);
     
     $(problemsID).empty();
@@ -164,14 +160,13 @@ $('#sign-up').on('submit', function(e)
       $('#problems').addClass('hidden');
       
       var thanks = ('<p>Thank you, ' + $('#name').val() + '.</p>');
-      
-      $('#sign-up').empty();
-      
-      $('#sign-up').append(thanks)
-      
+            
+      $('#sign-up').append(thanks);      
     }
     else
     {
+      e.preventDefault();
+      
       $('#problems').removeClass('hidden');
     }
 

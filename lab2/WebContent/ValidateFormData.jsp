@@ -7,6 +7,8 @@
 </head>
 <body>
   <nav><jsp:include page="navbar.inc"></jsp:include></nav>
+  
+  <p><% log("Name is: " + request.getParameter("name")); %></p>
 
   <footer><jsp:include page="footer.inc"></jsp:include></footer>
 </body>

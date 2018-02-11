@@ -11,7 +11,7 @@
 	<nav><jsp:include page='navbar.inc'></jsp:include></nav>
 
 	<main>
-	<form id='sign-up' action='ValidateFormData.jsp' method='get'>
+	<form id='sign-up' action='ValidateFormData.jsp' method='POST'>
         <ol>
           <li>
             <label for='name'>Name</label>
@@ -42,7 +42,7 @@
             <input type='text' id='state' name='state' autocomplete='address-level1' />
           </li>
         </ol>
-        <input id='submit' type='submit' value='Go!'/>
+        <input id='submitForm' type='submit' value='Go!'/>
       </form>
 	<section id='problems' class='hidden'>
 	<h2>Problems:</h2>
