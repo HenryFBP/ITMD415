@@ -1,3 +1,6 @@
+<%@ page language='java' contentType='text/html; charset=ISO-8859-1'
+	pageEncoding='ISO-8859-1'%>
+<% log("Name is: " + request.getParameter("name")); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +11,6 @@
 <body>
   <nav><jsp:include page="navbar.inc"></jsp:include></nav>
   
-  <p><% log("Name is: " + request.getParameter("name")); %></p>
 
   <footer><jsp:include page="footer.inc"></jsp:include></footer>
 </body>
