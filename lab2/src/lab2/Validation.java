@@ -7,14 +7,7 @@ public class Validation
 
 	public boolean nameIsValid(String name)
     {
-        if((name.length() >= 4) & (name.length() <= 50))
-        {
-            return true;
-        }
-        else()
-        {
-            return false;
-        }
+        return ((name.length() >= 4) & (name.length() <= 50))
     }//end of nameIsValid
 
     public boolean sSecurityIsValid(String ss)
@@ -73,38 +66,17 @@ public class Validation
 
     public boolean emailIsValid(String email)
     {
-        if(email.length() < 7)
-        {
-            return false;
-        }
-        else
-        {
-            return ture;
-        }
+        return email.length() < 7
     }//end of emailIsValid
 
     public boolean addressIsValid(String address)
     {
-        if((address.length() >= 4) & (address.length() <= 50))
-        {
-            return true;
-        }
-        else()
-        {
-            return false;
-        }
+        return ((address.length() >= 4) & (address.length() <= 50))
     }//end of addressIsValid
 
     public boolean cityIsValid(String city)
     {
-        if((city.length() >= 3) & (city.length() <= 50))
-        {
-            return true;
-        }
-        else()
-        {
-            return false;
-        }
+        return ((city.length() >= 3) & (city.length() <= 50))
     }//end of cityIs Valid
 
 }//end of class
