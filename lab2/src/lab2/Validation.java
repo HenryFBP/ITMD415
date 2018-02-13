@@ -66,7 +66,7 @@ public class Validation
 
     public static boolean emailIsValid(String email)
     {
-        return email.length() < 7;
+        return email.length() > 7;
     }// end of emailIsValid
 
     public static boolean addressIsValid(String address)
