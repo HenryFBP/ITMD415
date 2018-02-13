@@ -1,16 +1,16 @@
 package lab2;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class Validation
 {
 
-	public boolean nameIsValid(String name)
+    public static boolean nameIsValid(String name)
     {
-        return ((name.length() >= 4) & (name.length() <= 50))
-    }//end of nameIsValid
+        return ((name.length() >= 4) & (name.length() <= 50));
+    }// end of nameIsValid
 
-    public boolean sSecurityIsValid(String ss)
+    public static boolean sSecurityIsValid(String ss)
     {
         if(ss.length() != 11)
         {
@@ -33,11 +33,11 @@ public class Validation
                     return false;
                 }
             }
-            return true;
         }
-    }//end of sSecurityIsValid
+        return true;
+    }// end of sSecurityIsValid
 
-    public boolean zipIsValid(String zip)
+    public static boolean zipIsValid(String zip)
     {
         if(zip.length() != 10)
         {
@@ -60,23 +60,48 @@ public class Validation
                     return false;
                 }
             }
-            return true;
         }
-    }//end of zipIsValid
+        return true;
+    }// end of zipIsValid
 
-    public boolean emailIsValid(String email)
+    public static boolean emailIsValid(String email)
     {
-        return email.length() < 7
-    }//end of emailIsValid
+        return email.length() < 7;
+    }// end of emailIsValid
 
-    public boolean addressIsValid(String address)
+    public static boolean addressIsValid(String address)
     {
-        return ((address.length() >= 4) & (address.length() <= 50))
-    }//end of addressIsValid
+        return ((address.length() >= 4) & (address.length() <= 50));
+    }// end of addressIsValid
 
-    public boolean cityIsValid(String city)
+    public static boolean cityIsValid(String city)
     {
-        return ((city.length() >= 3) & (city.length() <= 50))
-    }//end of cityIs Valid
+        return ((city.length() >= 3) & (city.length() <= 50));
+    }// end of cityIs Valid
 
-}//end of class
+    /***
+     * To test our {@link Validation} class.
+     */
+    public static void main(String[] args)
+    {
+        Scanner s = new Scanner(System.in);
+        String in = "";
+        boolean valid = false;
+
+        while(true)
+        {
+            System.out.println("Enter name: ");
+            in = s.nextLine();
+            valid = nameIsValid(in);
+
+            if(valid)
+            {
+                break;
+            }
+
+            System.out.printf("Name '%s' not valid.\n", in);
+        }
+
+    }
+
+}// end of class
