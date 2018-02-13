@@ -17,7 +17,7 @@ public class Validation
             return false;
         }
 
-        for(int i = 0; i <= ss.length(); i++)
+        for(int i = 0; i < ss.length(); i++)
         {
             if(i == 3 || i == 6)
             {
@@ -44,7 +44,7 @@ public class Validation
             return false;
         }
 
-        for(int i = 0; i <= zip.length(); i++)
+        for(int i = 0; i < zip.length(); i++)
         {
             if(i == 5)
             {
@@ -101,6 +101,78 @@ public class Validation
 
             System.out.printf("Name '%s' not valid.\n", in);
         }
+        
+        while(true)
+        {
+            System.out.println("Enter Social Security #: ");
+            in = s.nextLine();
+            valid = sSecurityIsValid(in);
+
+            if(valid)
+            {
+                break;
+            }
+
+            System.out.printf("Social Security # '%s' not valid.\n", in);
+        }
+        
+        while(true)
+        {
+            System.out.println("Enter Zip Code: ");
+            in = s.nextLine();
+            valid = zipIsValid(in);
+
+            if(valid)
+            {
+                break;
+            }
+
+            System.out.printf("Name '%s' not valid.\n", in);
+        }
+        
+        while(true)
+        {
+            System.out.println("Enter Email Address: ");
+            in = s.nextLine();
+            valid = emailIsValid(in);
+
+            if(valid)
+            {
+                break;
+            }
+
+            System.out.printf("Email Address '%s' not valid.\n", in);
+        }
+        
+        while(true)
+        {
+            System.out.println("Enter Address: ");
+            in = s.nextLine();
+            valid = addressIsValid(in);
+
+            if(valid)
+            {
+                break;
+            }
+
+            System.out.printf("Address '%s' not valid.\n", in);
+        }
+        
+        while(true)
+        {
+            System.out.println("Enter City: ");
+            in = s.nextLine();
+            valid = cityIsValid(in);
+
+            if(valid)
+            {
+                break;
+            }
+
+            System.out.printf("City '%s' not valid.\n", in);
+        }
+        
+        s.close();
 
     }
 
