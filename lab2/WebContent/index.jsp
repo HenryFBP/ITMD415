@@ -1,4 +1,3 @@
-<%@page import="org.apache.tomcat.jni.Directory"%>
 <%@page import="java.io.File"%>
 <%@page import="lab2.lib"%>
 <!DOCTYPE html>
