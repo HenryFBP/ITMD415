@@ -11,7 +11,7 @@
 	<nav><jsp:include page='navbar.inc'></jsp:include></nav>
 
 	<main>
-	<form id='sign-up' action='ValidateFormData.jsp' method='POST' onsubmit='return validateform()'>
+	<form id='sign-up' action='ValidateFormData.jsp' method='POST'>
         <ol>
           <li>
             <label for='name'>Name</label>
