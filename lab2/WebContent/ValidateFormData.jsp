@@ -19,7 +19,7 @@
      <p><%= (Validation.emailIsValid(c.getEmail()) ? "Email Validated" : "Error: Email Invalid") %><p>
      <p><%= (Validation.addressIsValid(c.getAddress()) ? "Address Validated" : "Error: Address Invalid") %><p>
      <p><%= (Validation.cityIsValid(c.getCity()) ? "City Validated" : "Error: City Invalid") %><p>
- 	 <p>THANKS A LOT, <%= c.name %>!</p> 
+ 	 <p>THANKS A LOT, <%= c.getName() %>!</p> 
   </section>
  
 

@@ -6,17 +6,17 @@ public class Customer
 	private String SSN;
 	private String zip;
 	private String email;
-	private String street;
+	private String address;
 	private String city;
 	private String state;
 
-	public Customer(String name, String ssn, String zip, String email, String street, String city, String state)
+	public Customer(String name, String ssn, String zip, String email, String address, String city, String state)
 	{
 		this.name = name;
 		this.SSN = ssn;
 		this.zip = zip;
 		this.email = email;
-		this.street = street;
+		this.address = address;
 		this.city = city;
 		this.state = state;
 	}
@@ -61,14 +61,14 @@ public class Customer
 		this.email = email;
 	}
 
-	public String getStreet()
+	public String getAddress()
 	{
-		return street;
+		return address;
 	}
 
-	public void setStreet(String street)
+	public void setAddress(String address)
 	{
-		this.street = street;
+		this.address = address;
 	}
 
 	public String getCity()
