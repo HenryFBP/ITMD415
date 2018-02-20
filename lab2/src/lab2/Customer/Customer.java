@@ -1,4 +1,5 @@
 package lab2.Customer;
+import lab2.State.State;
 
 public class Customer
 {
@@ -16,9 +17,9 @@ public class Customer
 	private String email;
 	private String address;
 	private String city;
-	private String state;
+	private State state;
 
-	public Customer(String name, String ssn, String zip, String email, String address, String city, String state)
+	public Customer(String name, String ssn, String zip, String email, String address, String city, State state)
 	{
 		this.name = name;
 		this.SSN = ssn;
@@ -34,10 +35,11 @@ public class Customer
 	 */
 	public String[][] getFields()
 	{
-        String[] fieldNames = {"name", "SSN", "zip", "email", "address", "city", "state"};
-        String[] fields =     { name,   SSN,   zip,   email,   address,   city,   state};
+        String[] fieldNames =       {"name", "SSN", "zip", "email", "address", "city", "state"};
+        String[] fields =           { name,   SSN,   zip,   email,   address,   city,   this.state.getState_id().toString()};
+        String[] humanReadable =    { name,   SSN,   zip,   email,   address,   city,   this.state.toHumanString()};
         
-        return new String[][] {fieldNames, fields};
+        return new String[][] {fieldNames, fields, humanReadable};
 	}
 
 	public String getName()
@@ -100,13 +102,18 @@ public class Customer
 		this.city = city;
 	}
 
-	public String getState()
+	public State getState()
 	{
 		return state;
 	}
 
-	public void setState(String state)
+	public void setState(State state)
 	{
 		this.state = state;
+	}
+	
+	public String getHumanState()
+	{
+	    return state.toHumanString();
 	}
 }

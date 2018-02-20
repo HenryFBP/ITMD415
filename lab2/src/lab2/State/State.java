@@ -26,32 +26,32 @@ public class State
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "state_id")
-    protected int getState_id()
+    public Integer getState_id()
     {
         return state_id;
     }
 
-    protected void setState_id(int state_id)
+    public void setState_id(int state_id)
     {
         this.state_id = state_id;
     }
 
-    protected String getName()
+    public String getName()
     {
         return name;
     }
 
-    protected void setName(String name)
+    public void setName(String name)
     {
         this.name = name;
     }
 
-    protected String getAbbreviation()
+    public String getAbbreviation()
     {
         return abbreviation;
     }
 
-    protected void setAbbreviation(String abbreviation)
+    public void setAbbreviation(String abbreviation)
     {
         this.abbreviation = abbreviation;
     }
@@ -72,6 +72,14 @@ public class State
     public String toString()
     {
         return String.format("[%2d]: %4s %s", this.getState_id(), this.getAbbreviation(), this.getName());
+    }
+    
+    /***
+     * @return A user-readable string representing this state.
+     */
+    public String toHumanString()
+    {
+        return this.getName();
     }
 
     

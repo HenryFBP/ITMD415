@@ -3,6 +3,8 @@ package lab2;
 import java.util.Scanner;
 
 import lab2.Customer.Customer;
+import lab2.State.State;
+import lab2.State.StateManager;
 
 public class Validation
 {
@@ -19,20 +21,27 @@ public class Validation
                 thingIsValid(c.getEmail(), c.emailI) &&
                 thingIsValid(c.getAddress(), c.addressI) &&
                 thingIsValid(c.getCity(), c.cityI) &&
-                thingIsValid(c.getState(), c.stateI));
+                thingIsValid(c.getState().getState_id(), c.stateI));
     }
     
-    public static Boolean thingIsValid(String thing, int place)
+    public static Boolean thingIsValid(Object thing, int place)
     {
         switch(place)
         {
-            case Customer.nameI: return nameIsValid(thing);
-            case Customer.SSNI: return sSecurityIsValid(thing);
-            case Customer.zipI: return zipIsValid(thing);
-            case Customer.emailI: return emailIsValid(thing);
-            case Customer.addressI: return addressIsValid(thing);
-            case Customer.cityI: return cityIsValid(thing);
-            case Customer.stateI: return stateIsValid(thing);
+            case Customer.nameI: return nameIsValid((String) thing);
+            case Customer.SSNI: return sSecurityIsValid((String) thing);
+            case Customer.zipI: return zipIsValid((String) thing);
+            case Customer.emailI: return emailIsValid((String) thing);
+            case Customer.addressI: return addressIsValid((String) thing);
+            case Customer.cityI: return cityIsValid((String) thing);
+            case Customer.stateI:
+
+                if(thing instanceof String)
+                {
+                    thing = (Integer)Integer.parseInt((String)thing);
+                }
+                
+                return stateIsValid((Integer) thing);
         
         }
         return null;
@@ -105,10 +114,27 @@ public class Validation
         return ((city.length() >= 3) & (city.length() <= 50));
     }// end of cityIs Valid
 
-    public static boolean stateIsValid(String state)
-    {
-        // TODO code this
-        return true;
+    /***
+     * Go through all states, check if ours exists.
+     */
+    public static boolean stateIsValid(int stateID)
+    { //does this state exist?
+        StateManager sm = new StateManager();
+
+        try
+        {
+            State s = sm.read(stateID);
+            if(s != null)
+            {
+                return true;
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    
+        return false;
     }
     
     /***
