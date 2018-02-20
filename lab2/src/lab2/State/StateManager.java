@@ -170,6 +170,13 @@ public class StateManager
         System.out.println(StateManager.class.getName() + " main().");
 
         StateManager manager = new StateManager();
+        
+        ArrayList<State> states = (ArrayList<State>) manager.readAll();
+        
+        for(State st : states)
+        {
+            System.out.println(st.toString());
+        }
 
         manager.setup();
 

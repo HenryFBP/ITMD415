@@ -68,6 +68,11 @@ public class State
         this.setName(updatedState.getAbbreviation());
         
     }
+    
+    public String toString()
+    {
+        return String.format("[%2d]: %4s %s", this.getState_id(), this.getAbbreviation(), this.getName());
+    }
 
     
 }
