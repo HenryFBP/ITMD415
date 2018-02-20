@@ -247,6 +247,12 @@ h2 {
 	background-color: #EAEAEA;
 }
 
+#map-canvas {
+	background-color: #ffe6ea;
+	width: 100%;
+	height: 300px;
+}
+
 
 /* Modular Styles */
 
