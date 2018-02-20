@@ -185,7 +185,8 @@ label {
 }
 
 /* fix input padding */
-input {
+input, select {
+  background-color: lavender;
   box-sizing: border-box; /* ensure padding subtracts from width */
   width: 100%;
   border: 0;
@@ -213,10 +214,6 @@ section {
 
 form {
   padding-top: 0.6111rem;
-}
-
-input {
-  background-color: lavender;
 }
 
 p {
