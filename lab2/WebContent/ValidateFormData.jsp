@@ -35,7 +35,7 @@
 	</section>
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=<%=key%>"></script>
-  <div id="map-canvas"></div>
+  <div id="map"></div>
 
 	<footer><jsp:include page="footer.inc"></jsp:include></footer>
 	<script src="/lab2/js/Map.js"></script>

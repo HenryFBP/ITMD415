@@ -46,17 +46,18 @@ public class CustomerFormHandler
             String field = data[0][i];
             String value = data[1][i];
             
-            field = lib.capitalizeFirst(field);
+            String fieldCap = lib.capitalizeFirst(field);
 
-            System.out.printf("Looking at %dth field, %s = %s\n", i, field, value);
+            System.out.printf("Looking at %dth field, %s = %s\n", i, fieldCap, value);
             Boolean valid = Validation.thingIsValid(data[1][i], i);
 
             String oneField = ""; // name: "hi" VALID
 
             String validModifier = "valid"; //#invalid or just nothing
             
-            oneField += lib.wrapClassID(field, "a", "field", null);
-            oneField += lib.wrapClassID(value, "a", "value", null);
+            oneField += lib.wrapClassID(fieldCap, "a", "field", null);
+            oneField += lib.wrapClassID(value, "a", "value "+field, null);
+            oneField += "\n";
             
             if(!valid)
             {
