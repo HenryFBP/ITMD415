@@ -56,5 +56,18 @@ public class State
         this.abbreviation = abbreviation;
     }
 
+    /***
+     * Copy all attributes from another {@code State} into self.
+     * 
+     * @param updatedState The other State.
+     */
+    public void deepCopy(State updatedState)
+    {
+        this.setState_id(updatedState.getState_id());
+        this.setAbbreviation(updatedState.getAbbreviation());
+        this.setName(updatedState.getAbbreviation());
+        
+    }
+
     
 }
