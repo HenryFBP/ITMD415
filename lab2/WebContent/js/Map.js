@@ -1,13 +1,13 @@
 
-
 function initMap(la, lo)
 {
     var map = new google.maps.Map(($('#map').get(0)), {
         center: {
-            lat: la,
-            lng: lo
+            lat: parseInt(la),
+            lng: parseInt(lo)
         },
 	zoom: 8,
+        mapTypeId: google.maps.MapTypeId.HYBRID,
     });
     
     return map;
@@ -51,6 +51,11 @@ function initialize()
             console.log(lng);
             
 	    var map = initMap(lat, lng);
+	    
+	    console.log("Map object:");
+	    console.log(map)
+	    
+	    
         }
         else
         {
