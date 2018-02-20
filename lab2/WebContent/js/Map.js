@@ -27,4 +27,11 @@ function initialize()
     
     google.maps.event.addDomListener(window, 'load', initialize);
 }
-  
+
+$(document).ready(function() //when document loads
+{
+    
+    console.log("Document is ready!");
+    
+    initialize();
+});
