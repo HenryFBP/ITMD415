@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "state")
 public class State
 {
     @Id
@@ -25,7 +25,7 @@ public class State
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "comment_id")
+    @Column(name = "state_id")
     protected int getState_id()
     {
         return state_id;
