@@ -5,13 +5,21 @@ import java.util.Scanner;
 public class Validation
 {
  
-//    String name = request.getParameter("name");
-//    String ssn = request.getParameter("ssn");
-//    String zip = request.getParameter("zip");
-//    String email = request.getParameter("email");
-//    String street = request.getParameter("street");
-//    String city = request.getParameter("city");
-//    String state = request.getParameter("state");
+    /***
+     * Tells you if the entirety of a customer is valid.
+     */
+    public static boolean customerIsValid(Customer c)
+    {
+        return (
+                thingIsValid(c.getName(), c.nameI) &&
+                thingIsValid(c.getSSN(), c.SSNI) &&
+                thingIsValid(c.getZip(), c.zipI) &&
+                thingIsValid(c.getEmail(), c.emailI) &&
+                thingIsValid(c.getAddress(), c.addressI) &&
+                thingIsValid(c.getCity(), c.cityI) &&
+                thingIsValid(c.getState(), c.stateI));
+    }
+    
     public static Boolean thingIsValid(String thing, int place)
     {
         switch(place)
@@ -35,29 +43,22 @@ public class Validation
 
     public static boolean sSecurityIsValid(String ss)
     {
-        if(ss.length() != 11)
-        {
-            return false;
-        }
+        int nums = 0;
 
         for(int i = 0; i < ss.length(); i++)
         {
-            if(i == 3 || i == 6)
-            {
-                if(!(ss.charAt(i) == '-'))
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if(!(Character.isDigit(ss.charAt(i))))
-                {
-                    return false;
-                }
-            }
+          if(Character.isDigit(ss.charAt(i)))
+          {
+              nums++;
+          }
+          
+          if(nums >= 11) //at least 11 numbers.
+          {
+              return true;
+          }
+          
         }
-        return true;
+        return false;
     }// end of sSecurityIsValid
 
     public static boolean zipIsValid(String zip)

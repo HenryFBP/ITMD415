@@ -5,10 +5,7 @@
     Customer c = CustomerFormHandler.handleForm(request);
 %>
 <%
-    Validation val = new Validation();
-%>
-<%
-    
+	boolean valid = Validation.customerIsValid(c);
 %>
 
 <!DOCTYPE html>
@@ -21,12 +18,19 @@
 <body>
 	<nav><jsp:include page="navbar.inc"></jsp:include></nav>
 	<section id="validation">
-		<%=CustomerFormHandler.displayValidity(c)%>
-
-		<p>
-			THANKS A LOT,
-			<%=c.getName()%>!
-		</p>
+		<%= CustomerFormHandler.displayValidity(c) %>
+		<%
+		
+		if(valid)
+		{
+		    out.write(lib.wrap(String.format("Thank you, %s!",c.getName()),"p"));
+		}
+		else
+		{
+		    out.write(lib.wrap(String.format("Sorry %s, but you've got something wrong with your information.",c.getName()),"p"));
+		}
+		
+		%>
 	</section>
 
 
