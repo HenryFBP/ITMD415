@@ -1,5 +1,9 @@
 package lab2.State;
 
+import java.util.ArrayList;
+
+import lab2.lib;
+
 public class StateFormHandler
 {
     /***
@@ -8,6 +12,20 @@ public class StateFormHandler
     public static String generateOptions()
     {
         String ret = "";
+        
+        StateManager sm = new StateManager();
+        
+        ArrayList<State> states = (ArrayList<State>) sm.readAll();
+        
+        
+        for(State s : states)
+        {
+            String abbr = s.getAbbreviation();
+            String name = s.getName();
+            Integer id = s.getState_id();
+                    
+            ret += lib.wrapAttr(abbr + " - " + name, "value", id.toString(), "option");
+        }
         
         return ret;
     }

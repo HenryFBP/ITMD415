@@ -71,6 +71,15 @@ public class lib
 	}
 	
 	/***
+	 * Wrap a String with an HTML tag, and allow for custom attributes.
+	 * Example: <pre><code>wrapAttr("hi","coolness","maximum","p") -> &lt;p coolness="maximum">hi&lt;/p></pre></code>
+	 */
+	public static String wrapAttr(String s, String attr, String val, String tag)
+	{
+        return String.format("<%s %s=\"%s\">%s</%s>", tag, attr, val, s, tag);
+	}
+	
+	/***
 	 * Wrap a String {@code s} with an HTML {@code tag}, (opt) {@code class}, and (opt) {@code id}.
 	 */
 	public static String wrapClassID(String s, String tag, String c, String id)

@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Form Submission</title>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="/lab2/css/screen.css" />
 </head>
@@ -35,7 +35,7 @@
 	</section>
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=<%=key%>"></script>
-	<script src="/lab2/js/map.js"></script>
+	<script src="/lab2/js/Map.js"></script>
   <div id="map-canvas" style="height:300px; width:500px"></div>
 
 	<footer><jsp:include page="footer.inc"></jsp:include></footer>

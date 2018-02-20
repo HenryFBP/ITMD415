@@ -41,10 +41,9 @@
           </li>
           <li>
             <label for='state'>State</label>
-            <input list='state' id='state' name='state' autocomplete='address-level1' />
-            <datalist>
+            <select form='sign-up' name='state' id='state'>
               <%= StateFormHandler.generateOptions() %>
-            </datalist>
+            </select>
           </li>
         </ol>
         <input id='submitForm' type='submit' value='Go!'/>
