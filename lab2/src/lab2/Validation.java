@@ -4,6 +4,29 @@ import java.util.Scanner;
 
 public class Validation
 {
+ 
+//    String name = request.getParameter("name");
+//    String ssn = request.getParameter("ssn");
+//    String zip = request.getParameter("zip");
+//    String email = request.getParameter("email");
+//    String street = request.getParameter("street");
+//    String city = request.getParameter("city");
+//    String state = request.getParameter("state");
+    public static Boolean thingIsValid(String thing, int place)
+    {
+        switch(place)
+        {
+            case Customer.nameI: return nameIsValid(thing);
+            case Customer.SSNI: return sSecurityIsValid(thing);
+            case Customer.zipI: return zipIsValid(thing);
+            case Customer.emailI: return emailIsValid(thing);
+            case Customer.addressI: return addressIsValid(thing);
+            case Customer.cityI: return cityIsValid(thing);
+            case Customer.stateI: return stateIsValid(thing);
+        
+        }
+        return null;
+    }
 
     public static boolean nameIsValid(String name)
     {
@@ -79,6 +102,12 @@ public class Validation
         return ((city.length() >= 3) & (city.length() <= 50));
     }// end of cityIs Valid
 
+    public static boolean stateIsValid(String state)
+    {
+        // TODO code this
+        return true;
+    }
+    
     /***
      * To test our {@link Validation} class.
      */
@@ -171,7 +200,7 @@ public class Validation
 
             System.out.printf("City '%s' not valid.\n", in);
         }
-        
+
         s.close();
 
     }

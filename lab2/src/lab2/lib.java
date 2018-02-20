@@ -67,7 +67,33 @@ public class lib
 	 */
 	public static String wrap(String s, String tag)
 	{
-		return "<" + tag + ">" + s + "</" + tag + ">";
+	    return wrapClassID(s, tag, "", "");
+	}
+	
+	/***
+	 * Wrap a String {@code s} with an HTML {@code tag}, (opt) {@code class}, and (opt) {@code id}.
+	 */
+	public static String wrapClassID(String s, String tag, String c, String id)
+	{
+        String ret = "<" + tag;
+        
+        if(c != null && c.length() > 0)
+        {
+            ret += " class = \""+c+"\"";
+        }
+        
+        if(id != null && id.length() > 0)
+        {
+            ret += " id = \""+id+"\"";
+        }
+        
+        ret += ">" + s;
+        
+        
+        
+        ret += "</" + tag + ">";
+        
+        return ret;
 	}
 
 	/***
@@ -84,6 +110,19 @@ public class lib
 		}
 		
 		return ret;
+	}
+	
+	/***
+	 * Capitalize first letter of String {@code s}.
+	 */
+	public static String capitalizeFirst(String s)
+	{
+	    if(s.length() > 1)
+	    {
+	        return ((Character.toUpperCase(s.charAt(0))) + s.substring(1, s.length()));
+	    }
+	    
+	    return s.toUpperCase();
 	}
 	
 	public static double randomNumber()

@@ -2,6 +2,14 @@ package lab2;
 
 public class Customer
 {
+    public static final int nameI = 0;
+    public static final int SSNI = 1;
+    public static final int zipI = 2;
+    public static final int emailI = 3;
+    public static final int addressI = 4;
+    public static final int cityI = 5;
+    public static final int stateI = 6;
+    
 	private String name;
 	private String SSN;
 	private String zip;
@@ -19,6 +27,17 @@ public class Customer
 		this.address = address;
 		this.city = city;
 		this.state = state;
+	}
+	
+	/***
+	 * Get a {@link Customer} object in the form of a 2-d array.
+	 */
+	public String[][] getFields()
+	{
+        String[] fieldNames = {"name", "SSN", "zip", "email", "address", "city", "state"};
+        String[] fields =     { name,   SSN,   zip,   email,   address,   city,   state};
+        
+        return new String[][] {fieldNames, fields};
 	}
 
 	public String getName()
