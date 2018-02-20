@@ -25,6 +25,7 @@ public class StateFormHandler
             Integer id = s.getState_id();
                     
             ret += lib.wrapAttr(abbr + " - " + name, "value", id.toString(), "option");
+            ret += "\n";
         }
         
         return ret;
