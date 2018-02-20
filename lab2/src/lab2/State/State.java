@@ -1,4 +1,4 @@
-package lab2;
+package lab2.State;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

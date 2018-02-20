@@ -2,6 +2,8 @@ package lab2;
 
 import java.util.Scanner;
 
+import lab2.Customer.Customer;
+
 public class Validation
 {
  

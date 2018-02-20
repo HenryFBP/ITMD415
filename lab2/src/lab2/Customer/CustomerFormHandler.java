@@ -1,6 +1,9 @@
-package lab2;
+package lab2.Customer;
 
 import javax.servlet.http.HttpServletRequest;
+
+import lab2.Validation;
+import lab2.lib;
 
 /***
  * @author Jarron Bailey - Came up with this cool idea. Thanks dude! I'm gonna
