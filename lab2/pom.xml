@@ -45,6 +45,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     		<version>3.1.0</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/javax.activation/activation -->
+		<dependency>
+	    	<groupId>javax.activation</groupId>
+    		<artifactId>activation</artifactId>
+    		<version>1.1</version>
+		</dependency>
+		
+		
 	</dependencies>
 	<description>Lab 2</description>
 </project>
