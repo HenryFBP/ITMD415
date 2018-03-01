@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class entity-name="Customer" name="Customer" table="customer">
+  <id column="cid" name="cid" type="java.lang.Integer"/>
+  <property column="username" generated="never" lazy="false"
+   name="username" type="java.lang.String">
+   <column name="username" not-null="true" sql-type="VARCHAR"/>
+  </property>
+  <property column="email" name="email" type="Java.lang.string">
+   <column name="email" not-null="true" sql-type="VARCHAR" unique="true"/>
+  </property>
+ </class>
+</hibernate-mapping>
