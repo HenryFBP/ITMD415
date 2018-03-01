@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import lab2.Validation;
 import lab2.lib;
+import lab2.State.State;
+import lab2.State.StateManager;
 
 /***
  * @author Jarron Bailey - Came up with this cool idea. Thanks dude! I'm gonna
@@ -26,8 +28,12 @@ public class CustomerFormHandler
         String email = request.getParameter("email");
         String street = request.getParameter("street");
         String city = request.getParameter("city");
-        String state = request.getParameter("state");
+        int stateID = Integer.parseInt(request.getParameter("state"));
 
+        StateManager sm = new StateManager();
+        
+        State state = sm.read(stateID);
+        
         return new Customer(name, ssn, zip, email, street, city, state);
     }
 
@@ -45,18 +51,20 @@ public class CustomerFormHandler
         {
             String field = data[0][i];
             String value = data[1][i];
+            String humanValue = data[2][i];
             
-            field = lib.capitalizeFirst(field);
+            String fieldCap = lib.capitalizeFirst(field);
 
-            System.out.printf("Looking at %dth field, %s = %s\n", i, field, value);
+            System.out.printf("Looking at %dth field, %s = %s\n", i, fieldCap, value);
             Boolean valid = Validation.thingIsValid(data[1][i], i);
 
             String oneField = ""; // name: "hi" VALID
 
             String validModifier = "valid"; //#invalid or just nothing
             
-            oneField += lib.wrapClassID(field, "a", "field", null);
-            oneField += lib.wrapClassID(value, "a", "value", null);
+            oneField += lib.wrapClassID(fieldCap, "a", "field", null);
+            oneField += lib.wrapClassID(humanValue, "a", "value "+field, null);
+            oneField += "\n";
             
             if(!valid)
             {
