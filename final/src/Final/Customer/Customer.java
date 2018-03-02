@@ -6,20 +6,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/***
+ * A single Customer.
+ */
+
+//@formatter:off
 @Entity
-@Table(name = "customer")
+@Table(
+	name = "customer",
+	uniqueConstraints=
+		@UniqueConstraint(
+			columnNames={"username","email"})
+)
+//@formatter:on
+
 public class Customer
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "cid")
 	private int cid;
 
 	private String username;
 	private String email;
-	private Byte[] passwordHash;
+	private Byte[] passwordhash;
 
 	@Id
 	@GeneratedValue(generator = "increment")
@@ -52,12 +66,12 @@ public class Customer
 
 	public Byte[] getPasswordHash()
 	{
-		return passwordHash;
+		return passwordhash;
 	}
 
 	public void setPasswordHash(Byte[] passwordHash)
 	{
-		this.passwordHash = passwordHash;
+		this.passwordhash = passwordHash;
 	}
 
 	public String getEmail()
