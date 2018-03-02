@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 2, 2018 11:01:55 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+ <class entity-name="Forum" name="Final.Product.Forum" table="forum">
+  <id name="fid" type="int">
+   <column name="fid"/>
+   <generator class="assigned"/>
+  </id>
+  <many-to-one class="Final.Listing.Listing" name="listing">
+   <column name="lid"/>
+  </many-to-one>
+  <many-to-one class="Final.Customer.Customer" name="poster">
+   <column name="pid" sql-type="INTEGER"/>
+  </many-to-one>
+  <property column="date" name="date" type="integer">
+   <column name="date" sql-type="INTEGER"/>
+  </property>
+  <property column="message" name="message" type="string"/>
+ </class>
+</hibernate-mapping>
