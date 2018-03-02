@@ -1,10 +1,10 @@
 -- DROP TABLE IF EXISTS producttype;
 
 CREATE TABLE IF NOT EXISTS producttype (
-	ptype		INTEGER			NOT NULL UNIQUE,
+	ptid		INTEGER			NOT NULL UNIQUE,
 	name		VARCHAR(64)		NOT NULL,
 
-	PRIMARY KEY	(ptype)
+	PRIMARY KEY	(ptid)
 );
 
 DESCRIBE producttype;

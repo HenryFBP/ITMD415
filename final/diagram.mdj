@@ -37881,7 +37881,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFh3fbZFP9VUYw="
 							},
-							"name": "ptype",
+							"name": "ptid",
 							"documentation": "The product type of this item.",
 							"length": 0,
 							"primaryKey": false,
@@ -37953,7 +37953,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFh3fhFEv97OIo="
 							},
-							"name": "ptype",
+							"name": "ptid",
 							"documentation": "The ID of a productType.",
 							"length": 0,
 							"primaryKey": true,
