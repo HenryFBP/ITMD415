@@ -3,8 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Final Project</title>
+  <meta charset="ISO-8859-1">
+  <title>Final Project</title>
+  <link rel="stylesheet" href="/final/css/screen.css" />
 </head>
 <body>
   <nav><jsp:include page="navbar.inc"></jsp:include></nav>
