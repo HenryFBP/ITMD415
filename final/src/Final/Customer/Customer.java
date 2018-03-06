@@ -35,6 +35,14 @@ public class Customer
 	private String email;
 	private Byte[] passwordhash;
 
+	public Customer(String username, String email, Byte[] passwordhash)
+    {
+	    this.username = username;
+	    this.email = email;
+	    this.passwordhash = passwordhash;
+    }
+	
+	
 	@Id
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")

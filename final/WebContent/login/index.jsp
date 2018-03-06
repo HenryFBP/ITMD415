@@ -14,7 +14,7 @@
     <h1>Login</h1>
   </header>
   <section>
-    <form>
+    <form id="login">
     </form>
   </section>
 </body>

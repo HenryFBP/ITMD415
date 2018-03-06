@@ -6,7 +6,7 @@ public class CustomerSignupServlet
 {
 
     /***
-     * Creates a new Customer
+     * Creates a new Customer.
      * @param r The HTTP Request.
      * @return A Customer, if that customer can be created.
      * If it cannot, i.e. the username is used or too small, it returns null.
