@@ -14,7 +14,30 @@
     <h1>Sign up</h1>
   </header>
   <section>
-    <form>
+    <form id="signup" action="signup.jsp" method="POST">
+      <ol>
+        <li>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" />
+        </li>
+        <li>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"/>
+        </li>
+        <li>
+          <label for="email">Email</label>
+          <input pattern="^(.+)@(.+)$" type="email" id="email" name="email" />            
+        </li>
+        <li>
+          <label for="phone">Phone</label>
+          <input pattern=".+?(\d+?)" type="tel" id="phone" name="phone" />            
+        </li>
+        <li>
+          <label for="birthday">Birthday</label>
+          <input type="date" id="birthday" name="birthday"/>
+        </li>
+      </ol>
+      <input id='submit' type='submit' value='Register'/>    
     </form>
   </section>
 </body>
