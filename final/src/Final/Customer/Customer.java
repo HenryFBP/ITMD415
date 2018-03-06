@@ -26,70 +26,69 @@ import org.hibernate.annotations.GenericGenerator;
 
 public class Customer
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "cid")
-	private int cid;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cid")
+    private int cid;
 
-	private String username;
-	private String email;
-	private Byte[] passwordhash;
+    private String username;
+    private String email;
+    private String passwordhash;
 
-	public Customer(String username, String email, Byte[] passwordhash)
+    public Customer(String username, String email, String passwordhash)
     {
-	    this.username = username;
-	    this.email = email;
-	    this.passwordhash = passwordhash;
+        this.username = username;
+        this.email = email;
+        this.passwordhash = passwordhash;
     }
-	
-	
-	@Id
-	@GeneratedValue(generator = "increment")
-	@GenericGenerator(name = "increment", strategy = "increment")
-	@Column(name = "cid")
-	public Integer getCid()
-	{
-		return cid;
-	}
 
-	public void setCid(int cid)
-	{
-		this.cid = cid;
-	}
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name = "cid")
+    public Integer getCid()
+    {
+        return cid;
+    }
 
-	public String getName()
-	{
-		return username;
-	}
+    public void setCid(int cid)
+    {
+        this.cid = cid;
+    }
 
-	public void setName(String name)
-	{
-		this.username = name;
-	}
+    public String getName()
+    {
+        return username;
+    }
 
-	public String toString()
-	{
-		return null;
-	}
+    public void setName(String name)
+    {
+        this.username = name;
+    }
 
-	public Byte[] getPasswordHash()
-	{
-		return passwordhash;
-	}
+    public String toString()
+    {
+        return null;
+    }
 
-	public void setPasswordHash(Byte[] passwordHash)
-	{
-		this.passwordhash = passwordHash;
-	}
+    public String getPasswordHash()
+    {
+        return passwordhash;
+    }
 
-	public String getEmail()
-	{
-		return email;
-	}
+    public void setPasswordHash(String passwordHash)
+    {
+        this.passwordhash = passwordHash;
+    }
 
-	public void setEmail(String email)
-	{
-		this.email = email;
-	}
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
 
 }

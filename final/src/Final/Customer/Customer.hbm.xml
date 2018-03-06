@@ -12,8 +12,8 @@
    <column name="email" not-null="true" sql-type="VARCHAR" unique="true"/>
   </property>
   <property column="passwordhash" generated="never" lazy="false"
-   name="passwordhash" type="binary">
-   <column name="passwordhash" sql-type="BINARY"/>
+   name="passwordhash" type="string">
+   <column name="passwordhash" sql-type="VARCHAR"/>
   </property>
  </class>
 </hibernate-mapping>

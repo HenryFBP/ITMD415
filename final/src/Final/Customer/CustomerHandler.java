@@ -12,6 +12,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
+import Final.Lib;
+
 public class CustomerHandler
 {
     private SessionFactory sessionFactory;
@@ -105,37 +107,6 @@ public class CustomerHandler
         return l;
     }
 
-    // code to modify a customer
-    public void update(int cID, Customer updatedCustomer)
-    {
-        Session s = sessionFactory.openSession();
-        Transaction t = null;
-
-        try
-        {
-            t = s.beginTransaction();
-            Customer c = (Customer) s.get(Customer.class, cID);
-
-            c.deepCopy(updatedCustomer); // copy all things
-            c.setCid(cID); // but retain the cID
-
-            s.update(c);
-            t.commit();
-        }
-        catch(HibernateException e)
-        {
-            if(t != null)
-            {
-                t.rollback();
-            }
-            e.printStackTrace();
-        }
-        finally
-        {
-            s.close();
-        }
-    }
-
     // code to remove a customer
     public void delete(int cID)
     {
@@ -173,7 +144,7 @@ public class CustomerHandler
 
         manager.setup();
         
-        Customer testCustomer = new Customer("HenryFBP", "HenryFBP@gmail.com", );
+        Customer testCustomer = new Customer("HenryFBP", "HenryFBP@gmail.com", Lib.hash("password"));
 
         try
         {

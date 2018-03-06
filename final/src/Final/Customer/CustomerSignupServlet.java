@@ -2,6 +2,8 @@ package Final.Customer;
 
 import javax.servlet.http.HttpServletRequest;
 
+import Final.Lib;
+
 public class CustomerSignupServlet
 {
 
@@ -16,9 +18,11 @@ public class CustomerSignupServlet
         
         String username = r.getParameter("username");
         String password = r.getParameter("password");
+        String hashed = Lib.hash(password);
         String email = r.getParameter("email");
         
         System.out.println("OH NO LOL UR PASSWORD IZ '"+password+"'! HAHAHA");
+        System.out.println("Hash of password:'"+hashed+"'");
         
         return null;
 

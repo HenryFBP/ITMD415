@@ -1,14 +1,20 @@
 package Final;
 
+import com.amdelamar.jhash.Hash;
+
 public class Lib
 {
     /***
-     * Hash a String to a 512-bit (64-byte) bitstring.
-     * @param s
-     * @return
+     * Hash a String.
+     * @param s The String.
+     * @return A hashed version of the String.
      */
-    public Byte[] hashString(String s)
+    public static String hash(String s)
     {
-        return null;
+        char[] str = s.toCharArray();
+
+        String hash = Hash.password(str).create();
+
+        return hash;
     }
 }
