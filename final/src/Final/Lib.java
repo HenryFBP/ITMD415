@@ -29,10 +29,17 @@ public class Lib
      * @param h
      *            The hash String.
      * @return Whether or not the hash String created the normal String.
-     * @throws InvalidHashException
      */
-    public static Boolean verifyHash(String s, String h) throws InvalidHashException
+    public static Boolean verifyHash(String s, String h)
     {
-        return Hash.password(s.toCharArray()).verify(h);
+        try
+        {
+            return Hash.password(s.toCharArray()).verify(h);
+        }
+        catch (InvalidHashException e)
+        {
+        }
+        return false;
+
     }
 }

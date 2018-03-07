@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import Final.Lib;
+
 /***
  * A single Customer.
  */
@@ -21,13 +23,26 @@ public class Customer
     private String email;
     private String passhash;
 
-    public Customer(String username, String email, String passhash)
+    public Customer()
+    {
+
+    }
+
+    public Customer(int cid, String username, String email, String password)
+    {
+        this.cid = cid;
+        this.username = username;
+        this.email = email;
+        this.passhash = Lib.hash(password);
+    }
+
+    public Customer(String username, String email, String password)
     {
         this.username = username;
         this.email = email;
-        this.passhash = passhash;
+        this.passhash = Lib.hash(password);
     }
-    
+
     public Integer getCid()
     {
         return cid;
@@ -48,11 +63,6 @@ public class Customer
         this.username = name;
     }
 
-    public String toString()
-    {
-        return null;
-    }
-
     public String getPassHash()
     {
         return passhash;
@@ -71,6 +81,11 @@ public class Customer
     public void setEmail(String email)
     {
         this.email = email;
+    }
+
+    public String toString()
+    {
+        return String.format("[%03d]: (%20s)<%30s>: [%80s]", this.cid, this.username, this.email, this.passhash);
     }
 
 }

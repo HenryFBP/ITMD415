@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,6 +12,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
+
+import com.amdelamar.jhash.exception.InvalidHashException;
 
 import Final.Lib;
 
@@ -23,7 +26,7 @@ public class CustomerHandler
     {
         this.setup();
     }
-    
+
     /***
      * Load Hibernate Session factory.
      */
@@ -36,7 +39,7 @@ public class CustomerHandler
         {
             sessionFactory = new MetadataSources(serviceRegistry).buildMetadata().buildSessionFactory();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
             StandardServiceRegistryBuilder.destroy(serviceRegistry);
@@ -46,7 +49,7 @@ public class CustomerHandler
     // code to close Hibernate Session factory
     public void stop() throws Exception
     {
-        sessionFactory.close(); 
+        sessionFactory.close();
     }
 
     /***
@@ -64,10 +67,10 @@ public class CustomerHandler
             cID = (Integer) s.save(c);
             t.commit();
         }
-        catch(HibernateException e)
+        catch (HibernateException e)
         {
             e.printStackTrace();
-            if(t != null)
+            if (t != null)
             {
                 t.rollback();
             }
@@ -90,6 +93,25 @@ public class CustomerHandler
 
         s.close();
 
+        return c;
+    }
+
+    /***
+     * Get a customer by Username.
+     * 
+     * @param username
+     *            The username of the Customer
+     */
+    public Customer read(String username)
+    {
+        Session s = sessionFactory.openSession();
+        
+        Query q = s.createQuery("from Customer where username = :un");
+        
+        q.setString("un", username);
+        
+        Customer c = (Customer) q.uniqueResult();
+        
         return c;
     }
 
@@ -121,9 +143,9 @@ public class CustomerHandler
             s.delete(c);
             t.commit();
         }
-        catch(HibernateException e)
+        catch (HibernateException e)
         {
-            if(t != null)
+            if (t != null)
             {
                 t.rollback();
             }
@@ -135,22 +157,70 @@ public class CustomerHandler
         }
     }
 
+    /***
+     * Delete a Customer by username.
+     * 
+     * @param username
+     *            The username of the Customer to be deleted.
+     * 
+     * @return The customer that was deleted.
+     */
+    public Customer delete(String username)
+    {
+        Customer c = read(username);
+
+        int cid = c.getCid();
+
+        delete(cid);
+
+        return c;
+    }
+
     // code to run the program
-    public static void main(String[] args)
+    public static void main(String[] args) throws InvalidHashException
     {
         System.out.println(CustomerHandler.class.getName() + " main().");
 
         CustomerHandler manager = new CustomerHandler();
 
         manager.setup();
+
+        String username = "HenryFBP";
+        String email = "HenryFBP@gmail.com";
+        String password = "mycoolpassword"; // SECURITY TO THE MAXXXXXX!!!!!!
+
+        Customer testCustomer = new Customer(username, email, password); // test person
+
+        String tch = testCustomer.getPassHash(); // test customer's hash
+
+        if (Lib.verifyHash("mycoolpassword", tch))
+        {
+            System.out.println("Password is correct! :)");
+        }
+        else
+        {
+            System.out.println("Something's wrong, since we hashed '" + password
+                    + "' but it doesn't seem to be able to be verified as the thing that made the hash.");
+
+        }
         
-        Customer testCustomer = new Customer("HenryFBP", "HenryFBP@gmail.com", Lib.hash("password"));
+        Customer c = manager.read(username); // attempt to read user
+
+        if(c == null) //does person with test username exist already
+        {
+            manager.create(testCustomer); // save test person
+        }
+        else
+        {
+            System.out.println("Won't create user '"+username+"' as it looks like it already exists:");
+            System.out.println(c);
+        }
 
         try
         {
             manager.stop();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }
