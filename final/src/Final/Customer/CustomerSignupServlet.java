@@ -40,6 +40,11 @@ public class CustomerSignupServlet
         {
             problems.add("email");
         }
+        
+        if(h.exists(username))
+        {
+            throw new CustomerAlreadyExistsException(username);
+        }
 
         if(!problems.isEmpty())
         {
@@ -50,10 +55,7 @@ public class CustomerSignupServlet
         System.out.printf("Password: %s\n", password);
         System.out.printf("Email: %s\n", email);
 
-        if(h.exists(username))
-        {
-            throw new CustomerAlreadyExistsException(username);
-        }
+
 
         Customer c = new Customer(username, email, password);
 
