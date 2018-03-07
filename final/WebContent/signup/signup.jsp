@@ -1,10 +1,8 @@
-<%@page import="Final.Customer.*" %>
+<%@page import="java.io.PrintWriter"%>
+<%@page import="Final.Customer.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-  Customer c = CustomerSignupServlet.createCustomer(request);
-%>
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Sign up!</title>
@@ -12,6 +10,25 @@
 <link rel="stylesheet" href="/final/css/screen.css" />
 </head>
 <body>
+	<%
+	    try
+	    {
+	        Customer c = CustomerSignupServlet.createCustomer(request);
 
+	        out.write(c.toString());
+	    }
+	    catch(FormNotFilledOutException e)
+	    {
+	        out.write("Missing this form data:");
+	        for(String s : e.missing)
+	        {
+	            out.write("<li>" + s + "</li>");
+	        }
+	    }
+	    catch(CustomerAlreadyExistsException e)
+	    {
+	        out.write(String.format("Username '%s' is taken!", request.getParameter("username")));
+	    }
+	%>
 </body>
 </html>
