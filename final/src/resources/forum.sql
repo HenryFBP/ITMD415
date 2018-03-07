@@ -1,7 +1,7 @@
 -- DROP TABLE IF EXISTS forum;
 
 CREATE TABLE IF NOT EXISTS forum (
-    fid         INTEGER         NOT NULL UNIQUE,
+    fid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
     lid         INTEGER         NOT NULL,
     postercid   INTEGER         NOT NULL,
     date        INTEGER         NOT NULL,

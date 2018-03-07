@@ -1,7 +1,7 @@
 -- DROP TABLE IF EXISTS listing;
 
 CREATE TABLE IF NOT EXISTS listing (
-    lid         INTEGER         NOT NULL UNIQUE,
+    lid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
     pid         INTEGER         NOT NULL,
     sellercid   INTEGER         NOT NULL,
     buyercid    INTEGER         ,

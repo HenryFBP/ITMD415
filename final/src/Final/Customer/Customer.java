@@ -2,50 +2,32 @@ package Final.Customer;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /***
  * A single Customer.
  */
 
-//@formatter:off
 @Entity
-@Table(
-	name = "customer",
-	uniqueConstraints=
-		@UniqueConstraint(
-			columnNames={"username","email"})
-)
-//@formatter:on
-
+@Table(name = "customer")
 public class Customer
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cid")
     private int cid;
 
     private String username;
     private String email;
-    private String passwordhash;
+    private String passhash;
 
-    public Customer(String username, String email, String passwordhash)
+    public Customer(String username, String email, String passhash)
     {
         this.username = username;
         this.email = email;
-        this.passwordhash = passwordhash;
+        this.passhash = passhash;
     }
-
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "cid")
+    
     public Integer getCid()
     {
         return cid;
@@ -71,14 +53,14 @@ public class Customer
         return null;
     }
 
-    public String getPasswordHash()
+    public String getPassHash()
     {
-        return passwordhash;
+        return passhash;
     }
 
-    public void setPasswordHash(String passwordHash)
+    public void setPassHash(String passhash)
     {
-        this.passwordhash = passwordHash;
+        this.passhash = passhash;
     }
 
     public String getEmail()
