@@ -1,9 +1,9 @@
 -- data input
 
-INSERT INTO customer VALUES (1, "Henry Post", "HenryFBP@gmail.com", "youwillneverguess");
-INSERT INTO customer VALUES (2, "Dennis Chase", "dchase3@hawk.iit.edu", "youmayguess");
-INSERT INTO customer VALUES (3, "Admiral Ackbar", "Ackbar@gmail.com", "itsatrap");
-INSERT INTO customer VALUES (4, "God", "BigG@heaven.gov", "trueadmin");
+INSERT INTO customer VALUES (1, "Henry Post", "HenryFBP@gmail.com", "pbkdf2sha1:64000:18:24:n:h1l08Agjw5onzudezyMDAu/dVN94We3b:sq3Y/F0CsaeHpK7pw49BAd+I"); -- youwillneverguess
+INSERT INTO customer VALUES (2, "Dennis Chase", "dchase3@hawk.iit.edu", "pbkdf2sha1:64000:18:24:n:hh82TcSHudimd8whGG3DdJ7wegN6PcqH:CkoMEIu82FjAm35I1zmWG0q7"); -- youmayguess
+INSERT INTO customer VALUES (3, "Admiral Ackbar", "Ackbar@gmail.com", "pbkdf2sha1:64000:18:24:n:Hy4GIW3CjqvlL3yW35aeQ3BbTZgvL6ZE:pe8rQHdVr43DiXNWzhP1Lkbw"); -- itsatrap
+INSERT INTO customer VALUES (4, "God", "BigG@heaven.gov", "pbkdf2sha1:64000:18:24:n:jb5TMaeqwhLi7J66jBDvs3DuWQ2Wd1+T:HDA6gyEwFDJGo+8G6lKI97je"); -- trueadmin
 
 INSERT INTO product VALUES (1, 2, 1, "Engine", 150);
 INSERT INTO product VALUES (2, 1, 2, "Lexus", 50000);

@@ -208,12 +208,16 @@ public class CustomerHandler
 
         if(c == null) //does person with test username exist already
         {
+            System.out.println("User '"+username+"' does not exist. Let's create them!");
             manager.create(testCustomer); // save test person
         }
         else
         {
             System.out.println("Won't create user '"+username+"' as it looks like it already exists:");
             System.out.println(c);
+            
+            System.out.println("For testing purposes, let's delete this person!");
+            manager.delete(username);
         }
 
         try
