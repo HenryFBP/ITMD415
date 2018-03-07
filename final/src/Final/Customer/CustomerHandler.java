@@ -106,7 +106,7 @@ public class CustomerHandler
     {
         Session s = sessionFactory.openSession();
 
-        Query q = s.createQuery("from Customer where username = :un");
+        Query<Customer> q = s.createQuery("from Customer where username = :un");
 
         q.setString("un", username);
 

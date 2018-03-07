@@ -27,17 +27,17 @@ public class Lib
     /***
      * Verify that a hash String was created from a normal String.
      * 
-     * @param s
+     * @param string
      *            The normal String.
-     * @param h
+     * @param hash
      *            The hash String.
      * @return Whether or not the hash String created the normal String.
      */
-    public static Boolean verifyHash(String s, String h)
+    public static Boolean verifyHash(String string, String hash)
     {
         try
         {
-            return Hash.password(s.toCharArray()).verify(h);
+            return Hash.password(string.toCharArray()).verify(hash);
         }
         catch (InvalidHashException e)
         {

@@ -14,7 +14,19 @@
     <h1>Login</h1>
   </header>
   <section>
-    <form id="login">
+    <form id="login" action="login.jsp" method="POST">
+      <ol>
+        <li>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" />
+        </li>
+        <li>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"/>
+        </li>
+      </ol>
+      <input id='submit' type='submit' value='Login'/>    
+    	
     </form>
   </section>
 </body>

@@ -15,18 +15,24 @@
 	<%
 	    try
 	    {
-	        Customer c = CustomerSignupServlet.createCustomer(request);
+	        Customer c = CustomerSignupServlet.loginCustomer(request);
+
+	        out.write("HEY BUDDY UR LOGGED IN!");
 
 	        out.write(c.toString());
 	    }
 	    catch(FormNotFilledOutException e)
 	    {
-	        out.write("Missing this form data:");
+	        out.write("Missing the following login fields:");
 	        out.write(e.getList());
 	    }
-	    catch(CustomerAlreadyExistsException e)
+	    catch(CustomerNameDoesNotExistException e)
 	    {
-	        out.write(String.format("Username '%s' is taken!", request.getParameter("username")));
+	        out.write(String.format("No account named '%s' exists!", e.name));
+	    }
+	    catch(PasswordMismatchException e)
+	    {
+	        out.write(String.format("Wrong password for '%s'.", e.name));
 	    }
 	%>
 </body>
