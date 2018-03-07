@@ -11,8 +11,7 @@ public class CustomerSignupServlet
     /***
      * Creates a new Customer.
      * 
-     * @param r
-     *            The HTTP Request.
+     * @param r The HTTP Request.
      * @return A Customer, if that customer can be created. If it cannot, i.e. the
      *         username is used or too small, it throws an exception.
      * @throws CustomerAlreadyExistsException
@@ -28,20 +27,20 @@ public class CustomerSignupServlet
         String password = r.getParameter("password");
         String email = r.getParameter("email");
         List<String> problems = new ArrayList<String>();
-        
-        if (username == null)
+
+        if(username == null || username.length() <= 0)
         {
             problems.add("username");
         }
-        if (password == null)
+        if(password == null || password.length() <= 0)
         {
             problems.add("password");
         }
-        if (email == null)
+        if(email == null || email.length() <= 0)
         {
             problems.add("email");
         }
-        
+
         if(!problems.isEmpty())
         {
             throw new FormNotFilledOutException(problems);
@@ -51,7 +50,7 @@ public class CustomerSignupServlet
         System.out.printf("Password: %s\n", password);
         System.out.printf("Email: %s\n", email);
 
-        if (h.exists(username))
+        if(h.exists(username))
         {
             throw new CustomerAlreadyExistsException(username);
         }
