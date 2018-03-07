@@ -1,4 +1,4 @@
-package Final.Customer;
+package Final.Customer.Exceptions;
 
 public class CustomerAlreadyExistsException extends Exception
 {
