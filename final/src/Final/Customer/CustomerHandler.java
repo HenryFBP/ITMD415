@@ -105,14 +105,28 @@ public class CustomerHandler
     public Customer read(String username)
     {
         Session s = sessionFactory.openSession();
-        
+
         Query q = s.createQuery("from Customer where username = :un");
-        
+
         q.setString("un", username);
-        
+
         Customer c = (Customer) q.uniqueResult();
-        
+
         return c;
+    }
+
+    /***
+     * Given a Customer's username, tells you if that Customer already exists.
+     * 
+     * @param username
+     *            The Customer's username.
+     * @return If a Customer with this username exists.
+     */
+    public Boolean exists(String username)
+    {
+        Customer c = read(username);
+
+        return (c != null);
     }
 
     /***
@@ -203,19 +217,19 @@ public class CustomerHandler
                     + "' but it doesn't seem to be able to be verified as the thing that made the hash.");
 
         }
-        
+
         Customer c = manager.read(username); // attempt to read user
 
-        if(c == null) //does person with test username exist already
+        if (c == null) // does person with test username exist already
         {
-            System.out.println("User '"+username+"' does not exist. Let's create them!");
+            System.out.println("User '" + username + "' does not exist. Let's create them!");
             manager.create(testCustomer); // save test person
         }
         else
         {
-            System.out.println("Won't create user '"+username+"' as it looks like it already exists:");
+            System.out.println("Won't create user '" + username + "' as it looks like it already exists:");
             System.out.println(c);
-            
+
             System.out.println("For testing purposes, let's delete this person!");
             manager.delete(username);
         }
