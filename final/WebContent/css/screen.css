@@ -289,8 +289,27 @@ li li:last-child {
   margin-bottom: 0;
 }
 
-/* State Styles */
+nav ul {
+    display: inline-grid;
+    grid-auto-flow: column;
+    width: 100%;
+}
 
+
+nav li {
+	list-style-type: none;
+	text-align: center;
+	display: flex;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+nav ul li a {
+	background-color: lightblue;
+	width: 100%;
+}
+
+/* State Styles */
 #problems {
   background-color: lightblue;
 }
