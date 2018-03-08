@@ -1,5 +1,6 @@
-<%@page import="org.apache.tomcat.jni.Directory"%>
-<%@page import="java.io.File"%>
+<%@page import="Final.*"%>
+<%@page import="Final.Customer.*"%>
+<%@page import="Final.Customer.Exceptions.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +9,10 @@
   <link rel="stylesheet" href="/final/css/screen.css" />
 </head>
 <body>
-  <nav><jsp:include page="/navbar.inc"></jsp:include></nav>
-
+	<nav><jsp:include page="/navbar.inc"></jsp:include></nav>
+	<aside>
+		<a><%=CustomerControllerServlet.generateStatus(session)%></a>
+	</aside>
   <header>
     <h1>Sign up</h1>
   </header>
