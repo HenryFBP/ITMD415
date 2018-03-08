@@ -57,7 +57,7 @@ public class Lib
     }
 
     /***
-     * See {@link lib#epochMillisecondsToDate(long, String)}.
+     * See {@link Lib#epochMillisecondsToDate(long, String)}.
      */
     public static String epochSecondsToDate(long ms, String f)
     {
@@ -105,9 +105,9 @@ public class Lib
      * 
      * <pre>
      * <code>
-     * wrapAttr("link to goggles", "a", new String[] { "href","checked" }, new String[] { "google.ru" }) <br>
+     * {@link #wrapAttr(String, String, String[], String[]) wrapAttr}("link to goggles", "a", new String[] { "href","checked" }, new String[] { "google.ru" }) <br>
      * -><br>
-     * &lt;a checked href="google.ru">link to goggles&lt;/a>
+     * &lt;a href="google.ru" checked >link to goggles&lt;/a>
      * </code>
      * </pre>
      */
@@ -115,7 +115,7 @@ public class Lib
     {
         String ret = "<" + tag;
 
-        for(int i = attrs.length - 1; i >= 0; i--)
+        for(int i = 0; i < attrs.length; i++)
         {
             ret += String.format(" %s", attrs[i]);
             if(i < vals.length)
