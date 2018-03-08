@@ -81,7 +81,10 @@ public class Lib
      * Example:
      * 
      * <pre>
-     * <code>w("ascii??","pre","code") -> &lt;pre>&lt;code>ascii??&lt;/pre>&lt;/code></pre></code>
+     * <code>
+     * {@link #wrap(String, String...) wrap}("ascii??","pre","code") -> &lt;pre>&lt;code>ascii??&lt;/pre>&lt;/code>
+     * </pre>
+     * </code>
      */
     public static String wrap(String s, String... args)
     {
@@ -91,6 +94,41 @@ public class Lib
         {
             ret = wrap(ret, args[i]); // apply one elem
         }
+
+        return ret;
+    }
+
+    /***
+     * Wrap a String with an HTML tag and an arbitrary number of attribute-value
+     * pairs.<br>
+     * Example:
+     * 
+     * <pre>
+     * <code>
+     * wrapAttr("link to goggles", "a", new String[] { "href","checked" }, new String[] { "google.ru" }) <br>
+     * -><br>
+     * &lt;a checked href="google.ru">link to goggles&lt;/a>
+     * </code>
+     * </pre>
+     */
+    private static String wrapAttr(String s, String tag, String[] attrs, String[] vals)
+    {
+        String ret = "<" + tag;
+
+        for(int i = attrs.length - 1; i >= 0; i--)
+        {
+            ret += String.format(" %s", attrs[i]);
+            if(i < vals.length)
+            {
+                ret += String.format("=\"%s\"", vals[i]);
+            }
+        }
+
+        ret += ">";
+
+        ret += s;
+
+        ret += "</" + tag + ">";
 
         return ret;
     }
@@ -175,6 +213,9 @@ public class Lib
 
         System.out.println(wrap("im code bro", "pre", "code"));
 
+        System.out.println(
+                wrapAttr("link to goggles", "a", new String[] { "href", "checked" }, new String[] { "google.ru" }));
+
         for(String pass : passwords)
         {
             String hash = hash(pass);
@@ -184,4 +225,5 @@ public class Lib
             System.out.println(verifyHash(pass, hash).toString());
         }
     }
+
 }
