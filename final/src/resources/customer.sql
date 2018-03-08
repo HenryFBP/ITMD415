@@ -1,4 +1,5 @@
 -- DROP TABLE IF EXISTS customer;
+-- USE itmd415;
 
 CREATE TABLE IF NOT EXISTS customer (
     cid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,

@@ -1,4 +1,5 @@
 -- DROP TABLE IF EXISTS forum;
+-- USE itmd415;
 
 CREATE TABLE IF NOT EXISTS forum (
     fid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,

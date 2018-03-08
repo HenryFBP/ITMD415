@@ -1,4 +1,5 @@
 -- DROP TABLE IF EXISTS listing;
+-- USE itmd415;
 
 CREATE TABLE IF NOT EXISTS listing (
     lid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,

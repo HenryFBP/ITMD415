@@ -1,4 +1,5 @@
 -- DROP TABLE IF EXISTS producttype;
+-- USE itmd415;
 
 CREATE TABLE IF NOT EXISTS producttype (
     ptid        INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
