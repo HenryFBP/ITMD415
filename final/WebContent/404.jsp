@@ -5,7 +5,7 @@
 <title>Page not found!</title>
 </head>
 <body>
-  <nav><jsp:include page="navbar.inc"></jsp:include></nav>
+  <nav><jsp:include page="navbar.jsp"></jsp:include></nav>
   <main>
   <section>
     <p>404 Error: Not Found</p>

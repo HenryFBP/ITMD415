@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/final/css/screen.css" />
 </head>
 <body>
-  <nav><jsp:include page="/navbar.inc"></jsp:include></nav>
+  <nav><jsp:include page="/navbar.jsp"></jsp:include></nav>
 	<aside>
 		<a><%=CustomerControllerServlet.generateStatus(session)%></a>
 	</aside>
