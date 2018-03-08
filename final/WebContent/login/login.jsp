@@ -11,6 +11,7 @@
     {
         Customer c = CustomerSignupServlet.loginCustomer(request);
 
+        session.setAttribute("customer", c);
         session.setAttribute("username", c.getName()); //store their username in our session
 
         message += Lib.wrap("HEY BUDDY UR LOGGED IN!", "a");

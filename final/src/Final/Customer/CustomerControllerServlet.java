@@ -41,11 +41,38 @@ public class CustomerControllerServlet extends HttpServlet
         }
         catch(IllegalStateException e) // session has just been invalidated or something
         {
-            System.out.println("you " + e.getClass().getCanonicalName() + " class bro???");
             return fail;
         }
 
         return fail;
+    }
+
+    /***
+     * Given an HttpSession, return the Customer object that is currently logged in.
+     * Returns null if they are not logged in.
+     */
+    public static Customer getLoggedInCustomer(HttpSession s)
+    {
+        Customer c = null;
+
+        try
+        {
+            c = (Customer) s.getAttribute("customer");
+        }
+        catch(IllegalStateException e)
+        {
+            ;
+        }
+
+        return c;
+    }
+    
+    /***
+     * Given an HttpSession, tell you if the user is logged in or not.
+     */
+    public static Boolean isLoggedIn(HttpSession s)
+    {
+        return getLoggedInCustomer(s) != null; //return true if the session customer ain't null
     }
 
     /**
