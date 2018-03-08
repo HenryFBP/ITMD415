@@ -23,14 +23,29 @@ public class CustomerControllerServlet extends HttpServlet
      */
     public static String generateStatus(HttpSession s)
     {
-        String name = (String) s.getAttribute("username");
 
-        if(name != null)
+        String fail = "Not currently logged in.";
+
+        if(s == null)
         {
-            return String.format("Welcome, %s!", name);
+            return fail;
         }
 
-        return "Not currently logged in.";
+        try
+        {
+            String name = (String) s.getAttribute("username");
+            if(name != null)
+            {
+                return String.format("Welcome, %s!", name);
+            }
+        }
+        catch(IllegalStateException e) // session has just been invalidated or something
+        {
+            System.out.println("you " + e.getClass().getCanonicalName() + " class bro???");
+            return fail;
+        }
+
+        return fail;
     }
 
     /**
