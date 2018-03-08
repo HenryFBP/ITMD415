@@ -1,4 +1,5 @@
 -- DROP TABLE IF EXISTS product;
+-- USE itmd415;
 
 CREATE TABLE IF NOT EXISTS product (
     pid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
