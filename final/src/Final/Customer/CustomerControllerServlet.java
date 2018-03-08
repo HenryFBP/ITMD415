@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class CustomerControllerServlet
@@ -15,6 +16,22 @@ import javax.servlet.http.HttpServletResponse;
 public class CustomerControllerServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
+
+    /***
+     * Given an HttpSession, generate a status that tells the user whether or not
+     * they're logged in.
+     */
+    public static String generateStatus(HttpSession s)
+    {
+        String name = (String) s.getAttribute("username");
+
+        if(name != null)
+        {
+            return String.format("Welcome, %s!", name);
+        }
+
+        return "Not currently logged in.";
+    }
 
     /**
      * @see HttpServlet#HttpServlet()
