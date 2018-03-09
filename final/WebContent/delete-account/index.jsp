@@ -5,7 +5,7 @@
 Customer c = (Customer)session.getAttribute("customer");
 String username = c.getName();
 
-String confirm = "I understand that this will permanently delete my account, "+Lib.wrap(username)+".";
+String confirm = "I understand that this will permanently delete my account, "+Lib.wrap(username, "a")+".";
 
 %>
 <!DOCTYPE html>
