@@ -11,12 +11,13 @@
 	<%
 	    if(!loggedIn) //not logged in, let them!
 	    {
-	        out.write(Lib.wrap("<a href=\"/final/login\">Login</a>", "li"));
-	        out.write(Lib.wrap("<a href=\"/final/signup\">Sign up</a>", "li"));
+	        out.write(Lib.wrapAttr("Login","li a","href","/final/login"));
+	        out.write(Lib.wrapAttr("Sign up","li a","href","/final/signup"));
 	    }
 	    else
 	    {
-	        out.write(Lib.wrap("<a href=\"/final/logout\">Logout</a>", "li")); //they are logged in, let them leave!
+	        out.write(Lib.wrapAttr("Logout","li a","href","/final/logout")); //they are logged in, let them leave!
+	        out.write(Lib.wrapAttr("Delete account", "li a", "href", "/final/delete-account"));
 	    }
 	%>
 </ul>
