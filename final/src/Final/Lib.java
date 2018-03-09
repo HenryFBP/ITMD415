@@ -82,16 +82,21 @@ public class Lib
      */
     public static String[] unwrap(String s)
     {
-        Matcher m = Pattern.compile(">(.+?)<\\/").matcher(s); // match
+        Matcher m = Pattern.compile(">(.+?)</").matcher(s); // match stuff inside ">(hi)</"
 
         ArrayList<String> ret = new ArrayList<>();
 
         while (m.find())
         {
-            ret.add("fuck");
+            String match = m.group(1);
+
+            if (!match.contains("><"))
+            {
+                ret.add(match); // add if actually content
+            }
         }
 
-        return (String[]) ret.toArray();
+        return ret.toArray(new String[] {});
 
     }
 
@@ -104,7 +109,15 @@ public class Lib
      */
     public static String wrap(String s, String tag)
     {
-        return "<" + tag + ">" + s + "</" + tag + ">";
+        if (tag.contains(" "))
+        {
+            return wrap(s, tag.split(" ")); // split tags
+        }
+        else
+        {
+
+            return "<" + tag + ">" + s + "</" + tag + ">";
+        }
     }
 
     /***
@@ -290,11 +303,21 @@ public class Lib
         System.out.println("Hi, I'm main() of class '" + Lib.class.getCanonicalName() + "'. For testing.");
 
         System.out.println(wrap("im code bro", "pre", "code"));
+        System.out.println(wrap(wrap("im code bro", "pre"), "code")); // many ways to skin a tag
+        System.out.println(wrap("im code bro", "pre code"));
 
         System.out.println(
                 wrapAttr("link to goggles", "a", new String[] { "href", "checked" }, new String[] { "google.ru" }));
 
-        System.out.println(unwrap(ugly));
+        String[] matches = unwrap(ugly);
+
+        System.out.println(ugly);
+        System.out.println("->");
+
+        for (String match : matches)
+        {
+            System.out.println(match);
+        }
 
         for (String pass : passwords)
         {
