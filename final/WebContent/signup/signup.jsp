@@ -3,6 +3,28 @@
 <%@page import="Final.Customer.Exceptions.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%
+    String message = "";
+    CustomerHandler ch = new CustomerHandler();
+    try
+    {
+
+        Customer tempc = CustomerSignupServlet.createCustomer(request); //make customer and store in db
+        Customer c = ch.read(tempc.getName()); //get fresh customer by name
+
+        session.setAttribute("customer", c);
+        session.setAttribute("username", c.getName()); //store their username in our session
+    }
+    catch(FormNotFilledOutException e)
+    {
+        message += ("Missing this form data:");
+        message += (e.getList());
+    }
+    catch(CustomerAlreadyExistsException e)
+    {
+        message += (String.format("Username '%s' is taken!", request.getParameter("username")));
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,23 +33,7 @@
 <link rel="stylesheet" href="/final/css/screen.css" />
 </head>
 <body>
-  <nav><jsp:include page="/navbar.jsp"></jsp:include></nav>
-	<%
-	    try
-	    {
-	        Customer c = CustomerSignupServlet.createCustomer(request);
-
-	        out.write(c.toString());
-	    }
-	    catch(FormNotFilledOutException e)
-	    {
-	        out.write("Missing this form data:");
-	        out.write(e.getList());
-	    }
-	    catch(CustomerAlreadyExistsException e)
-	    {
-	        out.write(String.format("Username '%s' is taken!", request.getParameter("username")));
-	    }
-	%>
+	<nav><jsp:include page="/navbar.jsp"></jsp:include></nav>
+	<main> <%=message%> </main>
 </body>
 </html>
