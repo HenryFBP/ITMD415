@@ -1,5 +1,7 @@
--- data input
+CREATE DATABASE IF NOT EXISTS itmd415;
+USE itmd415;
 
+-- data input
 INSERT INTO customer VALUES (1, "HenryFBP", "HenryFBP@gmail.com", "pbkdf2sha1:64000:18:24:n:h1l08Agjw5onzudezyMDAu/dVN94We3b:sq3Y/F0CsaeHpK7pw49BAd+I"); -- youwillneverguess
 INSERT INTO customer VALUES (2, "dchase", "dchase3@hawk.iit.edu", "pbkdf2sha1:64000:18:24:n:hh82TcSHudimd8whGG3DdJ7wegN6PcqH:CkoMEIu82FjAm35I1zmWG0q7"); -- youmayguess
 INSERT INTO customer VALUES (3, "AdmiralAckbar", "Ackbar@gmail.com", "pbkdf2sha1:64000:18:24:n:Hy4GIW3CjqvlL3yW35aeQ3BbTZgvL6ZE:pe8rQHdVr43DiXNWzhP1Lkbw"); -- itsatrap

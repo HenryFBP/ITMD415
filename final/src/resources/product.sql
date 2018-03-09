@@ -1,6 +1,7 @@
--- DROP TABLE IF EXISTS product;
--- USE itmd415;
+CREATE DATABASE IF NOT EXISTS itmd415;
+USE itmd415;
 
+-- DROP TABLE IF EXISTS product;
 CREATE TABLE IF NOT EXISTS product (
     pid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
     ptid        INTEGER         NOT NULL,

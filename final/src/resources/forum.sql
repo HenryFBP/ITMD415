@@ -1,6 +1,7 @@
--- DROP TABLE IF EXISTS forum;
--- USE itmd415;
+CREATE DATABASE IF NOT EXISTS itmd415;
+USE itmd415;
 
+-- DROP TABLE IF EXISTS forum;
 CREATE TABLE IF NOT EXISTS forum (
     fid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
     lid         INTEGER         NOT NULL,
