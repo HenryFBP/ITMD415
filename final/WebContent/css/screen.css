@@ -232,6 +232,24 @@ h2 {
 
 /* Layout Styles */
 
+pre#important {
+	padding-top: 0.6111rem;
+	padding-bottom: 0.6111rem;
+	text-align: center;
+	background-color: black;
+	font-weight: 400;
+	color:#ff0000;
+}
+
+pre#important a {
+	color: #fff2d2;
+	background-color: #878787;
+}
+
+pre#important code {
+	font-family: monospace;
+}
+
 #validation ul {
 	display: grid;
 }
@@ -351,6 +369,12 @@ li.valid a.value {
   form > * {
     display: grid;
   }
+  
+  li.form-two { /* we want it to span two columns */
+  	grid-column-start: 1 !important;
+  	grid-column-end: 3 !important;
+  }
+  
 
   form li:nth-child(2n + 1) { /* every odd one*/
     grid-column: 1;
