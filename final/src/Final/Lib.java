@@ -5,10 +5,13 @@ import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.amdelamar.jhash.Hash;
 import com.amdelamar.jhash.exception.InvalidHashException;
@@ -24,8 +27,7 @@ public class Lib
     }
 
     /***
-     * @return A 64-bit number that holds how many seconds it is from the Java
-     *         epoch.
+     * @return A 64-bit number that holds how many seconds it is from the Java epoch.
      */
     public static long nowEpochSecond()
     {
@@ -36,7 +38,7 @@ public class Lib
     {
         ArrayList<Object> l = new ArrayList<Object>();
 
-        while(it.hasNext())
+        while (it.hasNext())
         {
             l.add(it.next());
         }
@@ -47,8 +49,10 @@ public class Lib
     /***
      * Return a formatted String from a Java epoch milliseconds value.
      * 
-     * @param ms Milliseconds.
-     * @param f String format specifier.
+     * @param ms
+     *            Milliseconds.
+     * @param f
+     *            String format specifier.
      * @return
      */
     public static String epochMillisecondsToDate(long ms, String f)
@@ -62,6 +66,33 @@ public class Lib
     public static String epochSecondsToDate(long ms, String f)
     {
         return epochMillisecondsToDate((ms * 1000), f);
+    }
+
+    /***
+     * Given an HTML String, return all non-tag parts.
+     * 
+     * Example:
+     * 
+     * <pre>
+     * <code>
+     * {@link #unwrap(String) unwrap}("&lt;meta />&lt;h1>hey&lt;/h1>&lt;pre>&lt;a>hi!&lt;/a>&lt;/pre>"
+     * ->
+     * {"hey","hi!"}"
+     * </pre></code>
+     */
+    public static String[] unwrap(String s)
+    {
+        Matcher m = Pattern.compile(">(.+?)<\\/").matcher(s); // match
+
+        ArrayList<String> ret = new ArrayList<>();
+
+        while (m.find())
+        {
+            ret.add("fuck");
+        }
+
+        return (String[]) ret.toArray();
+
     }
 
     /***
@@ -82,7 +113,9 @@ public class Lib
      * 
      * <pre>
      * <code>
-     * {@link #wrap(String, String...) wrap}("ascii??","pre","code") -> &lt;pre>&lt;code>ascii??&lt;/pre>&lt;/code>
+     * {@link #wrap(String, String...) wrap}("ascii??","pre","code")
+     * ->
+     * &lt;pre>&lt;code>ascii??&lt;/pre>&lt;/code>
      * </pre>
      * </code>
      */
@@ -90,7 +123,7 @@ public class Lib
     {
         String ret = s;
 
-        for(int i = args.length - 1; i >= 0; i--) // for all elems
+        for (int i = args.length - 1; i >= 0; i--) // for all elems
         {
             ret = wrap(ret, args[i]); // apply one elem
         }
@@ -99,8 +132,44 @@ public class Lib
     }
 
     /***
-     * Wrap a String with an HTML tag and an arbitrary number of attribute-value
-     * pairs.<br>
+     * Alternatively-argumented form of {@link #wrapAttr(String, String, String[], String[])}.
+     * 
+     * @see #wrapAttr(String, String, String[], String[])
+     */
+    public static String wrapAttr(String s, String tag, String attr, String val)
+    {
+        if (tag.contains(" ")) // tags separated by spaces
+        {
+            String[] tags = tag.split(" ");
+            return wrapAttr(s, tags, attr, val);
+        }
+        else // only one tag
+        {
+            return wrapAttr(s, tag, new String[] { attr }, new String[] { val });
+        }
+    }
+
+    /***
+     * Alternatively-argumented form of {@link #wrapAttr(String, String, String[], String[])}.
+     * 
+     * @see #wrapAttr(String, String, String[], String[])
+     */
+    public static String wrapAttr(String s, String[] tags, String attr, String val)
+    {
+
+        String lastTag = (tags.length > 0 ? tags[tags.length - 1] : ""); // last tag OR nothing
+
+        String[] leftovers = (tags.length > 1 ? Arrays.copyOfRange(tags, 0, tags.length - 1) : new String[] {}); // tags[0:end-1] OR nothing
+
+        String ret = wrapAttr(s, lastTag, attr, val); // wrap it
+
+        ret = wrap(ret, leftovers); // add leftover tags
+
+        return ret;
+    }
+
+    /***
+     * Wrap a String with an HTML tag and an arbitrary number of attribute-value pairs.<br>
      * Example:
      * 
      * <pre>
@@ -111,14 +180,14 @@ public class Lib
      * </code>
      * </pre>
      */
-    private static String wrapAttr(String s, String tag, String[] attrs, String[] vals)
+    public static String wrapAttr(String s, String tag, String[] attrs, String[] vals)
     {
         String ret = "<" + tag;
 
-        for(int i = 0; i < attrs.length; i++)
+        for (int i = 0; i < attrs.length; i++)
         {
             ret += String.format(" %s", attrs[i]);
-            if(i < vals.length)
+            if (i < vals.length)
             {
                 ret += String.format("=\"%s\"", vals[i]);
             }
@@ -153,13 +222,13 @@ public class Lib
         {
             s = new Scanner(f);
         }
-        catch(FileNotFoundException e)
+        catch (FileNotFoundException e)
         {
             e.printStackTrace();
             return "";
         }
 
-        while(s.hasNext())
+        while (s.hasNext())
         {
             line = s.nextLine();
             lines += line;
@@ -175,7 +244,8 @@ public class Lib
     /***
      * Hash a String.
      * 
-     * @param s The String.
+     * @param s
+     *            The String.
      * @return A hashed version of the String.
      */
     public static String hash(String s)
@@ -190,8 +260,10 @@ public class Lib
     /***
      * Verify that a hash String was created from a normal String.
      * 
-     * @param string The normal String.
-     * @param hash The hash String.
+     * @param string
+     *            The normal String.
+     * @param hash
+     *            The hash String.
      * @return Whether or not the hash String created the normal String.
      */
     public static Boolean verifyHash(String string, String hash)
@@ -200,7 +272,7 @@ public class Lib
         {
             return Hash.password(string.toCharArray()).verify(hash);
         }
-        catch(InvalidHashException e)
+        catch (InvalidHashException e)
         {
         }
         return false;
@@ -209,6 +281,12 @@ public class Lib
 
     public static void main(String[] args)
     {
+        String ugly = "        <li>\r\n          <label for=\"password\"> Password</label>\r\n"
+                + "          <input type=\"password\" id=\"password\" name=\"password\"/>\r\n" + "        </li>\r\n"
+                + "        <li class=\"form-two\">\r\n" + "          <label for=\"confirm\">Delete account</label>\r\n"
+                + "          <a>To delete your account, type the following in the below box:</a>\r\n"
+                + "          <pre id=\"important\"><code><%=confirm%></code></pre>";
+
         System.out.println("Hi, I'm main() of class '" + Lib.class.getCanonicalName() + "'. For testing.");
 
         System.out.println(wrap("im code bro", "pre", "code"));
@@ -216,7 +294,9 @@ public class Lib
         System.out.println(
                 wrapAttr("link to goggles", "a", new String[] { "href", "checked" }, new String[] { "google.ru" }));
 
-        for(String pass : passwords)
+        System.out.println(unwrap(ugly));
+
+        for (String pass : passwords)
         {
             String hash = hash(pass);
             System.out.printf("'%s' --[tasty magic hash brown machine]--> '%s'\n", pass, hash);
