@@ -23,12 +23,12 @@ public class FormNotFilledOutException extends Exception
      */
     public String getList()
     {
-        String ret = "<ul>";
-        for(String string : this.missing)
+        String ret = "";
+        for (String string : this.missing)
         {
             ret += "<li><a>" + string + "</a></li>";
         }
-        ret += "</ul>";
+
         return ret;
     }
 }
