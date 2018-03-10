@@ -2,6 +2,7 @@ package Final;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class Lib
     {
         ArrayList<Object> l = new ArrayList<Object>();
 
-        while (it.hasNext())
+        while(it.hasNext())
         {
             l.add(it.next());
         }
@@ -88,11 +89,11 @@ public class Lib
 
         ArrayList<String> ret = new ArrayList<>();
 
-        while (m.find())
+        while(m.find())
         {
             String match = m.group(1);
 
-            if (!match.contains("><"))
+            if(!match.contains("><"))
             {
                 ret.add(match); // add if actually content
             }
@@ -111,7 +112,7 @@ public class Lib
      */
     public static String wrap(String s, String tag)
     {
-        if (tag.contains(" "))
+        if(tag.contains(" "))
         {
             return wrap(s, tag.split(" ")); // split tags
         }
@@ -138,7 +139,7 @@ public class Lib
     {
         String ret = s;
 
-        for (int i = args.length - 1; i >= 0; i--) // for all elems
+        for(int i = args.length - 1; i >= 0; i--) // for all elems
         {
             ret = wrap(ret, args[i]); // apply one elem
         }
@@ -153,7 +154,7 @@ public class Lib
      */
     public static String wrapAttr(String s, String tag, String attr, String val)
     {
-        if (tag.contains(" ")) // tags separated by spaces
+        if(tag.contains(" ")) // tags separated by spaces
         {
             String[] tags = tag.split(" ");
             return wrapAttr(s, tags, attr, val);
@@ -199,10 +200,10 @@ public class Lib
     {
         String ret = "<" + tag;
 
-        for (int i = 0; i < attrs.length; i++)
+        for(int i = 0; i < attrs.length; i++)
         {
             ret += String.format(" %s", attrs[i]);
-            if (i < vals.length)
+            if(i < vals.length)
             {
                 ret += String.format("=\"%s\"", vals[i]);
             }
@@ -237,13 +238,13 @@ public class Lib
         {
             s = new Scanner(f);
         }
-        catch (FileNotFoundException e)
+        catch(FileNotFoundException e)
         {
             e.printStackTrace();
             return "";
         }
 
-        while (s.hasNext())
+        while(s.hasNext())
         {
             line = s.nextLine();
             lines += line;
@@ -287,7 +288,7 @@ public class Lib
         {
             return Hash.password(string.toCharArray()).verify(hash);
         }
-        catch (InvalidHashException e)
+        catch(InvalidHashException e)
         {
         }
         return false;
@@ -316,12 +317,12 @@ public class Lib
         System.out.println(ugly);
         System.out.println("->");
 
-        for (String match : matches)
+        for(String match : matches)
         {
             System.out.println(match);
         }
 
-        for (String pass : passwords)
+        for(String pass : passwords)
         {
             String hash = hash(pass);
             System.out.printf("'%s' --[tasty magic hash brown machine]--> '%s'\n", pass, hash);

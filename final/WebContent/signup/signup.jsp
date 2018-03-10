@@ -15,9 +15,9 @@
 
         session.setAttribute("customer", c);
         session.setAttribute("username", c.getName()); //store their username in our session
-        
-        message += Lib.wrap("Welcome to hell, "+c.getName()+"!","p");
-        message += Lib.wrap("Thanks for signing up.","p");
+
+        message += Lib.wrap("Welcome to hell, " + c.getName() + "!", "p");
+        message += Lib.wrap("Thanks for signing up.", "p");
     }
     catch(FormNotFilledOutException e)
     {

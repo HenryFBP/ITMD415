@@ -17,10 +17,10 @@ public class CustomerSignupServlet
     /***
      * Creates a new Customer.
      * 
-     * @param r The HTTP Request.
+     * @param r
+     *            The HTTP Request.
      * 
-     * @return A Customer, if that customer can be created. If it cannot, i.e. the
-     *         username is used or too small, it throws an exception.
+     * @return A Customer, if that customer can be created. If it cannot, i.e. the username is used or too small, it throws an exception.
      * 
      * @throws CustomerAlreadyExistsException
      * @throws FormNotFilledOutException
@@ -76,10 +76,10 @@ public class CustomerSignupServlet
      * 
      * @param r
      * @return The Customer associated, if they exist.
-     * @throws FormNotFilledOutException If they have not filled out the form
-     *         enough.
-     * @throws CustomerNameDoesNotExistException If the username they use doesn't
-     *         map to a registered user.
+     * @throws FormNotFilledOutException
+     *             If they have not filled out the form enough.
+     * @throws CustomerNameDoesNotExistException
+     *             If the username they use doesn't map to a registered user.
      */
     public static Customer loginCustomer(HttpServletRequest r)
             throws FormNotFilledOutException, CustomerNameDoesNotExistException, PasswordMismatchException

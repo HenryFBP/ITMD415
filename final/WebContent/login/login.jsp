@@ -20,7 +20,7 @@
     catch(FormNotFilledOutException e)
     {
         message += Lib.wrap("Missing the following login fields:", "a");
-        message += e.getList();
+        message += Lib.wrap(e.getList(), "ul");
     }
     catch(CustomerNameDoesNotExistException e)
     {
