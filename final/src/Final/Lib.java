@@ -13,6 +13,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.amdelamar.jhash.Hash;
 import com.amdelamar.jhash.exception.InvalidHashException;
 
@@ -327,6 +329,12 @@ public class Lib
             System.out.print("Does hash give password? ");
             System.out.println(verifyHash(pass, hash).toString());
         }
+    }
+    
+    public static HttpServletResponse sendToLogin(HttpServletResponse r) throws IOException
+    {
+        r.sendRedirect("/final/login");
+        return r;
     }
 
 }

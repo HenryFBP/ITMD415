@@ -2,11 +2,19 @@
 <%@page import="Final.Customer.*"%>
 <%@page import="Final.Customer.Exceptions.*"%>
 <%
-Customer c = (Customer)session.getAttribute("customer");
-String username = c.getName();
+    Object o = session.getAttribute("customer");
 
-String confirm = "I understand that this will permanently delete my account, "+Lib.wrap(username, "a")+".";
+    if(o == null)
+    {
+        Lib.sendToLogin(response); //send em to login screen if they aren't logged in
+        return;
+    }
 
+    Customer c = (Customer) o;
+
+    String username = c.getName();
+
+    String confirm = "I understand that this will permanently delete my account, " + Lib.wrap(username, "a") + ".";
 %>
 <!DOCTYPE html>
 <html>
