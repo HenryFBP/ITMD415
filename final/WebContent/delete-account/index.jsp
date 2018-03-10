@@ -49,7 +49,7 @@
 		<li class="form-two">
           <label for="confirm">Delete account</label>
           <a>To delete your account, type the following in the below box:</a>
-          <pre id="important"><code><%=confirm%></code></pre>
+          <pre class="important"><code><%=confirm%></code></pre>
           <input type="text" id="confirm" name="confirm"/>
         </li>
       </ol>

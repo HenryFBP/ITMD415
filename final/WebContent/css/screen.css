@@ -232,7 +232,8 @@ h2 {
 
 /* Layout Styles */
 
-pre#important {
+
+pre.important {
 	padding-top: 0.6111rem;
 	padding-bottom: 0.6111rem;
 	text-align: center;
@@ -241,12 +242,16 @@ pre#important {
 	color:#ff0000;
 }
 
-pre#important a {
+.center {
+	text-align: center;
+}
+
+pre.important a {
 	color: #fff2d2;
 	background-color: #878787;
 }
 
-pre#important code {
+pre.important code {
 	font-family: monospace;
 }
 
