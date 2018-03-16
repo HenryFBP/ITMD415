@@ -1,28 +1,43 @@
-<%@page import="lab2.*"%>
+<%@ page import="lab2.*"%>
+<%@ page import="lab2.Customer.*"%>
 <%@ page language='java' contentType='text/html; charset=ISO-8859-1'
 	pageEncoding='ISO-8859-1'%>
-<% Customer c = CustomerFormHandler.handleForm(request); %>
-<% Validation val = new Validation(); %>
+<%
+	String key = "AIzaSyCJJpsVGWAK7xK0Btcu33hFId_7qU1B0ZA";
+    
+	Customer c = CustomerFormHandler.handleForm(request);
+	
+	boolean valid = Validation.customerIsValid(c);
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Form Submission</title>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="/lab2/css/screen.css" />
 </head>
 <body>
-  <nav><jsp:include page="navbar.inc"></jsp:include></nav>
-  <section>
-     <p><%= (Validation.nameIsValid(c.getName()) ? "Name Validated" : "Error: Name Invalid") %><p>
-     <p><%= (Validation.sSecurityIsValid(c.getSSN()) ? "SSN Validated" : "Error: SSN Invalid") %><p>
-     <p><%= (Validation.zipIsValid(c.getZip()) ? "Zip Validated" : "Error: Zip Invalid") %><p>
-     <p><%= (Validation.emailIsValid(c.getEmail()) ? "Email Validated" : "Error: Email Invalid") %><p>
-     <p><%= (Validation.addressIsValid(c.getAddress()) ? "Address Validated" : "Error: Address Invalid") %><p>
-     <p><%= (Validation.cityIsValid(c.getCity()) ? "City Validated" : "Error: City Invalid") %><p>
- 	 <p>THANKS A LOT, <%= c.name %>!</p> 
-  </section>
- 
+	<nav><jsp:include page="navbar.inc"></jsp:include></nav>
+	<section id="validation">
+		<%= CustomerFormHandler.displayValidity(c) %>
+		<%
+		
+		if(valid)
+		{
+		    out.write(lib.wrap(String.format("Thank you, %s!",c.getName()),"p"));
+		}
+		else
+		{
+		    out.write(lib.wrap(String.format("Sorry %s, but you've got something wrong with your information.",c.getName()),"p"));
+		}
+		
+		%>
+	</section>
 
-  <footer><jsp:include page="footer.inc"></jsp:include></footer>
+	<script src="https://maps.googleapis.com/maps/api/js?key=<%=key%>"></script>
+  <div id="map"></div>
+
+	<footer><jsp:include page="footer.inc"></jsp:include></footer>
+	<script src="/lab2/js/Map.js"></script>
 </body>
 </html>

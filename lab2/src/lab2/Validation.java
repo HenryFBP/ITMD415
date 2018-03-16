@@ -2,8 +2,50 @@ package lab2;
 
 import java.util.Scanner;
 
+import lab2.Customer.Customer;
+import lab2.State.State;
+import lab2.State.StateManager;
+
 public class Validation
 {
+ 
+    /***
+     * Tells you if the entirety of a customer is valid.
+     */
+    public static boolean customerIsValid(Customer c)
+    {
+        return (
+                thingIsValid(c.getName(), c.nameI) &&
+                thingIsValid(c.getSSN(), c.SSNI) &&
+                thingIsValid(c.getZip(), c.zipI) &&
+                thingIsValid(c.getEmail(), c.emailI) &&
+                thingIsValid(c.getAddress(), c.addressI) &&
+                thingIsValid(c.getCity(), c.cityI) &&
+                thingIsValid(c.getState().getState_id(), c.stateI));
+    }
+    
+    public static Boolean thingIsValid(Object thing, int place)
+    {
+        switch(place)
+        {
+            case Customer.nameI: return nameIsValid((String) thing);
+            case Customer.SSNI: return sSecurityIsValid((String) thing);
+            case Customer.zipI: return zipIsValid((String) thing);
+            case Customer.emailI: return emailIsValid((String) thing);
+            case Customer.addressI: return addressIsValid((String) thing);
+            case Customer.cityI: return cityIsValid((String) thing);
+            case Customer.stateI:
+
+                if(thing instanceof String)
+                {
+                    thing = (Integer)Integer.parseInt((String)thing);
+                }
+                
+                return stateIsValid((Integer) thing);
+        
+        }
+        return null;
+    }
 
     public static boolean nameIsValid(String name)
     {
@@ -12,29 +54,22 @@ public class Validation
 
     public static boolean sSecurityIsValid(String ss)
     {
-        if(ss.length() != 11)
-        {
-            return false;
-        }
+        int nums = 0;
 
         for(int i = 0; i < ss.length(); i++)
         {
-            if(i == 3 || i == 6)
-            {
-                if(!(ss.charAt(i) == '-'))
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                if(!(Character.isDigit(ss.charAt(i))))
-                {
-                    return false;
-                }
-            }
+          if(Character.isDigit(ss.charAt(i)))
+          {
+              nums++;
+          }
+          
+          if(nums >= 11) //at least 11 numbers.
+          {
+              return true;
+          }
+          
         }
-        return true;
+        return false;
     }// end of sSecurityIsValid
 
     public static boolean zipIsValid(String zip)
@@ -79,6 +114,29 @@ public class Validation
         return ((city.length() >= 3) & (city.length() <= 50));
     }// end of cityIs Valid
 
+    /***
+     * Go through all states, check if ours exists.
+     */
+    public static boolean stateIsValid(int stateID)
+    { //does this state exist?
+        StateManager sm = new StateManager();
+
+        try
+        {
+            State s = sm.read(stateID);
+            if(s != null)
+            {
+                return true;
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    
+        return false;
+    }
+    
     /***
      * To test our {@link Validation} class.
      */
@@ -171,7 +229,7 @@ public class Validation
 
             System.out.printf("City '%s' not valid.\n", in);
         }
-        
+
         s.close();
 
     }

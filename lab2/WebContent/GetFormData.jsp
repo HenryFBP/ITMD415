@@ -1,5 +1,7 @@
 <%@ page language='java' contentType='text/html; charset=ISO-8859-1'
 	pageEncoding='ISO-8859-1'%>
+<%@ page import="lab2.*"%>
+<%@ page import="lab2.State.*"%>
 <!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
 <html>
 <head>
@@ -39,7 +41,9 @@
           </li>
           <li>
             <label for='state'>State</label>
-            <input type='text' id='state' name='state' autocomplete='address-level1' />
+            <select form='sign-up' name='state' id='state'>
+              <%= StateFormHandler.generateOptions() %>
+            </select>
           </li>
         </ol>
         <input id='submitForm' type='submit' value='Go!'/>

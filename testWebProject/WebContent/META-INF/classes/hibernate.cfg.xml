@@ -18,6 +18,7 @@
 		<property name="show_sql">true</property>
         <property name="format_sql">true</property>
 		
-		<mapping class="lab2.State.State" />
+		<mapping class="testWebProject.Comment.Comment" />
+		<mapping class="testWebProject.User.User" />
 	</session-factory>
 </hibernate-configuration>
