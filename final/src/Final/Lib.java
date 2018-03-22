@@ -21,6 +21,17 @@ import com.amdelamar.jhash.exception.InvalidHashException;
 
 public class Lib
 {
+    
+    public static String flatten(String[] s)
+    {
+        String ret = "";
+        for(String str : s)
+        {
+            ret += str;
+        }
+        return ret;
+    }
+    
     /***
      * @return A date that holds the value of when it was created.
      */

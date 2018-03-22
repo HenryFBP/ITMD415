@@ -12,9 +12,7 @@
 
     Customer c = (Customer) o;
 
-    String username = c.getName();
-
-    String confirm = "I understand that this will permanently delete my account, " + Lib.wrap(username, "a") + ".";
+    String confirm = CustomerControllerServlet.generateDeletionWarning(c);
 %>
 <!DOCTYPE html>
 <html>

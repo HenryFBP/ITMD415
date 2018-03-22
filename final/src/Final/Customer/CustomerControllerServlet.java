@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Final.Lib;
+
 /**
  * Servlet implementation class CustomerControllerServlet
  */
@@ -17,6 +19,16 @@ public class CustomerControllerServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
 
+ 
+    public static String generateDeletionWarning(Customer c)
+    {
+        String username = c.getName();
+
+        String confirm = "I understand that this will permanently delete my account, " + Lib.wrap(username, "a") + ".";
+        
+        return confirm;
+    }
+    
     /***
      * Given an HttpSession, generate a status that tells the user whether or not
      * they're logged in.
@@ -82,6 +94,7 @@ public class CustomerControllerServlet extends HttpServlet
     {
         super();
     }
+    
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
