@@ -8,6 +8,7 @@
 %>
 <ul>
 	<li><a href="/final">Home</a></li>
+    <li><a href="/final/listing/">Listing</a></li>
 	<%
 	    if(!loggedIn) //not logged in, let them!
 	    {
