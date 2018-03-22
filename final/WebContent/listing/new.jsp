@@ -14,10 +14,18 @@
     <a><%=CustomerControllerServlet.generateStatus(session)%></a>
   </aside>
   <header>
-    <h1>My Listings<a href="new.jsp">(new)</a></h1>
+    <h1>New Listing</h1>
   </header>
   <section>
-    <p>Generated list of listings</p>
+    <form id="signup" action="new.jsp" method="POST">
+      <ol>
+        <li>
+          <label for="name">Product Name</label>
+          <input type="text" id="username" name="username" />
+        </li>
+      </ol>
+      <input id='submit' type='submit' value='Create Item'/>    
+    </form>
   </section>
 </body>
 </html>
