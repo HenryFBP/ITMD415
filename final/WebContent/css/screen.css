@@ -348,6 +348,15 @@ nav ul li a {
   margin: 0;
 }
 
+main#listings ul {
+	display: grid;
+}
+
+main#listings > ul > li {
+	border: 3px solid pink;
+}
+
+
 input.invalid {
   outline-color: red;
   outline-style: solid;
