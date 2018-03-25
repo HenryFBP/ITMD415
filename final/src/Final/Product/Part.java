@@ -19,6 +19,9 @@ public class Part
     @Column(name = "model")
     private String model;
     
+    @Column(name = "type")
+    private String type;
+    
     @Column(name = "condition")
     private String condition;
 
@@ -60,6 +63,15 @@ public class Part
     private void setCondition(String condition)
     {
         this.condition = condition;
+    }
+    private String getType()
+    {
+        return type;
+    }
+
+    private void setType(String type)
+    {
+        this.type = type;
     }
 
 
