@@ -7,12 +7,14 @@ CREATE TABLE IF NOT EXISTS product (
     ptid        INTEGER         NOT NULL,
     ownercid    INTEGER         NOT NULL,
     name        VARCHAR(64)     NOT NULL,
-    price       INTEGER         NOT NULL,
+	carid       INTEGER         ,
+	partid      INTEGER         ,
     
     PRIMARY KEY    (pid),
+    FOREIGN KEY    (ownercid)   REFERENCES customer(cid),
     FOREIGN KEY    (ptid)       REFERENCES producttype(ptid),
-    FOREIGN KEY    (ownercid)   REFERENCES customer(cid)
-    
+    FOREIGN KEY    (carid)      REFERENCES car(carid),    
+    FOREIGN KEY    (partid)     REFERENCES part(partid)    
 );
 
 DESCRIBE product;
