@@ -1,5 +1,6 @@
 package Final.ProductType;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,26 +10,28 @@ import javax.persistence.Table;
 public class ProductType
 {
     @Id
+    @Column(name = "ptid")
     private int ptid;
 
+    @Column(name = "name")    
     private String name;
 
-    public Integer getPtid()
+    private Integer getPtid()
     {
         return ptid;
     }
 
-    public void setPtid(int ptid)
+    private void setPtid(int ptid)
     {
         this.ptid = ptid;
     }
 
-    public String getName()
+    private String getName()
     {
         return name;
     }
 
-    public void setName(String name)
+    private void setName(String name)
     {
         this.name = name;
     }

@@ -3,6 +3,9 @@ package Final.Product;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import Final.Customer.Customer;
@@ -19,50 +22,94 @@ public class Product
     /***
      * The ProductType of this Product.
      */
+    @ManyToOne
+    @JoinColumn(name = "ptid")
     private ProductType ptype;
 
     /***
      * The Customer who owns this Product.
      */
+    @ManyToOne
+    @JoinColumn(name = "ownercid")
     private Customer owner;
+
+    /***
+     * The Car associated with this Product, if it exists.
+     */
+    @OneToOne
+    @JoinColumn(name = "carid")
+    private Car car;
+
+    /***
+     * The Part associated with this Product, if it exists.
+     */
+    @OneToOne
+    @JoinColumn(name = "partid")
+    private Part part;
 
     /***
      * The name of this Product.
      */
+    @Column(name = "name")
     private String name;
 
-    /***
-     * How much this Product costs.
-     */
-    private Double price;
-
-    public Integer getPid()
+    private Integer getPid()
     {
         return pid;
     }
 
-    public void setPid(int pid)
+    private void setPid(int pid)
     {
         this.pid = pid;
     }
 
-    public String getName()
+    private String getName()
     {
         return name;
     }
 
-    public void setName(String name)
+    private void setName(String name)
     {
         this.name = name;
     }
 
-    public Double getPrice()
+    private ProductType getPtype()
     {
-        return price;
+        return ptype;
     }
 
-    public void setPrice(Double price)
+    private void setPtype(ProductType ptype)
     {
-        this.price = price;
+        this.ptype = ptype;
+    }
+
+    private Customer getOwner()
+    {
+        return owner;
+    }
+
+    private void setOwner(Customer owner)
+    {
+        this.owner = owner;
+    }
+
+    private Car getCar()
+    {
+        return car;
+    }
+
+    private void setCar(Car car)
+    {
+        this.car = car;
+    }
+
+    private Part getPart()
+    {
+        return part;
+    }
+
+    private void setPart(Part part)
+    {
+        this.part = part;
     }
 }

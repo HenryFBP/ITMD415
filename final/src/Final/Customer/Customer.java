@@ -18,9 +18,14 @@ public class Customer
     @Id
     @Column(name = "cid")
     private int cid;
-
+    
+    @Column(name = "username")
     private String username;
+    
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "passhash")
     private String passhash;
 
     public Customer()
