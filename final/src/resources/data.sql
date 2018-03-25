@@ -8,6 +8,8 @@ INSERT INTO customer VALUES (1, "HenryFBP", "HenryFBP@gmail.com", "pbkdf2sha1:64
 INSERT INTO customer VALUES (2, "dchase", "dchase3@hawk.iit.edu", "pbkdf2sha1:64000:18:24:n:hh82TcSHudimd8whGG3DdJ7wegN6PcqH:CkoMEIu82FjAm35I1zmWG0q7"); -- youmayguess
 INSERT INTO customer VALUES (3, "AdmiralAckbar", "Ackbar@gmail.com", "pbkdf2sha1:64000:18:24:n:Hy4GIW3CjqvlL3yW35aeQ3BbTZgvL6ZE:pe8rQHdVr43DiXNWzhP1Lkbw"); -- itsatrap
 INSERT INTO customer VALUES (4, "God", "BigG@heaven.gov", "pbkdf2sha1:64000:18:24:n:jb5TMaeqwhLi7J66jBDvs3DuWQ2Wd1+T:HDA6gyEwFDJGo+8G6lKI97je"); -- trueadmin
+INSERT INTO customer VALUES (5, "vader", "vader@death.star", "pbkdf2sha1:64000:18:24:n:8/4CUieFhpGhZBKGl7CIYH5pcw5AnoY1:K4rTownyEoyHtUq2/q2Y0DYt"); -- vaderrules
+INSERT INTO customer VALUES (6, "a", "a@a.a", "pbkdf2sha1:64000:18:24:n:edRQbyWWL/fvt2f3Rq3kQSKFlbv+nqqn:tksEGPJN0jNnSNCYvCmlPL7Q"); -- a
 
 INSERT INTO car VALUES (1, "Ford", "Fiesta", 10000, 1997); -- henry's ford fiesta
 INSERT INTO car VALUES (2, "Lexus", "CT", 20000, 1994); -- dennis' lexus CT
