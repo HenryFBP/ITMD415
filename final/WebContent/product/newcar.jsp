@@ -14,18 +14,22 @@
     <a><%=CustomerControllerServlet.generateStatus(session)%></a>
   </aside>
   <header>
-    <h1>New Listing</h1>
+    <h1>New Car</h1>
   </header>
-  <section>
-    <form id="signup" action="new.jsp" method="POST">
+      <form id="new-car" action="newcarpost.jsp" method="POST">
       <ol>
         <li>
-          <label for="name">Product Name</label>
-          <input type="text" id="username" name="username" />
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" />
+        </li>
+        <li>
+          <label for="model">Model</label>
+          <input type="text" id="model" name="model" />            
         </li>
       </ol>
-      <input id='submit' type='submit' value='Create Item'/>    
+      <input id='submit' type='submit' value='Create car'/>    
+    	
     </form>
-  </section>
+  
 </body>
 </html>

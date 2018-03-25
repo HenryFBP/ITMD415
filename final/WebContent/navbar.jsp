@@ -17,6 +17,7 @@
 	    }
 	    else
 	    {
+	        out.write(Lib.wrapAttr("My Products", "li a", "href", "/final/product"));
 	        out.write(Lib.wrapAttr("Logout","li a","href","/final/logout")); //they are logged in, let them leave!
 	        out.write(Lib.wrapAttr("Delete account", "li a", "href", "/final/delete-account"));
 	    }

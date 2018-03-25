@@ -51,8 +51,7 @@
           <input type="text" id="confirm" name="confirm"/>
         </li>
       </ol>
-      <input id='submit' type='submit' value='Delete my account'/>    
-    	
+      <input id='submit' type='submit' value='Delete my account'/>
     </form>
   </section>
 </body>
