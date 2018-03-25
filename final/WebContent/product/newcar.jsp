@@ -24,7 +24,15 @@
         </li>
         <li>
           <label for="model">Model</label>
-          <input type="text" id="model" name="model" />            
+          <input type="text" id="model" name="model" />
+        </li>
+        <li>
+          <label for="miles">Miles</label>
+          <input type="number" id="miles" name="miles" />
+        </li>
+        <li>
+          <label for="year">Year</label>
+          <input type="date" id="year" name="year" />
         </li>
       </ol>
       <input id='submit' type='submit' value='Create car'/>    
