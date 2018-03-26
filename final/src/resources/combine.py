@@ -8,8 +8,8 @@ files = [
 	'forum.sql',
 ]
 
-outname = 'out.sql'
-dropname = 'drop.sql'
+outname = '_out.sql'
+dropname = '_drop.sql'
 
 lines = []
 droplines = []
