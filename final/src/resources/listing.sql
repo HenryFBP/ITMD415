@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS listing (
     
     PRIMARY KEY (lid),
     FOREIGN KEY (pid)           REFERENCES product(pid),
-    FOREIGN KEY (buyercid)      REFERENCES customer(cid),
+    FOREIGN KEY (buyercid)      REFERENCES customer(cid)
     
 );
 
