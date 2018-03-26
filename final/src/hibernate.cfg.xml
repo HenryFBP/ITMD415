@@ -19,5 +19,6 @@
   <mapping class="Final.Forum.Forum" resource="Final/Forum/Forum.hbm.xml"/>
   <mapping class="Final.Product.Part.Part" resource="Final/Product/Part/Part.hbm.xml"/>
   <mapping class="Final.Product.Car.Car" resource="Final/Product/Car/Car.hbm.xml"/>
+  <mapping class="Final.Listing.Listing" resource="Final/Listing/Listing.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>
