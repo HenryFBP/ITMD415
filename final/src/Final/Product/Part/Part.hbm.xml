@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 2, 2018 11:01:55 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+ <class entity-name="Part" name="Final.Product.Part" table="part">
+  <id name="pid" type="int">
+   <column name="partid" not-null="true" sql-type="INTEGER" unique="true"/>
+   <generator class="increment"/>
+  </id>
+  <property name="make"/>
+  <property name="model"/>
+  <property name="type"/>
+  <property name="cond"/>
+ </class>
+</hibernate-mapping>

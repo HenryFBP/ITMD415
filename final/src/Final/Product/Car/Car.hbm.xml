@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 2, 2018 11:01:55 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+ <class entity-name="Car" name="Final.Product.Car.Car" table="car">
+  <id name="carid" type="int">
+   <column name="PID"/>
+   <generator class="assigned"/>
+  </id>
+  <property column="make" name="make" type="string">
+   <column name="make" sql-type="VARCHAR"/>
+  </property>
+  <property name="model">
+   <column name="model" sql-type="VARCHAR"/>
+  </property>
+  <property name="miles">
+   <column name="miles"/>
+  </property>
+  <property name="year">
+   <column name="year"/>
+  </property>
+ </class>
+</hibernate-mapping>

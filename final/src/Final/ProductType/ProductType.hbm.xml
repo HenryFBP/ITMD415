@@ -3,13 +3,16 @@
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 2, 2018 11:01:55 AM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
- <class name="Final.ProductType.ProductType" table="PRODUCTTYPE">
+ <class entity-name="ProductType" name="Final.ProductType.ProductType" table="PRODUCTTYPE">
   <id name="ptid" type="int">
    <column name="PTID" unique="true"/>
    <generator class="assigned"/>
   </id>
+  <property column="ptid" name="ptid" type="integer">
+   <column name="ptid" not-null="true" sql-type="INTEGER" unique="true"/>
+  </property>
   <property generated="never" lazy="false" name="name" type="java.lang.String">
-   <column name="NAME"/>
+   <column name="NAME" sql-type="VARCHAR"/>
   </property>
  </class>
 </hibernate-mapping>

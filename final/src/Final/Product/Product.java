@@ -54,7 +54,7 @@ public class Product
      */
     @Column(name = "name")
     private String name;
-    
+
     public Product(ProductType ptype, Customer owner, Car car, Part part, String name)
     {
         this.ptype = ptype;
@@ -123,7 +123,7 @@ public class Product
     {
         this.part = part;
     }
-    
+
     /***
      * @return This Product's Car/Part's Class.
      */
@@ -131,7 +131,7 @@ public class Product
     {
         return this.getObject().getClass();
     }
-    
+
     /***
      * @return The Car or Part associated with this Product.
      */
@@ -145,7 +145,7 @@ public class Product
         {
             return this.getPart();
         }
-        
+
         return null;
     }
 }

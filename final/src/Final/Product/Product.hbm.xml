@@ -5,12 +5,23 @@
 <hibernate-mapping>
  <class entity-name="Product" name="Final.Product.Product" table="product">
   <id name="pid" type="int">
-   <column name="PID"/>
-   <generator class="assigned"/>
+   <column name="PID" not-null="true" sql-type="INTEGER" unique="true"/>
+   <generator class="increment"/>
   </id>
-  <many-to-one access="field" class="Final.ProductType.ProductType"
-   fetch="join" name="ptype">
-   <column name="PTYPE"/>
+  <many-to-one class="Final.ProductType.ProductType" column="ptid" name="ptid">
+   <column name="ptid" not-null="true" sql-type="INTEGER"/>
   </many-to-one>
+  <many-to-one class="Final.Customer.Customer" column="ownerid" name="owner">
+   <column name="ownercid" not-null="true"/>
+  </many-to-one>
+  <many-to-one class="Final.Product.Car.Car" column="carid" name="car">
+   <column name="carid" not-null="false" sql-type="INTEGER"/>
+  </many-to-one>
+  <many-to-one class="Final.Product.Part.Part" name="part">
+   <column name="partid" not-null="false" sql-type="INTEGER"/>
+  </many-to-one>
+  <property column="name" name="name" type="string">
+   <column name="name"/>
+  </property>
  </class>
 </hibernate-mapping>

@@ -159,6 +159,15 @@ public class ProductTypeHandler
         ProductTypeHandler manager = new ProductTypeHandler();
 
         manager.setup();
+        
+        ArrayList<ProductType> productTypes = (ArrayList<ProductType>) manager.readAll();
+        
+        System.out.println("Product types:");
+
+        for(ProductType pt : productTypes)
+        {
+            System.out.println(pt.toString());
+        }
 
         try
         {
