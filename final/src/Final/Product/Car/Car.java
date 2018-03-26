@@ -1,4 +1,4 @@
-package Final.Product;
+package Final.Product.Car;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,33 +6,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Part")
-public class Part
+@Table(name = "Car")
+public class Car
 {
     @Id
-    @Column(name = "partid")
-    private int partid;
+    @Column(name = "cid")
+    private int cid;
 
     @Column(name = "make")
     private String make;
 
     @Column(name = "model")
     private String model;
-    
-    @Column(name = "type")
-    private String type;
-    
-    @Column(name = "condition")
-    private String condition;
 
-    private Integer getPartid()
+    @Column(name = "miles")
+    private long miles;
+
+    @Column(name = "year")
+    private int year;
+
+    private Integer getCid()
     {
-        return partid;
+        return cid;
     }
 
-    private void setPartid(int partid)
+    private void setCid(int cid)
     {
-        this.partid = partid;
+        this.cid = cid;
     }
 
     private String getMake()
@@ -55,24 +55,24 @@ public class Part
         this.model = model;
     }
 
-    private String getCondition()
+    private long getMiles()
     {
-        return condition;
+        return miles;
     }
 
-    private void setCondition(String condition)
+    private void setMiles(long miles)
     {
-        this.condition = condition;
-    }
-    private String getType()
-    {
-        return type;
+        this.miles = miles;
     }
 
-    private void setType(String type)
+    private int getYear()
     {
-        this.type = type;
+        return year;
     }
 
+    private void setYear(int year)
+    {
+        this.year = year;
+    }
 
 }
