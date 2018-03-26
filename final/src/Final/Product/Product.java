@@ -9,6 +9,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import Final.Customer.Customer;
+import Final.Product.Car.Car;
+import Final.Product.Part.Part;
 import Final.ProductType.ProductType;
 
 @Entity
@@ -52,6 +54,15 @@ public class Product
      */
     @Column(name = "name")
     private String name;
+    
+    public Product(ProductType ptype, Customer owner, Car car, Part part, String name)
+    {
+        this.ptype = ptype;
+        this.owner = owner;
+        this.car = car;
+        this.part = part;
+        this.name = name;
+    }
 
     private Integer getPid()
     {
@@ -111,5 +122,30 @@ public class Product
     private void setPart(Part part)
     {
         this.part = part;
+    }
+    
+    /***
+     * @return This Product's Car/Part's Class.
+     */
+    public Class getObjectClass()
+    {
+        return this.getObject().getClass();
+    }
+    
+    /***
+     * @return The Car or Part associated with this Product.
+     */
+    public Object getObject()
+    {
+        if(this.getCar() != null)
+        {
+            return this.getCar();
+        }
+        if(this.getPart() != null)
+        {
+            return this.getPart();
+        }
+        
+        return null;
     }
 }

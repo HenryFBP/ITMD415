@@ -60,7 +60,7 @@ public class CustomerSignupServlet
         }
 
         System.out.printf("Username: %s\n", username);
-        System.out.printf("Password: %s\n", password);
+        // System.out.printf("Password: %s\n", password);
         System.out.printf("Email: %s\n", email);
 
         Customer c = new Customer(username, email, password); // customer from their data

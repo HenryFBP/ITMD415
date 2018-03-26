@@ -1,6 +1,9 @@
 <%@page import="Final.*"%>
 <%@page import="Final.Customer.*"%>
 <%@page import="Final.Customer.Exceptions.*"%>
+<%
+    boolean loggedIn = CustomerControllerServlet.isLoggedIn(session);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +17,19 @@
     <a><%=CustomerControllerServlet.generateStatus(session)%></a>
   </aside>
   <header>
-    <h1>My Listings<a href="new.jsp">(new)</a></h1>
+    <h1>
+
+      <%
+          if(loggedIn)
+          {
+              out.write("My Listings<a href=\"new.jsp\">(new)</a></h1>");
+          }
+          else
+          {
+              out.write("You must be logged in to view a list of your Listings.");
+          }
+      %>
+    
   </header>
   <section>
     <p>Generated list of listings</p>

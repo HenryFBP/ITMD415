@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS part (
     partid      INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
     make        VARCHAR(64)     ,
     model       VARCHAR(64)     ,
+    type        VARCHAR(64)     ,
     condition   VARCHAR(64)     ,
     
     PRIMARY KEY (partid)

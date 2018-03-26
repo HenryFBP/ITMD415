@@ -14,14 +14,33 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.amdelamar.jhash.Hash;
 import com.amdelamar.jhash.exception.InvalidHashException;
 
+import Final.Customer.Customer;
+
 public class Lib
 {
+    /***
+     * Given an HttpServletRequest, return the session's logged-in customer.
+     */
+    public static Customer getCustomer(HttpServletRequest hsr)
+    {
+        return getCustomer(hsr.getSession());
+    }
     
+    /***
+     * Given an HttpSession, return the session's logged-in customer.
+     */
+    public static Customer getCustomer(HttpSession hs)
+    {
+        return (Customer) hs.getAttribute("customer");
+    }
+
     public static String flatten(String[] s)
     {
         String ret = "";
@@ -31,7 +50,7 @@ public class Lib
         }
         return ret;
     }
-    
+
     /***
      * @return A date that holds the value of when it was created.
      */
@@ -342,7 +361,7 @@ public class Lib
             System.out.println(verifyHash(pass, hash).toString());
         }
     }
-    
+
     public static HttpServletResponse sendToLogin(HttpServletResponse r) throws IOException
     {
         r.sendRedirect("/final/login");
