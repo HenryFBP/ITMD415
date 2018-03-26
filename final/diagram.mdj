@@ -39011,7 +39011,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFiUKK+Yk/S5Hw="
 							},
-							"name": "condition",
+							"name": "cond",
 							"length": 0,
 							"primaryKey": false,
 							"foreignKey": false,

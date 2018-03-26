@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS part (
     make        VARCHAR(64)     ,
     model       VARCHAR(64)     ,
     type        VARCHAR(64)     ,
-    condition   VARCHAR(64)     ,
+    cond        VARCHAR(64)     ,
     
     PRIMARY KEY (partid)
 );

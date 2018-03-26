@@ -22,7 +22,7 @@ public class Part
     @Column(name = "type")
     private String type;
     
-    @Column(name = "condition")
+    @Column(name = "cond")
     private String condition;
 
     private Integer getPartid()

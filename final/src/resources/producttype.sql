@@ -10,8 +10,3 @@ CREATE TABLE IF NOT EXISTS producttype (
 );
 
 DESCRIBE producttype;
-
-INSERT INTO producttype VALUES (1, 'car');
-INSERT INTO producttype VALUES (2, 'part');
-
-SELECT * FROM producttype;
