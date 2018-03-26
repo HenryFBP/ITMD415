@@ -1,6 +1,7 @@
 *.~ml
 ~$*.docx
 *.class
+_*.sql
 
 .classpath
 .project
