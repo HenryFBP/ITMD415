@@ -1,22 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 26, 2018 4:27:30 PM by Hibernate Tools 3.5.0.Final -->
+<!-- Generated Mar 26, 2018, 6:19:53 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="Final.Listing.Listing" table="LISTING">
         <id name="lid" type="int" access="field">
             <column name="LID" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="product" class="Final.Product.Product" access="field" fetch="join">
-            <column name="PRODUCT" />
-        </many-to-one>
-        <many-to-one name="seller" class="Final.Customer.Customer" fetch="join">
-            <column name="SELLER" />
-        </many-to-one>
-        <many-to-one name="buyer" class="Final.Customer.Customer" fetch="join">
-            <column name="BUYER" />
-        </many-to-one>
-        <one-to-one name="forum" class="Final.Forum.Forum" access="field"></one-to-one>
+        <one-to-one name="product" class="Final.Product.Product" access="field"></one-to-one>
+        <one-to-one name="buyer" class="Final.Customer.Customer"></one-to-one>
     </class>
 </hibernate-mapping>

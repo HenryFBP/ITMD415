@@ -2,10 +2,11 @@ package Final.Listing;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import Final.Customer.Customer;
-import Final.Forum.Forum;
 import Final.Product.Product;
 
 /***
@@ -18,50 +19,34 @@ public class Listing
 
 {
 
-	/***
-	 * The listing ID.
-	 */
-	@Id
-	private int lid;
+    /***
+     * The listing ID.
+     */
+    @Id
+    private int lid;
 
-	/***
-	 * The Product being sold under this Listing.
-	 */
-	private Product product;
+    /***
+     * The Product being sold under this Listing.
+     */
+    @OneToOne
+    @JoinColumn(name = "pid")
+    private Product product;
 
-	/***
-	 * The Customer selling this Product.
-	 */
-	private Customer seller;
+    /***
+     * The Customer buying this Product. Can be Null if it has not been purchased.
+     */
+    @OneToOne
+    @JoinColumn(name = "buyercid", unique = false, nullable = true)
+    private Customer buyer;
 
-	/***
-	 * The Customer buying this Product.
-	 */
-	private Customer buyer;
-	
-	/***
-	 * The Forum thread(s) associated with this Listing.
-	 */
-	private Forum forum;
-	
-	public Customer getSeller()
-	{
-		return seller;
-	}
+    private Customer getBuyer()
+    {
+        return buyer;
+    }
 
-	public void setSeller(Customer seller)
-	{
-		this.seller = seller;
-	}
-
-	public Customer getBuyer()
-	{
-		return buyer;
-	}
-
-	public void setBuyer(Customer buyer)
-	{
-		this.buyer = buyer;
-	}
+    private void setBuyer(Customer buyer)
+    {
+        this.buyer = buyer;
+    }
 
 }

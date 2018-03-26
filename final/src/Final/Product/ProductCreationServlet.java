@@ -36,7 +36,7 @@ public class ProductCreationServlet
 
         Customer customer = Lib.getCustomer(r); // the session's customer
 
-        ArrayList<String> problems = new ArrayList<>();
+        ArrayList<String> problems = new ArrayList<String>();
 
         if(type == null || type.length() == 0)
         {
