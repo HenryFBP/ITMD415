@@ -22,14 +22,14 @@
       <%
           if(loggedIn)
           {
-              out.write("My Listings<a href=\"new.jsp\">(new)</a></h1>");
+              out.write("My Listings<a href=\"new.jsp\">(new)</a>");
           }
           else
           {
               out.write("You must be logged in to view a list of your Listings.");
           }
       %>
-    
+    </h1>
   </header>
   <section>
     <p>Generated list of listings</p>
