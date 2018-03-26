@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -89,6 +90,23 @@ public class ProductTypeHandler
         s.close();
 
         return pt;
+    }
+
+    /***
+     * @return A ProductType by name.
+     */
+    public ProductType read(String ptname)
+    {
+        Session s = sessionFactory.openSession();
+
+        Query q = s.createQuery("from ProductType where name = :n");
+
+        q.setString("n", ptname);
+
+        ProductType pt = (ProductType) q.uniqueResult();
+
+        return pt;
+
     }
 
     /***

@@ -54,6 +54,15 @@ public class Product
      */
     @Column(name = "name")
     private String name;
+    
+    public Product(ProductType ptype, Customer owner, Car car, Part part, String name)
+    {
+        this.ptype = ptype;
+        this.owner = owner;
+        this.car = car;
+        this.part = part;
+        this.name = name;
+    }
 
     private Integer getPid()
     {

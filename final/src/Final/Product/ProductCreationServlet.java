@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import Final.Lib;
+import Final.Customer.Customer;
 import Final.Customer.Exceptions.FormNotFilledOutException;
 import Final.Product.Car.Car;
 import Final.Product.Car.CarCreationServlet;
@@ -11,6 +13,8 @@ import Final.Product.Car.CarHandler;
 import Final.Product.Part.Part;
 import Final.Product.Part.PartCreationServlet;
 import Final.Product.Part.PartHandler;
+import Final.ProductType.ProductType;
+import Final.ProductType.ProductTypeHandler;
 
 public class ProductCreationServlet
 {
@@ -29,6 +33,8 @@ public class ProductCreationServlet
     {
         String type = r.getParameter("producttype"); // hidden parameter to differentiate between Car and Part
         String name = r.getParameter("name"); // the name, part of a Product, not a Car or Part.
+
+        Customer customer = Lib.getCustomer(r); // the session's customer
 
         ArrayList<String> problems = new ArrayList<>();
 
@@ -66,6 +72,13 @@ public class ProductCreationServlet
         {
             throw new FormNotFilledOutException("type");
         }
+
+        ProductType pt = new ProductTypeHandler().read(type); // get by name from database
+
+        Product product = new Product(pt, customer, car, part, name);
+        
+        System.out.println("Freshly created product:");
+        System.out.println(product.toString());
 
         return null;
     }
