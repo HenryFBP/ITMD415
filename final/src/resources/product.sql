@@ -6,9 +6,9 @@ CREATE TABLE IF NOT EXISTS product (
     pid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
     ptid        INTEGER         NOT NULL,
     ownercid    INTEGER         NOT NULL,
-    name        VARCHAR(64)     NOT NULL,
 	carid       INTEGER         ,
 	partid      INTEGER         ,
+    name        VARCHAR(64)     NOT NULL,
     
     PRIMARY KEY    (pid),
     FOREIGN KEY    (ownercid)   REFERENCES customer(cid),
