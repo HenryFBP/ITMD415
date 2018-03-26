@@ -1,8 +1,6 @@
-package Final.Product;
+package Final.Product.Part;
 
 import javax.servlet.http.HttpServletRequest;
-
-import Final.Product.Part.Part;
 
 public class PartCreationServlet
 {
