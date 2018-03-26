@@ -20,11 +20,19 @@ public class Car
     private String model;
 
     @Column(name = "miles")
-    private long miles;
+    private int miles;
 
     @Column(name = "year")
     private int year;
-
+    
+    public Car(String make, String model, int miles, int year)
+    {
+        this.make = make;
+        this.model = model;
+        this.miles = miles;
+        this.year = year;
+    }
+    
     private Integer getCid()
     {
         return cid;
@@ -60,7 +68,7 @@ public class Car
         return miles;
     }
 
-    private void setMiles(long miles)
+    private void setMiles(int miles)
     {
         this.miles = miles;
     }
