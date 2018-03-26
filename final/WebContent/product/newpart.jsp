@@ -14,10 +14,10 @@
     <a><%=CustomerControllerServlet.generateStatus(session)%></a>
   </aside>
   <header>
-    <h1>New Car</h1>
+    <h1>New Part</h1>
   </header>
-      <form id="new-car" action="newobjectpost.jsp" method="POST">
-      <input type="hidden" id="producttype" name="producttype" value="car"/>
+      <form id="new-part" action="newobjectpost.jsp" method="POST">
+      <input type="hidden" id="producttype" name="producttype" value="part"/>
       <ol>
         <li>
           <label for="name">Name</label>
@@ -32,15 +32,15 @@
           <input type="text" id="model" name="model" />
         </li>        
         <li>
-          <label for="miles">Miles</label>
-          <input type="number" id="miles" name="miles" />
+          <label for="type">Type</label>
+          <input type="text" id="type" name="type" />
         </li>
         <li>
-          <label for="year">Year</label>
-          <input type="date" id="year" name="year" />
+          <label for="condition">Condition</label>
+          <input type="text" id="condition" name="condition" />
         </li>
       </ol>
-      <input id='submit' type='submit' value='Create car'/>    
+      <input id='submit' type='submit' value='Create part'/>    
     	
     </form>
   
