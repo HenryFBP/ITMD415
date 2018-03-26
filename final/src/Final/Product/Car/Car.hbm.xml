@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 2, 2018 11:01:55 AM by Hibernate Tools 3.5.0.Final -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 26, 2018 4:27:30 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
- <class entity-name="Car" name="Final.Product.Car.Car" table="car">
-  <id name="carid" type="int">
-   <column name="PID"/>
-   <generator class="assigned"/>
-  </id>
-  <property column="make" name="make" type="string">
-   <column name="make" sql-type="VARCHAR"/>
-  </property>
-  <property name="model">
-   <column name="model" sql-type="VARCHAR"/>
-  </property>
-  <property name="miles">
-   <column name="miles"/>
-  </property>
-  <property name="year">
-   <column name="year"/>
-  </property>
- </class>
+    <class name="Final.Product.Car.Car" table="CAR">
+        <id name="cid" type="int">
+            <column name="CID" />
+            <generator class="assigned" />
+        </id>
+        <property name="make" type="java.lang.String">
+            <column name="MAKE" />
+        </property>
+        <property name="model" type="java.lang.String">
+            <column name="MODEL" />
+        </property>
+        <property name="miles" type="int">
+            <column name="MILES" />
+        </property>
+        <property name="year" type="int">
+            <column name="YEAR" />
+        </property>
+    </class>
 </hibernate-mapping>

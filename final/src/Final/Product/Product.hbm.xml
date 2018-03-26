@@ -1,27 +1,23 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 2, 2018 11:01:55 AM by Hibernate Tools 3.5.0.Final -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 26, 2018 4:27:30 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
- <class entity-name="Product" name="Final.Product.Product" table="product">
-  <id name="pid" type="int">
-   <column name="PID" not-null="true" sql-type="INTEGER" unique="true"/>
-   <generator class="increment"/>
-  </id>
-  <many-to-one class="Final.ProductType.ProductType" column="ptid" name="ptid">
-   <column name="ptid" not-null="true" sql-type="INTEGER"/>
-  </many-to-one>
-  <many-to-one class="Final.Customer.Customer" column="ownerid" name="owner">
-   <column name="ownercid" not-null="true"/>
-  </many-to-one>
-  <many-to-one class="Final.Product.Car.Car" column="carid" name="car">
-   <column name="carid" not-null="false" sql-type="INTEGER"/>
-  </many-to-one>
-  <many-to-one class="Final.Product.Part.Part" name="part">
-   <column name="partid" not-null="false" sql-type="INTEGER"/>
-  </many-to-one>
-  <property column="name" name="name" type="string">
-   <column name="name"/>
-  </property>
- </class>
+    <class name="Final.Product.Product" table="PRODUCT">
+        <id name="pid" type="int">
+            <column name="PID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="ptype" class="Final.ProductType.ProductType" fetch="join">
+            <column name="PTYPE" />
+        </many-to-one>
+        <many-to-one name="owner" class="Final.Customer.Customer" fetch="join">
+            <column name="OWNER" />
+        </many-to-one>
+        <one-to-one name="car" class="Final.Product.Car.Car"></one-to-one>
+        <one-to-one name="part" class="Final.Product.Part.Part"></one-to-one>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+    </class>
 </hibernate-mapping>
