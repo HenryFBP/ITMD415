@@ -26,25 +26,32 @@ import Final.Customer.Exceptions.CustomerNotLoggedInException;
 
 public class Lib
 {
+    public static String websafe(String s)
+    {
+        return s.replace("<", "&lt;").replace(">", "&gt;");
+    }
+
     /***
      * Given an HttpServletRequest, return the session's logged-in customer.
      * 
      * If they aren't logged in, throw a CustomerNotLoggedInException.
-     * @throws CustomerNotLoggedInException 
+     * 
+     * @throws CustomerNotLoggedInException
      */
     public static Customer getCustomer(HttpServletRequest hsr) throws CustomerNotLoggedInException
     {
         return getCustomer(hsr.getSession());
     }
-    
+
     /***
      * Given an HttpSession, return the session's logged-in customer.
-     * @throws CustomerNotLoggedInException 
+     * 
+     * @throws CustomerNotLoggedInException
      */
     public static Customer getCustomer(HttpSession hs) throws CustomerNotLoggedInException
     {
         Customer c = (Customer) hs.getAttribute("customer");
-        if(c==null)
+        if(c == null)
         {
             throw new CustomerNotLoggedInException();
         }

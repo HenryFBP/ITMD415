@@ -40,7 +40,7 @@
 			    {
 			        String s = "";
 
-			        s += p.toString();
+			        s += Lib.websafe(p.toString());
 
 			        s = Lib.wrap(s, "li");
 			        out.write(s);
