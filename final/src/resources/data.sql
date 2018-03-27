@@ -15,7 +15,7 @@ INSERT INTO car VALUES (1, "Ford", "Fiesta", 10000, 1997); -- henry's ford fiest
 INSERT INTO car VALUES (2, "Lexus", "CT", 20000, 1994); -- dennis' lexus CT
 INSERT INTO car VALUES (3, "Godco", "Godmobile", 90000, 0); -- god's car
 INSERT INTO car VALUES (4, "Resistance", "Tie Fighter", 900000, 2020); -- ackbar's tie fighter
-INSERT INTO car VALUES (5, "Generico", "Genericar", 100, 2000) --a's generic car
+INSERT INTO car VALUES (5, "Generico", "Genericar", 100, 2000); -- a's generic car
 
 INSERT INTO part VALUES (1, "Ford", "Fiesta", "Tire", "New"); -- henry's ford fiesta tire
 INSERT INTO part VALUES (2, "Ford", "Fiesta", "Engine", "Good"); -- henry's ford fiesta engine
