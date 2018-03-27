@@ -7,7 +7,7 @@
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/itmd415</property>
   <property name="hibernate.connection.username">root</property>
   <property name="hibernate.connection.password"/>
-  <property name="hibernate.connection.pool_size">1</property>
+  <property name="hibernate.connection.pool_size">20</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
   <property name="current_session_context_class">thread</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

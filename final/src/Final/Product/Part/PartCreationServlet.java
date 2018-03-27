@@ -44,7 +44,14 @@ public class PartCreationServlet
         }
 
         Part part = new Part(make, model, type, condition);
-
+        
+        PartHandler partHandler = new PartHandler();
+        
+        System.out.println("About to make this part:");
+        System.out.println(part.toString());
+        
+        part.setPartid(partHandler.create(part)); //set part id to saved part
+        
         return part;
     }
 

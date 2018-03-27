@@ -5,9 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import Final.Product.GenericProduct;
+
 @Entity
 @Table(name = "Car")
-public class Car
+public class Car implements GenericProduct
 {
     @Id
     @Column(name = "cid")
@@ -33,9 +35,14 @@ public class Car
         this.year = year;
     }
     
+    public Integer getId()
+    {
+        return this.getCid();
+    }
+
     private Integer getCid()
     {
-        return cid;
+        return this.cid;
     }
 
     private void setCid(int cid)

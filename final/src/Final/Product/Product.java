@@ -2,6 +2,8 @@ package Final.Product;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +21,7 @@ public class Product
 {
     @Id
     @Column(name = "pid")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int pid;
 
     /***
@@ -39,14 +42,14 @@ public class Product
      * The Car associated with this Product, if it exists.
      */
     @OneToOne
-    @JoinColumn(name = "carid")
+    @JoinColumn(name = "carid", nullable = true)
     private Car car;
 
     /***
      * The Part associated with this Product, if it exists.
      */
     @OneToOne
-    @JoinColumn(name = "partid")
+    @JoinColumn(name = "partid", nullable = true)
     private Part part;
 
     /***
@@ -64,62 +67,62 @@ public class Product
         this.name = name;
     }
 
-    private Integer getPid()
+    protected Integer getPid()
     {
         return pid;
     }
 
-    private void setPid(int pid)
+    protected void setPid(int pid)
     {
         this.pid = pid;
     }
 
-    private String getName()
+    protected String getName()
     {
         return name;
     }
 
-    private void setName(String name)
+    protected void setName(String name)
     {
         this.name = name;
     }
 
-    private ProductType getPtype()
+    protected ProductType getPtype()
     {
         return ptype;
     }
 
-    private void setPtype(ProductType ptype)
+    protected void setPtype(ProductType ptype)
     {
         this.ptype = ptype;
     }
 
-    private Customer getOwner()
+    protected Customer getOwner()
     {
         return owner;
     }
 
-    private void setOwner(Customer owner)
+    protected void setOwner(Customer owner)
     {
         this.owner = owner;
     }
 
-    private Car getCar()
+    protected Car getCar()
     {
         return car;
     }
 
-    private void setCar(Car car)
+    protected void setCar(Car car)
     {
         this.car = car;
     }
 
-    private Part getPart()
+    protected Part getPart()
     {
         return part;
     }
 
-    private void setPart(Part part)
+    protected void setPart(Part part)
     {
         this.part = part;
     }
@@ -135,7 +138,7 @@ public class Product
     /***
      * @return The Car or Part associated with this Product.
      */
-    public Object getObject()
+    public GenericProduct getObject()
     {
         if(this.getCar() != null)
         {
@@ -154,13 +157,14 @@ public class Product
     {
         String ret = "";
 
-        Object o = this.getObject(); // Product's car OR part
+        GenericProduct o = this.getObject(); // Product's car OR part
 
         String objstr = o.toString(); // car/part toString
+        int objid = o.getId(); // car/part id
         String ownername = this.getOwner().getName();
         String type = this.getPtype().toString();
 
-        ret += String.format("[%d] Product<%s> owned by '%s': '%s'", this.getPid(), type, ownername, objstr);
+        ret += String.format("[%d] Product<%s[%d]> owned by '%s': '%s'", this.getPid(), type, objid, ownername, objstr);
 
         return ret;
     }

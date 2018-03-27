@@ -85,8 +85,12 @@ public class ProductCreationServlet
         
         System.out.println("Freshly created product:");
         System.out.println(product.toString());
+        
+        ProductHandler productHandler = new ProductHandler();
+        
+        product.setPid(productHandler.create(product)); //set product id to saved db entity
 
-        return null;
+        return product;
     }
 
 }

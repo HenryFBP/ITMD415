@@ -2,15 +2,20 @@ package Final.Product.Part;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import Final.Product.GenericProduct;
+
 @Entity
 @Table(name = "Part")
-public class Part
+public class Part implements GenericProduct
 {
     @Id
     @Column(name = "partid")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int partid;
 
     @Column(name = "make")
@@ -33,12 +38,17 @@ public class Part
         this.condition = condition;
     }
 
+    public Integer getId()
+    {
+        return this.getPartid();
+    }
+
     private Integer getPartid()
     {
         return partid;
     }
 
-    private void setPartid(int partid)
+    protected void setPartid(int partid)
     {
         this.partid = partid;
     }
@@ -88,7 +98,8 @@ public class Part
     {
         String ret = "";
 
-        ret += String.format("A '%s' '%s' for a '%s' '%s'.", this.condition, this.type, this.make, this.model);
+        ret += String.format("[%d] A '%s' '%s' for a '%s' '%s'.", this.getPartid(), this.condition, this.type,
+                this.make, this.model);
 
         return ret;
     }

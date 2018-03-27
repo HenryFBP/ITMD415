@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 26, 2018 4:27:30 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="Final.Product.Product" table="PRODUCT">
-        <id name="pid" type="int">
-            <column name="PID" />
-            <generator class="assigned" />
-        </id>
-        <many-to-one name="ptype" class="Final.ProductType.ProductType" fetch="join">
-            <column name="PTYPE" />
-        </many-to-one>
-        <many-to-one name="owner" class="Final.Customer.Customer" fetch="join">
-            <column name="OWNER" />
-        </many-to-one>
-        <one-to-one name="car" class="Final.Product.Car.Car"></one-to-one>
-        <one-to-one name="part" class="Final.Product.Part.Part"></one-to-one>
-        <property name="name" type="java.lang.String">
-            <column name="NAME" />
-        </property>
-    </class>
+ <class name="Final.Product.Product" table="PRODUCT">
+  <id name="pid" type="int">
+   <column name="PID" unique="true"/>
+   <generator class="assigned"/>
+  </id>
+  <many-to-one class="Final.ProductType.ProductType" fetch="join" name="ptype">
+   <column name="PTYPE"/>
+  </many-to-one>
+  <many-to-one class="Final.Customer.Customer" fetch="join" name="owner">
+   <column name="OWNER"/>
+  </many-to-one>
+  <one-to-one class="Final.Product.Car.Car" name="car"/>
+  <one-to-one class="Final.Product.Part.Part" name="part"/>
+  <property generated="never" lazy="false" name="name" type="java.lang.String">
+   <column name="NAME"/>
+  </property>
+ </class>
 </hibernate-mapping>
