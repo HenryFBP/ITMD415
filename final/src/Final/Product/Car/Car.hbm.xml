@@ -5,7 +5,7 @@
 <hibernate-mapping>
  <class name="Final.Product.Car.Car" table="CAR">
   <id name="carid" type="int">
-   <column name="carid"/>
+   <column name="CARID" not-null="true" unique="true"/>
    <generator class="assigned"/>
   </id>
   <property generated="never" lazy="false" name="make" type="java.lang.String">

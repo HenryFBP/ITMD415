@@ -16,19 +16,19 @@ public class Car implements GenericProduct
     @Id
     @Column(name = "carid")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int cid;
+    protected int carid;
 
     @Column(name = "make")
-    private String make;
+    protected String make;
 
     @Column(name = "model")
-    private String model;
+    protected String model;
 
     @Column(name = "miles")
-    private int miles;
+    protected int miles;
 
     @Column(name = "year")
-    private int year;
+    protected int year;
 
     public Car()
     {
@@ -45,55 +45,55 @@ public class Car implements GenericProduct
 
     public Integer getId()
     {
-        return this.getCid();
+        return this.getCarId();
     }
 
-    private Integer getCid()
+    protected Integer getCarId()
     {
-        return this.cid;
+        return this.carid;
     }
 
-    private void setCid(int cid)
+    protected void setCarId(int carId)
     {
-        this.cid = cid;
+        this.carid = carId;
     }
 
-    private String getMake()
+    protected String getMake()
     {
         return make;
     }
 
-    private void setMake(String make)
+    protected void setMake(String make)
     {
         this.make = make;
     }
 
-    private String getModel()
+    protected String getModel()
     {
         return model;
     }
 
-    private void setModel(String model)
+    protected void setModel(String model)
     {
         this.model = model;
     }
 
-    private int getMiles()
+    protected int getMiles()
     {
         return miles;
     }
 
-    private void setMiles(int miles)
+    protected void setMiles(int miles)
     {
         this.miles = miles;
     }
 
-    private int getYear()
+    protected int getYear()
     {
         return year;
     }
 
-    private void setYear(int year)
+    protected void setYear(int year)
     {
         this.year = year;
     }
@@ -103,7 +103,7 @@ public class Car implements GenericProduct
     {
         String ret = "";
 
-        ret += String.format("[%d] A '%d' '%s' '%s' with '%d' miles.", this.getCid(), this.getYear(), this.getMake(), this.getModel(), this.getMiles());
+        ret += String.format("[%d] A '%d' '%s' '%s' with '%d' miles.", this.getCarId(), this.getYear(), this.getMake(), this.getModel(), this.getMiles());
 
         return ret;
     }

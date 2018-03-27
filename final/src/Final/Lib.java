@@ -26,6 +26,21 @@ import Final.Customer.Exceptions.CustomerNotLoggedInException;
 
 public class Lib
 {
+    /***
+     * ParseInt or null.
+     */
+    public static Integer parseIntN(String s)
+    {
+        try
+        {
+            return Integer.parseInt(s);
+        }
+        catch(Exception e)
+        {
+            return null;
+        }
+    }
+
     public static String websafe(String s)
     {
         return s.replace("<", "&lt;").replace(">", "&gt;");
