@@ -39,6 +39,8 @@ INSERT INTO listing VALUES (2,       2,       NULL,   10000);
 -- INSERT INTO forum VALUES (2, 5, 2, 2018, "I gotcha a Death Star?!?!");
 
 SELECT * FROM customer;
+SELECT * FROM car;
+SELECT * FROM part;
 SELECT * FROM producttype;
 SELECT * FROM product;
 SELECT * FROM listing;
