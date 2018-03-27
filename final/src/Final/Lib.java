@@ -22,22 +22,32 @@ import com.amdelamar.jhash.Hash;
 import com.amdelamar.jhash.exception.InvalidHashException;
 
 import Final.Customer.Customer;
+import Final.Customer.Exceptions.CustomerNotLoggedInException;
 
 public class Lib
 {
     /***
      * Given an HttpServletRequest, return the session's logged-in customer.
+     * 
+     * If they aren't logged in, throw a CustomerNotLoggedInException.
+     * @throws CustomerNotLoggedInException 
      */
-    public static Customer getCustomer(HttpServletRequest hsr)
+    public static Customer getCustomer(HttpServletRequest hsr) throws CustomerNotLoggedInException
     {
         return getCustomer(hsr.getSession());
     }
     
     /***
      * Given an HttpSession, return the session's logged-in customer.
+     * @throws CustomerNotLoggedInException 
      */
-    public static Customer getCustomer(HttpSession hs)
+    public static Customer getCustomer(HttpSession hs) throws CustomerNotLoggedInException
     {
+        Customer c = (Customer) hs.getAttribute("customer");
+        if(c==null)
+        {
+            throw new CustomerNotLoggedInException();
+        }
         return (Customer) hs.getAttribute("customer");
     }
 

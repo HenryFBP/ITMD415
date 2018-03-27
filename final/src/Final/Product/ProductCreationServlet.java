@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import Final.Lib;
 import Final.Customer.Customer;
+import Final.Customer.Exceptions.CustomerNotLoggedInException;
 import Final.Customer.Exceptions.FormNotFilledOutException;
 import Final.Product.Car.Car;
 import Final.Product.Car.CarCreationServlet;
@@ -28,13 +29,16 @@ public class ProductCreationServlet
      * @return A Product.
      * 
      * @throws FormNotFilledOutException
+     * @throws CustomerNotLoggedInException 
      */
-    public static Product createProduct(HttpServletRequest r) throws FormNotFilledOutException
+    public static Product createProduct(HttpServletRequest r) throws FormNotFilledOutException, CustomerNotLoggedInException
     {
         String type = r.getParameter("producttype"); // hidden parameter to differentiate between Car and Part
         String name = r.getParameter("name"); // the name, part of a Product, not a Car or Part.
 
         Customer customer = Lib.getCustomer(r); // the session's customer
+        System.out.println("Customer making a product:");
+        System.out.println(customer.toString());
 
         ArrayList<String> problems = new ArrayList<String>();
 
@@ -62,11 +66,13 @@ public class ProductCreationServlet
         {
             System.out.println("thems makin a car!");
             car = CarCreationServlet.createCar(r);
+            System.out.println(car.toString());
         }
         else if(PartHandler.isPart(type)) // it's a part
         {
             System.out.println("thems makin a part!");
             part = PartCreationServlet.createPart(r);
+            System.out.println(part.toString());
         }
         else
         {

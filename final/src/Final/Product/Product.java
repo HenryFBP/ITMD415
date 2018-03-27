@@ -148,4 +148,20 @@ public class Product
 
         return null;
     }
+
+    @Override
+    public String toString()
+    {
+        String ret = "";
+
+        Object o = this.getObject(); // Product's car OR part
+
+        String objstr = o.toString(); // car/part toString
+        String ownername = this.getOwner().getName();
+        String type = this.getPtype().toString();
+
+        ret += String.format("[%d] Product<%s> owned by '%s': '%s'", this.getPid(), type, ownername, objstr);
+
+        return ret;
+    }
 }

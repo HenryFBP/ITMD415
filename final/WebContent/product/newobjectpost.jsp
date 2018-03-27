@@ -4,7 +4,7 @@
 <%@page import="Final.Customer.*"%>
 <%@page import="Final.Customer.Exceptions.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-  pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%
     ProductHandler ph = new ProductHandler();
     String message = "";
@@ -12,15 +12,16 @@
     {
         Product p = ProductCreationServlet.createProduct(request);
     }
-    catch (FormNotFilledOutException e)
+    catch(FormNotFilledOutException e)
     {
-        message = e.getList();
-    }
-
-    if (!message.equalsIgnoreCase(""))
-    {
+        message += e.getList();
         message = Lib.wrap(message, "ul");
         message = Lib.wrap("Missing form elements: ", "p") + message;
+
+    }
+    catch(CustomerNotLoggedInException e)
+    {
+        message += Lib.wrap("You must be logged in to make a new Product.", "p");
     }
 %>
 
@@ -32,8 +33,8 @@
 <link rel="stylesheet" href="/final/css/screen.css" />
 </head>
 <body>
-  <nav><jsp:include page="/navbar.jsp"></jsp:include></nav>
+	<nav><jsp:include page="/navbar.jsp"></jsp:include></nav>
 
-  <%=message%>
+	<%=message%>
 </body>
 </html>

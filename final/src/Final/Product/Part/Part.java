@@ -18,12 +18,20 @@ public class Part
 
     @Column(name = "model")
     private String model;
-    
+
     @Column(name = "type")
     private String type;
-    
+
     @Column(name = "cond")
     private String condition;
+
+    public Part(String make, String model, String type, String condition)
+    {
+        this.make = make;
+        this.model = model;
+        this.type = type;
+        this.condition = condition;
+    }
 
     private Integer getPartid()
     {
@@ -64,6 +72,7 @@ public class Part
     {
         this.condition = condition;
     }
+
     private String getType()
     {
         return type;
@@ -74,5 +83,14 @@ public class Part
         this.type = type;
     }
 
+    @Override
+    public String toString()
+    {
+        String ret = "";
+
+        ret += String.format("A '%s' '%s' for a '%s' '%s'.", this.condition, this.type, this.make, this.model);
+
+        return ret;
+    }
 
 }
