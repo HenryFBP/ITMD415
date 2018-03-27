@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS car (
     make        VARCHAR(64)     NOT NULL,
     model       VARCHAR(64)     NOT NULL,
     miles       INTEGER         NOT NULL,
-    year       INTEGER          NOT NULL,
+    year        INTEGER         NOT NULL,
     
     PRIMARY KEY (carid)
 );
