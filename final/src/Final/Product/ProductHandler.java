@@ -55,6 +55,7 @@ public class ProductHandler
      */
     public int create(Product pt)
     {
+        System.out.println("Product create begin");
         Session s = sessionFactory.openSession();
         Transaction t = null;
         Integer pid = null;
@@ -87,21 +88,12 @@ public class ProductHandler
      */
     public ArrayList<Product> read(Customer c)
     {
-        System.out.println("READ?!??!");
         Session s = sessionFactory.openSession();
-
-        System.out.printf("ProductHandler reading by customer '%s' w/ id '%d'.", c.getName(), c.getCid());
 
         int cid = c.getCid(); // customer's id
 
         ArrayList<Product> products = (ArrayList<Product>) s.createCriteria(Product.class)
                 .add(Restrictions.eq("owner", c)).list();
-
-        System.out.println("Results:");
-        for(Product p : products)
-        {
-            System.out.println(p.toString());
-        }
 
         s.close();
 

@@ -41,14 +41,14 @@ public class Product
     /***
      * The Car associated with this Product, if it exists.
      */
-    @OneToOne
+    @OneToOne(optional = true)
     @JoinColumn(name = "carid", nullable = true)
     private Car car;
 
     /***
      * The Part associated with this Product, if it exists.
      */
-    @OneToOne
+    @OneToOne(optional = true)
     @JoinColumn(name = "partid", nullable = true)
     private Part part;
 
