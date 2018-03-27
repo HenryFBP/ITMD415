@@ -4,10 +4,10 @@ USE itmd415;
 -- DROP TABLE IF EXISTS part;
 CREATE TABLE IF NOT EXISTS part (
     partid      INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
-    make        VARCHAR(64)     ,
-    model       VARCHAR(64)     ,
-    type        VARCHAR(64)     ,
-    cond        VARCHAR(64)     ,
+    make        VARCHAR(64)     NOT NULL,
+    model       VARCHAR(64)     NOT NULL,
+    type        VARCHAR(64)     NOT NULL,
+    cond        VARCHAR(64)     NOT NULL,
     
     PRIMARY KEY (partid)
 );

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS listing (
     lid         INTEGER         NOT NULL UNIQUE AUTO_INCREMENT,
     pid         INTEGER         NOT NULL,
     buyercid    INTEGER         ,
-    price       INTEGER         ,
+    price       INTEGER         NOT NULL,
     
     PRIMARY KEY (lid),
     FOREIGN KEY (pid)           REFERENCES product(pid),
