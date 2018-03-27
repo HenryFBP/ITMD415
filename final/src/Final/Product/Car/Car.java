@@ -29,12 +29,12 @@ public class Car implements GenericProduct
 
     @Column(name = "year")
     private int year;
-    
+
     public Car()
     {
-        
+
     }
-    
+
     public Car(String make, String model, int miles, int year)
     {
         this.make = make;
@@ -42,7 +42,7 @@ public class Car implements GenericProduct
         this.miles = miles;
         this.year = year;
     }
-    
+
     public Integer getId()
     {
         return this.getCid();
@@ -78,7 +78,7 @@ public class Car implements GenericProduct
         this.model = model;
     }
 
-    private long getMiles()
+    private int getMiles()
     {
         return miles;
     }
@@ -96,6 +96,16 @@ public class Car implements GenericProduct
     private void setYear(int year)
     {
         this.year = year;
+    }
+
+    @Override
+    public String toString()
+    {
+        String ret = "";
+
+        ret += String.format("[%d] A '%d' '%s' '%s' with '%d' miles.", this.getCid(), this.getYear(), this.getMake(), this.getModel(), this.getMiles());
+
+        return ret;
     }
 
 }
