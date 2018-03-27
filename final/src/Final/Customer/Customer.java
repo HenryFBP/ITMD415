@@ -1,11 +1,16 @@
 package Final.Customer;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import Final.Lib;
+import Final.Product.Product;
 
 /***
  * A single Customer.
@@ -18,15 +23,18 @@ public class Customer
     @Id
     @Column(name = "cid")
     private int cid;
-    
+
     @Column(name = "username")
     private String username;
-    
+
     @Column(name = "email")
     private String email;
 
     @Column(name = "passhash")
     private String passhash;
+
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Product.class)
+    private Set<Product> products;
 
     public Customer()
     {

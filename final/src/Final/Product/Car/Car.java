@@ -12,7 +12,7 @@ import Final.Product.GenericProduct;
 public class Car implements GenericProduct
 {
     @Id
-    @Column(name = "cid")
+    @Column(name = "carid")
     private int cid;
 
     @Column(name = "make")
@@ -26,6 +26,11 @@ public class Car implements GenericProduct
 
     @Column(name = "year")
     private int year;
+    
+    public Car()
+    {
+        
+    }
     
     public Car(String make, String model, int miles, int year)
     {

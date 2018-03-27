@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 26, 2018 4:27:30 PM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="Final.Product.Car.Car" table="CAR">
-        <id name="cid" type="int">
-            <column name="CID" />
-            <generator class="assigned" />
-        </id>
-        <property name="make" type="java.lang.String">
-            <column name="MAKE" />
-        </property>
-        <property name="model" type="java.lang.String">
-            <column name="MODEL" />
-        </property>
-        <property name="miles" type="int">
-            <column name="MILES" />
-        </property>
-        <property name="year" type="int">
-            <column name="YEAR" />
-        </property>
-    </class>
+ <class name="Final.Product.Car.Car" table="CAR">
+  <id name="carid" type="int">
+   <column name="carid"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="make" type="java.lang.String">
+   <column name="MAKE"/>
+  </property>
+  <property generated="never" lazy="false" name="model" type="java.lang.String">
+   <column name="MODEL"/>
+  </property>
+  <property generated="never" lazy="false" name="miles" type="int">
+   <column name="MILES"/>
+  </property>
+  <property generated="never" lazy="false" name="year" type="int">
+   <column name="YEAR"/>
+  </property>
+ </class>
 </hibernate-mapping>

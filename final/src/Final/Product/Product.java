@@ -21,7 +21,7 @@ public class Product
 {
     @Id
     @Column(name = "pid")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int pid;
 
     /***
@@ -57,6 +57,11 @@ public class Product
      */
     @Column(name = "name")
     private String name;
+
+    public Product()
+    {
+
+    }
 
     public Product(ProductType ptype, Customer owner, Car car, Part part, String name)
     {

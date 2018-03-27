@@ -8,9 +8,11 @@
 <%
     ProductHandler ph = new ProductHandler();
     String message = "";
+    String title = "Error creating new product";
     try
     {
         Product p = ProductCreationServlet.createProduct(request);
+        title = p.getObjectClass().getSimpleName();
     }
     catch(FormNotFilledOutException e)
     {
@@ -29,7 +31,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>New [OBJECT] created!</title>
+<title><%=title%></title>
 <link rel="stylesheet" href="/final/css/screen.css" />
 </head>
 <body>

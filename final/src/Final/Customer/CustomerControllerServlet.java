@@ -70,6 +70,11 @@ public class CustomerControllerServlet extends HttpServlet
         try
         {
             c = (Customer) s.getAttribute("customer");
+            if(c == null)
+            {
+                s.invalidate();
+                s.setAttribute("username", null);
+            }
         }
         catch(IllegalStateException e)
         {

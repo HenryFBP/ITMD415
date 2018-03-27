@@ -15,7 +15,7 @@ public class Part implements GenericProduct
 {
     @Id
     @Column(name = "partid")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int partid;
 
     @Column(name = "make")
@@ -29,7 +29,12 @@ public class Part implements GenericProduct
 
     @Column(name = "cond")
     private String condition;
-
+    
+    public Part()
+    {
+        
+    }
+    
     public Part(String make, String model, String type, String condition)
     {
         this.make = make;

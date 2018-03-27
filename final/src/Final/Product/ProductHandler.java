@@ -10,7 +10,10 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
+
+import Final.Customer.Customer;
 
 public class ProductHandler
 {
@@ -55,8 +58,6 @@ public class ProductHandler
         Session s = sessionFactory.openSession();
         Transaction t = null;
         Integer pid = null;
-        
-        
 
         try
         {
@@ -79,6 +80,32 @@ public class ProductHandler
 
         return pid;
 
+    }
+
+    /***
+     * Given a Customer, return all Products that they own.
+     */
+    public ArrayList<Product> read(Customer c)
+    {
+        System.out.println("READ?!??!");
+        Session s = sessionFactory.openSession();
+
+        System.out.printf("ProductHandler reading by customer '%s' w/ id '%d'.", c.getName(), c.getCid());
+
+        int cid = c.getCid(); // customer's id
+
+        ArrayList<Product> products = (ArrayList<Product>) s.createCriteria(Product.class)
+                .add(Restrictions.eq("owner", c)).list();
+
+        System.out.println("Results:");
+        for(Product p : products)
+        {
+            System.out.println(p.toString());
+        }
+
+        s.close();
+
+        return products;
     }
 
     // code to get a Product
@@ -143,9 +170,9 @@ public class ProductHandler
         ProductHandler manager = new ProductHandler();
 
         manager.setup();
-        
+
         ArrayList<Product> products = (ArrayList<Product>) manager.readAll();
-        
+
         System.out.println("all products:");
 
         for(Product p : products)
