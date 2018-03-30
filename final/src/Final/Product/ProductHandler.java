@@ -15,6 +15,7 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
 import org.jsoup.nodes.Element;
 
+import Final.Lib;
 import Final.Customer.Customer;
 
 public class ProductHandler
@@ -135,32 +136,43 @@ public class ProductHandler
      * @return
      */
     public static String ProductHashMapToHTML(HashMap<Class, ArrayList<Product>> productsMap)
-    {
+    { //TODO this generates invalid html. FIXME please.
         Element root = new Element("ul");
 
         for(Class c : productsMap.keySet()) // for each type of product
         {
             ArrayList<Product> products = productsMap.get(c); // get list of products of type <p>
-            Element productListElt = new Element("ul");
+
+            Element productTypeHeader = new Element("h2"); // blank header
+
+            productTypeHeader.append(c.getSimpleName()); // add type to header
+            
+            Element productListUL = new Element("ul");//empty list of product<TYPE>
+
+            productListUL.appendChild(productTypeHeader); // add h2 to ul
 
             for(Product p : products)
             {
                 Element productElt = new Element("li");
 
                 Element productDesc = new Element("p");
-                productDesc.append(p.toString());
+                productDesc.append(Lib.websafe(p.toString()));
 
-                productElt.appendChild(productDesc);
+                productElt.insertChildren(0, productDesc); // add desc to inner li
 
-                productListElt.appendChild(productElt);
+                System.out.println("A product elt:");
+                System.out.println(productElt.toString());
+                
+                productListUL.appendChild(productElt); // add li to ul
             }
 
-            root.appendChild(productListElt); //add list of products
+            root.appendChild(productListUL); // add list of products
 
         }
 
         String r = root.toString();
 
+        System.out.println();
         System.out.println(r);
 
         return r;

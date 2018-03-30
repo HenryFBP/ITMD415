@@ -38,9 +38,7 @@
   <main>
   <section>
     <h1>Your products:</h1>
-    <ul>
-      <%=ProductHandler.ProductHashMapToHTML(productsMap)%>
-    </ul>
+    <%=ProductHandler.ProductHashMapToHTML(productsMap)%>
   </section>
   <section>
     <header>
