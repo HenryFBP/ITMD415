@@ -1,6 +1,7 @@
 package Final.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -12,6 +13,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.service.ServiceRegistry;
+import org.jsoup.nodes.Element;
 
 import Final.Customer.Customer;
 
@@ -98,6 +100,70 @@ public class ProductHandler
         s.close();
 
         return products;
+    }
+
+    /***
+     * Sort a list of products into a class-denoted Map object.
+     */
+    public static HashMap<Class, ArrayList<Product>> sortProductsByClass(ArrayList<Product> products)
+    {
+        HashMap<Class, ArrayList<Product>> ret = new HashMap<Class, ArrayList<Product>>();
+
+        for(Product p : products)
+        {
+            Class c = p.getObjectClass(); // product class <TYPE>
+
+            if(!ret.containsKey(c)) // if it doesn't exist
+            {
+                ret.put(c, new ArrayList<Product>()); // make blank list
+            }
+
+            ArrayList<Product> ps = ret.get(c); // list of product of type <TYPE>
+
+            ps.add(p); // add product to that list
+
+            ret.put(p.getObjectClass(), ps); // save it
+        }
+
+        return ret;
+    }
+
+    /***
+     * Turn a HashMap of Class->ArrayList&lt;Product> into an HTML element.
+     * 
+     * @param productsMap
+     * @return
+     */
+    public static String ProductHashMapToHTML(HashMap<Class, ArrayList<Product>> productsMap)
+    {
+        Element root = new Element("ul");
+
+        for(Class c : productsMap.keySet()) // for each type of product
+        {
+            ArrayList<Product> products = productsMap.get(c); // get list of products of type <p>
+            Element productListElt = new Element("ul");
+
+            for(Product p : products)
+            {
+                Element productElt = new Element("li");
+
+                Element productDesc = new Element("p");
+                productDesc.append(p.toString());
+
+                productElt.appendChild(productDesc);
+
+                productListElt.appendChild(productElt);
+            }
+
+            root.appendChild(productListElt); //add list of products
+
+        }
+
+        String r = root.toString();
+
+        System.out.println(r);
+
+        return r;
     }
 
     // code to get a Product
